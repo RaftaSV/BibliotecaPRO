@@ -57,8 +57,17 @@ namespace AdminLabrary.View.principales
                         {
                             dgvSolicitudes.Rows.Add(iterar.ID, iterar.Lector, iterar.Libros, iterar.Cantidad,
                             iterar.Id_Lector, iterar.Id_Libro);
-                            lblMessage.Visible = false;
+                            
                         }
+                    }
+
+                    if (lista.Count() > 0)
+                    {
+                        lblMessage.Visible = false;
+                    }
+                    else
+                    {
+                        lblMessage.Visible = true;
                     }
                 }
                 else if (Loging == 1)
@@ -88,8 +97,16 @@ namespace AdminLabrary.View.principales
                         {
                             dgvSolicitudes.Rows.Add(iterar.ID, iterar.Lector, iterar.Libros, iterar.Cantidad,
                             iterar.Id_Lector, iterar.Id_Libro);
-                            lblMessage.Visible = false;
+                           
                         }
+                    }
+                    if (lista.Count() > 0)
+                    {
+                        lblMessage.Visible = false;
+                    }
+                    else
+                    {
+                        lblMessage.Visible = true;
                     }
                 }
             }
@@ -174,6 +191,51 @@ namespace AdminLabrary.View.principales
                     int IdLibro = int.Parse(dgvSolicitudes.CurrentRow.Cells[5].Value.ToString());
                     string Libro = dgvSolicitudes.CurrentRow.Cells[2].Value.ToString();
                     string Cantidad = dgvSolicitudes.CurrentRow.Cells[3].Value.ToString();
+                int cantidadLibros =0;
+                using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
+                {
+                    var lista = from libros in db.Libros
+                                where libros.Id_libro == IdLibro
+                                select new
+                                {
+                                   cantidad = libros.cantidad
+
+                                };
+
+
+                   
+
+                    foreach (var i in lista)
+                    {
+                        cantidadLibros = i.cantidad;
+                    }
+                }
+
+
+                if (cantidadLibros < Int32.Parse(Cantidad)) { 
+
+                DialogResult resultado = MessageBox.Show("La cantidad de libros solicitada es menor a la exitente, desea alquilar "+cantidadLibros.ToString() +" libros?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if(resultado == DialogResult.Yes)
+                {
+                    frmPrincipal.prestamos.alquiler.IdLibro = IdLibro;
+                    frmPrincipal.prestamos.alquiler.txtLibro.Text = Libro;
+                    frmPrincipal.prestamos.alquiler.txtLector.Text = Lector;
+                    frmPrincipal.prestamos.alquiler.idLector = IdLector;
+                    frmPrincipal.prestamos.alquiler.txtCantidad.Text = cantidadLibros.ToString();
+                    frmPrincipal.prestamos.alquiler.solicitud = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
+                    frmPrincipal.prestamos.alquiler.txtCantidad.Enabled = false;
+                    frmPrincipal.prestamos.alquiler.btnRecibir.Hide();
+                    frmPrincipal.prestamos.alquiler.btnGuardar.Enabled = true;
+                    frmPrincipal.prestamos.alquiler.btnGuardar.Show();
+                    frmPrincipal.prestamos.alquiler.btnSeleccionarLector.Hide();
+                    frmPrincipal.prestamos.alquiler.btnSeleccionarLibro.Hide();
+                    frmPrincipal.prestamos.alquiler.ShowDialog();
+                }
+
+                }
+                else
+                {
                     frmPrincipal.prestamos.alquiler.IdLibro = IdLibro;
                     frmPrincipal.prestamos.alquiler.txtLibro.Text = Libro;
                     frmPrincipal.prestamos.alquiler.txtLector.Text = Lector;
@@ -188,6 +250,8 @@ namespace AdminLabrary.View.principales
                     frmPrincipal.prestamos.alquiler.btnSeleccionarLibro.Hide();
                     frmPrincipal.prestamos.alquiler.ShowDialog();
                 }
+            }
+            
 
             }
 
