@@ -194,7 +194,7 @@
             // 
             // Panel10
             // 
-            this.Panel10.BackColor = System.Drawing.Color.SeaGreen;
+            this.Panel10.BackColor = System.Drawing.Color.Teal;
             this.Panel10.Location = new System.Drawing.Point(0, 139);
             this.Panel10.Name = "Panel10";
             this.Panel10.Size = new System.Drawing.Size(5, 553);
