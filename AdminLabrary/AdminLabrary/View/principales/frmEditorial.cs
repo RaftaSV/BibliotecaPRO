@@ -88,6 +88,9 @@ namespace AdminLabrary.formularios.principales
                 Editorial.btnGuardar.Hide();
                 Editorial.btnEditar.Show();
                 Editorial.btnEliminar.Hide();
+                Editorial.txtDirecion.Enabled = true;
+                Editorial.txtEditorial.Enabled = true;
+                Editorial.dtpFecha.Enabled = true;
                 Editorial.ShowDialog();
             }
             else if (e.ColumnIndex == this.dgvEditorial.Columns["ELIMINAR"].Index && e.RowIndex != -1)
