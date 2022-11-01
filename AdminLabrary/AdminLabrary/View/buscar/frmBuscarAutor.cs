@@ -84,5 +84,10 @@ namespace AdminLabrary.View.buscar
         {
             filtro();
         }
+
+        private void dgvAutor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlquileresCRUD));
             this.txtLector = new System.Windows.Forms.TextBox();
             this.txtLibro = new System.Windows.Forms.TextBox();
             this.btnSeleccionarLibro = new System.Windows.Forms.Button();
@@ -38,6 +39,8 @@
             this.btnSeleccionarLector = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // txtLector
@@ -58,7 +61,7 @@
             // 
             // btnSeleccionarLibro
             // 
-            this.btnSeleccionarLibro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnSeleccionarLibro.BackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarLibro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeleccionarLibro.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnSeleccionarLibro.FlatAppearance.BorderSize = 2;
@@ -66,6 +69,7 @@
             this.btnSeleccionarLibro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarLibro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeleccionarLibro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btnSeleccionarLibro.ForeColor = System.Drawing.Color.White;
             this.btnSeleccionarLibro.Location = new System.Drawing.Point(291, 90);
             this.btnSeleccionarLibro.Name = "btnSeleccionarLibro";
             this.btnSeleccionarLibro.Size = new System.Drawing.Size(155, 31);
@@ -76,7 +80,7 @@
             // 
             // btnRecibir
             // 
-            this.btnRecibir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnRecibir.BackColor = System.Drawing.Color.Teal;
             this.btnRecibir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRecibir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnRecibir.FlatAppearance.BorderSize = 2;
@@ -84,7 +88,8 @@
             this.btnRecibir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnRecibir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecibir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecibir.Location = new System.Drawing.Point(167, 203);
+            this.btnRecibir.ForeColor = System.Drawing.Color.White;
+            this.btnRecibir.Location = new System.Drawing.Point(257, 229);
             this.btnRecibir.Name = "btnRecibir";
             this.btnRecibir.Size = new System.Drawing.Size(133, 31);
             this.btnRecibir.TabIndex = 18;
@@ -94,7 +99,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.Teal;
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnGuardar.FlatAppearance.BorderSize = 2;
@@ -102,7 +107,8 @@
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(12, 203);
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Location = new System.Drawing.Point(101, 229);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(119, 31);
             this.btnGuardar.TabIndex = 17;
@@ -134,7 +140,7 @@
             // 
             // btnSeleccionarLector
             // 
-            this.btnSeleccionarLector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnSeleccionarLector.BackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarLector.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeleccionarLector.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnSeleccionarLector.FlatAppearance.BorderSize = 2;
@@ -142,6 +148,7 @@
             this.btnSeleccionarLector.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarLector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeleccionarLector.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btnSeleccionarLector.ForeColor = System.Drawing.Color.White;
             this.btnSeleccionarLector.Location = new System.Drawing.Point(291, 35);
             this.btnSeleccionarLector.Name = "btnSeleccionarLector";
             this.btnSeleccionarLector.Size = new System.Drawing.Size(155, 31);
@@ -170,12 +177,25 @@
             this.txtCantidad.TabIndex = 24;
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox3.BackColor = System.Drawing.Color.White;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(266, 136);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(231, 69);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 26;
+            this.pictureBox3.TabStop = false;
+            // 
             // frmAlquileresCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(486, 246);
+            this.ClientSize = new System.Drawing.Size(509, 272);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.btnSeleccionarLector);
@@ -193,6 +213,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAlquileresCRUD";
             this.Load += new System.EventHandler(this.frmAlquileresCRUD_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +230,6 @@
         public System.Windows.Forms.TextBox txtLibro;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

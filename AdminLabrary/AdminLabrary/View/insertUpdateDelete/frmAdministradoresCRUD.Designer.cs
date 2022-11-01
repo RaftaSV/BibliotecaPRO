@@ -43,13 +43,17 @@
             this.rbtnAdmi = new System.Windows.Forms.RadioButton();
             this.picOcultar = new System.Windows.Forms.PictureBox();
             this.picVer = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnEliminar.BackColor = System.Drawing.Color.Teal;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.Enabled = false;
             this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -58,6 +62,7 @@
             this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.Location = new System.Drawing.Point(323, 227);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(128, 31);
@@ -68,7 +73,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnEditar.BackColor = System.Drawing.Color.Teal;
             this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar.Enabled = false;
             this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -77,7 +82,8 @@
             this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(155, 227);
+            this.btnEditar.ForeColor = System.Drawing.Color.White;
+            this.btnEditar.Location = new System.Drawing.Point(157, 227);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(133, 31);
             this.btnEditar.TabIndex = 12;
@@ -87,7 +93,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.Teal;
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.Enabled = false;
             this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -96,6 +102,7 @@
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
             this.btnGuardar.Location = new System.Drawing.Point(3, 227);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(115, 31);
@@ -166,7 +173,7 @@
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnSeleccionar.BackColor = System.Drawing.Color.Teal;
             this.btnSeleccionar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeleccionar.Enabled = false;
             this.btnSeleccionar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -175,6 +182,7 @@
             this.btnSeleccionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeleccionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeleccionar.ForeColor = System.Drawing.Color.White;
             this.btnSeleccionar.Location = new System.Drawing.Point(324, 32);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(127, 31);
@@ -186,9 +194,9 @@
             // rbtnLector
             // 
             this.rbtnLector.AutoSize = true;
-            this.rbtnLector.BackColor = System.Drawing.Color.White;
-            this.rbtnLector.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.rbtnLector.Location = new System.Drawing.Point(36, 191);
+            this.rbtnLector.BackColor = System.Drawing.Color.Teal;
+            this.rbtnLector.ForeColor = System.Drawing.Color.White;
+            this.rbtnLector.Location = new System.Drawing.Point(83, 191);
             this.rbtnLector.Name = "rbtnLector";
             this.rbtnLector.Size = new System.Drawing.Size(72, 24);
             this.rbtnLector.TabIndex = 18;
@@ -199,8 +207,8 @@
             // rbtnAdmi
             // 
             this.rbtnAdmi.AutoSize = true;
-            this.rbtnAdmi.BackColor = System.Drawing.Color.White;
-            this.rbtnAdmi.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.rbtnAdmi.BackColor = System.Drawing.Color.Teal;
+            this.rbtnAdmi.ForeColor = System.Drawing.Color.White;
             this.rbtnAdmi.Location = new System.Drawing.Point(175, 191);
             this.rbtnAdmi.Name = "rbtnAdmi";
             this.rbtnAdmi.Size = new System.Drawing.Size(134, 24);
@@ -233,12 +241,37 @@
             this.picVer.TabStop = false;
             this.picVer.Click += new System.EventHandler(this.btnVerC_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(-900, 184);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(2134, 37);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 23;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(324, 85);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(132, 72);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmAdministradoresCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(461, 270);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.rbtnAdmi);
             this.Controls.Add(this.rbtnLector);
             this.Controls.Add(this.btnSeleccionar);
@@ -253,6 +286,7 @@
             this.Controls.Add(this.picOcultar);
             this.Controls.Add(this.picVer);
             this.Controls.Add(this.txtContraseña);
+            this.Controls.Add(this.pictureBox2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -262,6 +296,8 @@
             this.Load += new System.EventHandler(this.frmAdministradoresCRUD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,5 +319,7 @@
         public System.Windows.Forms.RadioButton rbtnAdmi;
         private System.Windows.Forms.PictureBox picOcultar;
         private System.Windows.Forms.PictureBox picVer;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

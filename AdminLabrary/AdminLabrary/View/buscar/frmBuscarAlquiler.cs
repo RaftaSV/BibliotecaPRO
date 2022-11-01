@@ -152,5 +152,10 @@ namespace AdminLabrary.View.buscar
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

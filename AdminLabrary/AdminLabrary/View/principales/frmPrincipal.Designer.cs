@@ -290,14 +290,15 @@
             // 
             // btnPrestamos
             // 
-            this.btnPrestamos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPrestamos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnPrestamos.BackColor = System.Drawing.Color.Transparent;
             this.btnPrestamos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrestamos.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnPrestamos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnPrestamos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnPrestamos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrestamos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrestamos.ForeColor = System.Drawing.Color.White;
+            this.btnPrestamos.ForeColor = System.Drawing.Color.Transparent;
             this.btnPrestamos.Image = ((System.Drawing.Image)(resources.GetObject("btnPrestamos.Image")));
             this.btnPrestamos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrestamos.Location = new System.Drawing.Point(16, 139);

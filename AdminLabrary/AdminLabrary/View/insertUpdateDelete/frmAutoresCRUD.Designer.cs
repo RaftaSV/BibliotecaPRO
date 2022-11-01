@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAutoresCRUD));
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -37,11 +38,13 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnEliminar.BackColor = System.Drawing.Color.Teal;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.Enabled = false;
             this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -50,9 +53,10 @@
             this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(322, 218);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(345, 210);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(128, 31);
+            this.btnEliminar.Size = new System.Drawing.Size(129, 34);
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -60,7 +64,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnEditar.BackColor = System.Drawing.Color.Teal;
             this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar.Enabled = false;
             this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -69,9 +73,10 @@
             this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(155, 218);
+            this.btnEditar.ForeColor = System.Drawing.Color.White;
+            this.btnEditar.Location = new System.Drawing.Point(178, 210);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(133, 31);
+            this.btnEditar.Size = new System.Drawing.Size(134, 34);
             this.btnEditar.TabIndex = 12;
             this.btnEditar.Text = "ACTUALIZAR";
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -79,7 +84,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.Teal;
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.Enabled = false;
             this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -88,9 +93,10 @@
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(10, 218);
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Location = new System.Drawing.Point(33, 210);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(115, 31);
+            this.btnGuardar.Size = new System.Drawing.Size(116, 34);
             this.btnGuardar.TabIndex = 11;
             this.btnGuardar.Text = "GUARDAR";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -99,14 +105,14 @@
             // txtNacionalidad
             // 
             this.txtNacionalidad.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNacionalidad.Location = new System.Drawing.Point(90, 153);
+            this.txtNacionalidad.Location = new System.Drawing.Point(33, 142);
             this.txtNacionalidad.Name = "txtNacionalidad";
             this.txtNacionalidad.Size = new System.Drawing.Size(288, 26);
             this.txtNacionalidad.TabIndex = 10;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(90, 29);
+            this.txtNombre.Location = new System.Drawing.Point(33, 18);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(288, 26);
             this.txtNombre.TabIndex = 9;
@@ -117,7 +123,7 @@
             this.lblNacionalidad.AutoSize = true;
             this.lblNacionalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNacionalidad.ForeColor = System.Drawing.Color.Gray;
-            this.lblNacionalidad.Location = new System.Drawing.Point(176, 130);
+            this.lblNacionalidad.Location = new System.Drawing.Point(119, 119);
             this.lblNacionalidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNacionalidad.Name = "lblNacionalidad";
             this.lblNacionalidad.Size = new System.Drawing.Size(112, 20);
@@ -129,7 +135,7 @@
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.Color.Gray;
-            this.lblNombre.Location = new System.Drawing.Point(198, 6);
+            this.lblNombre.Location = new System.Drawing.Point(141, -5);
             this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(71, 20);
@@ -141,7 +147,7 @@
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.ForeColor = System.Drawing.Color.Gray;
-            this.lblFecha.Location = new System.Drawing.Point(141, 68);
+            this.lblFecha.Location = new System.Drawing.Point(84, 57);
             this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(186, 20);
@@ -152,17 +158,29 @@
             // 
             this.dtpFecha.CustomFormat = "yyyy - MM - dd";
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFecha.Location = new System.Drawing.Point(90, 91);
+            this.dtpFecha.Location = new System.Drawing.Point(33, 80);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(288, 26);
             this.dtpFecha.TabIndex = 15;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(340, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(182, 97);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
             // 
             // frmAutoresCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(461, 270);
+            this.ClientSize = new System.Drawing.Size(534, 265);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.btnEliminar);
@@ -179,6 +197,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAutores";
             this.Load += new System.EventHandler(this.frmAutoresCRUD_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,5 +214,6 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblFecha;
         public System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

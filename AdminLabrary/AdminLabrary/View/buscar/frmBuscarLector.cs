@@ -176,5 +176,15 @@ namespace AdminLabrary.View.buscar
                 seleccionar();
             }
         }
+
+        private void dgvLecto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

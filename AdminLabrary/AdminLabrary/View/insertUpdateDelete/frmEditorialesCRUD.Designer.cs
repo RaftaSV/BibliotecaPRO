@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditorialesCRUD));
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -37,11 +38,13 @@
             this.lblDireccion = new System.Windows.Forms.Label();
             this.lblFundada = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEliminar.BackColor = System.Drawing.Color.Teal;
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.Enabled = false;
             this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -50,7 +53,8 @@
             this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(321, 227);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(321, 371);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(128, 31);
             this.btnEliminar.TabIndex = 23;
@@ -60,7 +64,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEditar.BackColor = System.Drawing.Color.Teal;
             this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar.Enabled = false;
             this.btnEditar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -69,7 +73,8 @@
             this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(154, 227);
+            this.btnEditar.ForeColor = System.Drawing.Color.White;
+            this.btnEditar.Location = new System.Drawing.Point(154, 371);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(133, 31);
             this.btnEditar.TabIndex = 22;
@@ -79,7 +84,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.Teal;
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.Enabled = false;
             this.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -88,7 +93,8 @@
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(9, 227);
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Location = new System.Drawing.Point(9, 371);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(120, 31);
             this.btnGuardar.TabIndex = 21;
@@ -98,7 +104,7 @@
             // 
             // txtEditorial
             // 
-            this.txtEditorial.Location = new System.Drawing.Point(90, 32);
+            this.txtEditorial.Location = new System.Drawing.Point(90, 176);
             this.txtEditorial.Name = "txtEditorial";
             this.txtEditorial.Size = new System.Drawing.Size(288, 26);
             this.txtEditorial.TabIndex = 20;
@@ -108,7 +114,7 @@
             this.lblEditorial.AutoSize = true;
             this.lblEditorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEditorial.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.lblEditorial.Location = new System.Drawing.Point(188, 9);
+            this.lblEditorial.Location = new System.Drawing.Point(188, 153);
             this.lblEditorial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEditorial.Name = "lblEditorial";
             this.lblEditorial.Size = new System.Drawing.Size(75, 20);
@@ -117,7 +123,7 @@
             // 
             // txtDirecion
             // 
-            this.txtDirecion.Location = new System.Drawing.Point(90, 162);
+            this.txtDirecion.Location = new System.Drawing.Point(90, 306);
             this.txtDirecion.Name = "txtDirecion";
             this.txtDirecion.Size = new System.Drawing.Size(288, 26);
             this.txtDirecion.TabIndex = 25;
@@ -128,7 +134,7 @@
             this.lblDireccion.AutoSize = true;
             this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDireccion.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.lblDireccion.Location = new System.Drawing.Point(188, 139);
+            this.lblDireccion.Location = new System.Drawing.Point(188, 283);
             this.lblDireccion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(84, 20);
@@ -140,7 +146,7 @@
             this.lblFundada.AutoSize = true;
             this.lblFundada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFundada.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.lblFundada.Location = new System.Drawing.Point(188, 75);
+            this.lblFundada.Location = new System.Drawing.Point(188, 219);
             this.lblFundada.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFundada.Name = "lblFundada";
             this.lblFundada.Size = new System.Drawing.Size(80, 20);
@@ -151,17 +157,28 @@
             // 
             this.dtpFecha.CustomFormat = "yyyy - MM - dd";
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFecha.Location = new System.Drawing.Point(90, 98);
+            this.dtpFecha.Location = new System.Drawing.Point(90, 242);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(288, 26);
             this.dtpFecha.TabIndex = 27;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(90, 36);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(294, 86);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 28;
+            this.pictureBox1.TabStop = false;
             // 
             // frmEditorialesCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(461, 270);
+            this.ClientSize = new System.Drawing.Size(478, 430);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.lblFundada);
             this.Controls.Add(this.txtDirecion);
@@ -178,6 +195,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmEditoriales";
             this.Load += new System.EventHandler(this.frmEditoriales_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +212,6 @@
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.Label lblFundada;
         public System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
