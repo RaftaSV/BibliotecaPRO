@@ -292,7 +292,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAdministradoresCRUD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAdministradoresCRUD";
             this.Load += new System.EventHandler(this.frmAdministradoresCRUD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVer)).EndInit();

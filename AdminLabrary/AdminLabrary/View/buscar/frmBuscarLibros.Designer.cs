@@ -183,7 +183,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmBuscarLibros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmBuscarLibros";
             this.Load += new System.EventHandler(this.frmBuscarLibros_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
