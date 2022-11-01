@@ -182,7 +182,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     alqu = db.Alquileres.Where(buscarID => buscarID.Id_alquiler == idAlquiler).First();
                     alqu.Id_Lector = idLector;
                     alqu.Id_libro = IdLibro;
-                    alqu.cantidad = cantidad;
+                    alqu.cantidad = Int32.Parse(txtCantidad.Text);
                     alqu.Entregado = IdEntregado;
                     alqu.fecha_salida = fecha_salida;
                     alqu.fecha_prevista_de_entrega = fecha_pre;
