@@ -239,6 +239,12 @@
     <Compile Include="View\insertUpdateDelete\frmLibrosCRUD.Designer.cs">
       <DependentUpon>frmLibrosCRUD.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\insertUpdateDelete\frmRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\insertUpdateDelete\frmRegistro.Designer.cs">
+      <DependentUpon>frmRegistro.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\insertUpdateDelete\frmSolicitudesCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\insertUpdateDelete\frmLibrosCRUD.resx">
       <DependentUpon>frmLibrosCRUD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\insertUpdateDelete\frmRegistro.resx">
+      <DependentUpon>frmRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\insertUpdateDelete\frmSolicitudesCRUD.resx">
       <DependentUpon>frmSolicitudesCRUD.cs</DependentUpon>

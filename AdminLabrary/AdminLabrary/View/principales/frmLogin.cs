@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
-
+using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
@@ -28,7 +28,7 @@ namespace AdminLabrary.View.principales
         public void btnIniciarsesion_Click(object sender, EventArgs e)
 
         {
-
+            registro.Close();
             string u = txtUsuario.Text;
 
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
@@ -145,5 +145,12 @@ namespace AdminLabrary.View.principales
                 mostrar = 1;
             }
         }
+        frmRegistro registro = new frmRegistro();
+        private void label1_Click(object sender, EventArgs e)
+        {
+            registro.limpiar(); 
+            registro.Show();
+        }
+
     }
 }

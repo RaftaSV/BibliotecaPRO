@@ -36,6 +36,7 @@
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.picOcultar = new System.Windows.Forms.PictureBox();
             this.picVer = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).BeginInit();
@@ -56,6 +57,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.InitialImage = null;
@@ -135,12 +137,27 @@
             this.picVer.TabStop = false;
             this.picVer.Click += new System.EventHandler(this.picVer_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(263, 579);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(319, 25);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "¿Nuevo usuario? registrate aqui";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnIniciarsesion;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 613);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.picOcultar);
             this.Controls.Add(this.picVer);
             this.Controls.Add(this.txtUsuario);
@@ -172,5 +189,6 @@
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.PictureBox picOcultar;
         private System.Windows.Forms.PictureBox picVer;
+        private System.Windows.Forms.Label label1;
     }
 }
