@@ -29,6 +29,7 @@ namespace AdminLabrary.View.principales
 
         {
             registro.Close();
+
             string u = txtUsuario.Text;
 
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
