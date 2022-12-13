@@ -28,7 +28,12 @@ namespace AdminLabrary.View.principales
         public void btnIniciarsesion_Click(object sender, EventArgs e)
 
         {
-            registro.Close();
+         
+            if (registro != null) { 
+                registro.Close();
+
+            }
+
 
             string u = txtUsuario.Text;
 
@@ -146,9 +151,10 @@ namespace AdminLabrary.View.principales
                 mostrar = 1;
             }
         }
-        frmRegistro registro = new frmRegistro();
+        frmRegistro registro;
         private void label1_Click(object sender, EventArgs e)
         {
+            registro  = new frmRegistro();
             registro.limpiar(); 
             registro.Show();
         }

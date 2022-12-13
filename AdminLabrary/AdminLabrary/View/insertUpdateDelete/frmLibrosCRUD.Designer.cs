@@ -56,6 +56,7 @@
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Teal;
+            this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Teal;
             this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -72,6 +73,7 @@
             // btnActualizar
             // 
             this.btnActualizar.BackColor = System.Drawing.Color.Teal;
+            this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActualizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Teal;
             this.btnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -88,6 +90,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Teal;
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Teal;
             this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -104,6 +107,7 @@
             // btnSeleccionarA
             // 
             this.btnSeleccionarA.BackColor = System.Drawing.Color.Teal;
+            this.btnSeleccionarA.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeleccionarA.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarA.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -119,6 +123,7 @@
             // 
             // cmbCategoria
             // 
+            this.cmbCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmbCategoria.FormattingEnabled = true;
@@ -131,6 +136,7 @@
             // btnSeleccionarE
             // 
             this.btnSeleccionarE.BackColor = System.Drawing.Color.Teal;
+            this.btnSeleccionarE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeleccionarE.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarE.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
             this.btnSeleccionarE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -315,6 +321,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombre);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmLibrosCRUD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

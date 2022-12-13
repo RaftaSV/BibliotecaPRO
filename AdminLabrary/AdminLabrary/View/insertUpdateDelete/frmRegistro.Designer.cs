@@ -51,9 +51,9 @@ namespace AdminLabrary.View.insertUpdateDelete
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(-5, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(-48, 12);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(451, 131);
+            this.pictureBox2.Size = new System.Drawing.Size(392, 131);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 24;
             this.pictureBox2.TabStop = false;
@@ -82,17 +82,17 @@ namespace AdminLabrary.View.insertUpdateDelete
             // 
             this.txtApellidos.BackColor = System.Drawing.SystemColors.Window;
             this.txtApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidos.Location = new System.Drawing.Point(1, 237);
+            this.txtApellidos.Location = new System.Drawing.Point(28, 236);
             this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(437, 26);
+            this.txtApellidos.Size = new System.Drawing.Size(302, 26);
             this.txtApellidos.TabIndex = 22;
             // 
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(1, 185);
+            this.txtNombre.Location = new System.Drawing.Point(28, 184);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(437, 26);
+            this.txtNombre.Size = new System.Drawing.Size(302, 26);
             this.txtNombre.TabIndex = 21;
             // 
             // lblApellidos
@@ -100,7 +100,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             this.lblApellidos.AutoSize = true;
             this.lblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApellidos.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.lblApellidos.Location = new System.Drawing.Point(169, 214);
+            this.lblApellidos.Location = new System.Drawing.Point(136, 213);
             this.lblApellidos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblApellidos.Name = "lblApellidos";
             this.lblApellidos.Size = new System.Drawing.Size(82, 20);
@@ -112,7 +112,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.lblNombre.Location = new System.Drawing.Point(169, 162);
+            this.lblNombre.Location = new System.Drawing.Point(138, 161);
             this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(80, 20);
@@ -122,9 +122,9 @@ namespace AdminLabrary.View.insertUpdateDelete
             // txtUsuario
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(1, 294);
+            this.txtUsuario.Location = new System.Drawing.Point(28, 293);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(437, 26);
+            this.txtUsuario.Size = new System.Drawing.Size(302, 26);
             this.txtUsuario.TabIndex = 27;
             // 
             // label1
@@ -132,7 +132,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label1.Location = new System.Drawing.Point(158, 323);
+            this.label1.Location = new System.Drawing.Point(136, 322);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 20);
@@ -144,7 +144,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label2.Location = new System.Drawing.Point(169, 266);
+            this.label2.Location = new System.Drawing.Point(136, 265);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 20);
@@ -155,7 +155,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             // 
             this.picOcultar.BackColor = System.Drawing.Color.Transparent;
             this.picOcultar.Image = ((System.Drawing.Image)(resources.GetObject("picOcultar.Image")));
-            this.picOcultar.Location = new System.Drawing.Point(408, 345);
+            this.picOcultar.Location = new System.Drawing.Point(300, 345);
             this.picOcultar.Name = "picOcultar";
             this.picOcultar.Size = new System.Drawing.Size(28, 21);
             this.picOcultar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -167,7 +167,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             // 
             this.picVer.BackColor = System.Drawing.Color.Transparent;
             this.picVer.Image = ((System.Drawing.Image)(resources.GetObject("picVer.Image")));
-            this.picVer.Location = new System.Drawing.Point(409, 346);
+            this.picVer.Location = new System.Drawing.Point(301, 346);
             this.picVer.Name = "picVer";
             this.picVer.Size = new System.Drawing.Size(29, 20);
             this.picVer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -179,16 +179,16 @@ namespace AdminLabrary.View.insertUpdateDelete
             // 
             this.txtContraseña.BackColor = System.Drawing.SystemColors.Window;
             this.txtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraseña.Location = new System.Drawing.Point(-1, 346);
+            this.txtContraseña.Location = new System.Drawing.Point(26, 345);
             this.txtContraseña.Name = "txtContraseña";
-            this.txtContraseña.Size = new System.Drawing.Size(437, 26);
+            this.txtContraseña.Size = new System.Drawing.Size(302, 26);
             this.txtContraseña.TabIndex = 28;
             // 
             // frmRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 450);
+            this.ClientSize = new System.Drawing.Size(351, 450);
             this.Controls.Add(this.picOcultar);
             this.Controls.Add(this.picVer);
             this.Controls.Add(this.txtContraseña);
