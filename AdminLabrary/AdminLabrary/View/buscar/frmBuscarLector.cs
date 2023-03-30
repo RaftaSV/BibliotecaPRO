@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
@@ -134,7 +128,7 @@ namespace AdminLabrary.View.buscar
                 string Nombrer = dgvLecto.CurrentRow.Cells[1].Value.ToString();
                 frmPrincipal.r.admin.txtLector.Text = Nombre;
                 frmPrincipal.r.admin.IDLector = int.Parse(id);
-                this.Close();
+                Close();
             }
             else if (indicador == 2)
             {
@@ -144,7 +138,7 @@ namespace AdminLabrary.View.buscar
                 frmPrincipal.prestamos.alquiler.txtCantidad.Text = (3 - int.Parse(dgvLecto.CurrentRow.Cells[3].Value.ToString())).ToString();
                 frmPrincipal.prestamos.alquiler.txtLector.Text = Nombrel;
                 frmPrincipal.prestamos.alquiler.idLector = int.Parse(idl);
-                this.Close();
+                Close();
             }
             else
             {
@@ -152,7 +146,7 @@ namespace AdminLabrary.View.buscar
                 string Nombrel = dgvLecto.CurrentRow.Cells[1].Value.ToString();
                 frmPrincipal.Sol.solicitud.txtLector.Text = Nombrel;
                 frmPrincipal.Sol.solicitud.idlector = int.Parse(idl);
-                this.Close();
+                Close();
             }
         }
 

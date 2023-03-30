@@ -1,12 +1,6 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
@@ -36,7 +30,7 @@ namespace AdminLabrary.formularios.principales
 
                 foreach( var i in lista) {
                     dgvCat.Rows.Add(i.ID,i.Categoria);
-                  }
+                }
               
                 
             }
@@ -61,7 +55,7 @@ namespace AdminLabrary.formularios.principales
 
         private void dgvCat_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dgvCat.Columns["NUEVO"].Index && e.RowIndex != -1)
+            if (e.ColumnIndex == dgvCat.Columns["NUEVO"].Index && e.RowIndex != -1)
             {
                 categoria.btnGuardar.Show();
                 categoria.btnEditar.Hide();
@@ -70,7 +64,7 @@ namespace AdminLabrary.formularios.principales
                 categoria.limpiar();
                 categoria.ShowDialog();
             }
-            else if (e.ColumnIndex == this.dgvCat.Columns["EDITAR"].Index && e.RowIndex != -1)
+            else if (e.ColumnIndex == dgvCat.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
                 seleccionar();
                 categoria.btnEditar.Enabled = true;
@@ -79,7 +73,7 @@ namespace AdminLabrary.formularios.principales
                 categoria.btnEliminar.Hide();
                 categoria.ShowDialog();
             }
-            else if (e.ColumnIndex == this.dgvCat.Columns["ELIMINAR"].Index && e.RowIndex != -1)
+            else if (e.ColumnIndex == dgvCat.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
                 seleccionar();
                 categoria.btnEliminar.Enabled = true;

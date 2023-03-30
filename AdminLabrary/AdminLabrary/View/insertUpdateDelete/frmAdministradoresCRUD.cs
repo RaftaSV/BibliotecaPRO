@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
@@ -58,7 +52,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                         Limpiar();
                         frmPrincipal.r.CargarDatos();
                         frmPrincipal.admin.CargarDatos();
-                        this.Close();
+                        Close();
                     }
                     else
                     {
@@ -72,7 +66,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                         Limpiar();
                         frmPrincipal.r.CargarDatos();
                         frmPrincipal.admin.CargarDatos();
-                        this.Close();
+                        Close();
                     }
 
 
@@ -93,7 +87,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 if (rbtnLector.Checked == true)
                 {
-                    rol = db.Roles.Where(buscarID => buscarID.Id_rol == IDAdmin).First();
+                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
                     rol.Usuario = txtUsuario.Text;
                     rol.Contraseña = txtContraseña.Text;
                     rol.Id_Lector = IDLector;
@@ -104,11 +98,11 @@ namespace AdminLabrary.View.insertUpdateDelete
                     Limpiar();
                     frmPrincipal.r.CargarDatos();
                     frmPrincipal.admin.CargarDatos();
-                    this.Close();
+                    Close();
                 }
                 else
                 {
-                    rol = db.Roles.Where(buscarID => buscarID.Id_rol == IDAdmin).First();
+                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
                     rol.Usuario = txtUsuario.Text;
                     rol.Contraseña = txtContraseña.Text;
                     rol.Id_Lector = IDLector;
@@ -119,7 +113,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     Limpiar();
                     frmPrincipal.r.CargarDatos();
                     frmPrincipal.admin.CargarDatos();
-                    this.Close();
+                    Close();
                 }
                
             }
@@ -132,7 +126,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 if (rbtnLector.Checked == true)
                 {
-                    rol = db.Roles.Where(buscarID => buscarID.Id_rol == IDAdmin).First();
+                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
                     rol.Usuario = txtUsuario.Text;
                     rol.Contraseña = txtContraseña.Text;
                     rol.Id_Lector = IDLector;
@@ -143,11 +137,11 @@ namespace AdminLabrary.View.insertUpdateDelete
                     Limpiar();
                     frmPrincipal.r.CargarDatos();
                     frmPrincipal.admin.CargarDatos();
-                    this.Close();
+                    Close();
                 }
                 else
                 {
-                    rol = db.Roles.Where(buscarID => buscarID.Id_rol == IDAdmin).First();
+                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
                     rol.Usuario = txtUsuario.Text;
                     rol.Contraseña = txtContraseña.Text;
                     rol.Id_Lector = IDLector;
@@ -158,7 +152,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     Limpiar();
                     frmPrincipal.r.CargarDatos();
                     frmPrincipal.admin.CargarDatos();
-                    this.Close();
+                    Close();
                 }
 
             }
@@ -171,7 +165,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             lec.ShowDialog();
         }
 
-        int mostrar = 0;
+        int mostrar;
         private void btnVerC_Click(object sender, EventArgs e)
         {
            

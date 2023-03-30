@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.View.buscar;
 using AdminLabrary.Model;
@@ -90,7 +84,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.Lib.CargaDatos();
-                    this.Close();
+                    Close();
                 }
             }
             else
@@ -156,7 +150,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    Lib = db.Libros.Where(buscarid => buscarid.Id_libro== ID_Libro).First();
+                    Lib = db.Libros.First(buscarid => buscarid.Id_libro== ID_Libro);
                     Lib.Nombre = txtNombre.Text;
                     Lib.cantidad = int.Parse(txtCantidad.Text);
                     Lib.Año = Convert.ToDateTime(dtpAño.Text);
@@ -169,7 +163,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.Lib.CargaDatos();
-                    this.Close();
+                    Close();
                 }
             }
 
@@ -183,7 +177,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    Lib = db.Libros.Where(buscarid => buscarid.Id_libro == ID_Libro).First();
+                    Lib = db.Libros.First(buscarid => buscarid.Id_libro == ID_Libro);
                     Lib.Nombre = txtNombre.Text;
                     Lib.cantidad = int.Parse(txtCantidad.Text);
                     Lib.Año = Convert.ToDateTime(dtpAño.Text);
@@ -196,7 +190,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.Lib.CargaDatos();
-                    this.Close();
+                    Close();
                 }
             }
         }

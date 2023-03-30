@@ -1,12 +1,6 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
@@ -78,7 +72,7 @@ namespace AdminLabrary.formularios.principales
 
         private void dgvAdmi_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dgvAdmi.Columns["EDITAR"].Index && e.RowIndex != -1)
+            if (e.ColumnIndex == dgvAdmi.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
                 if (dgvAdmi.RowCount > 0)
                 {

@@ -1,16 +1,5 @@
-﻿
-using AventStack.ExtentReports.Gherkin.Model;
-using System;
-
-
-
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using AdminLabrary.View.principales;
@@ -22,18 +11,9 @@ namespace AdminLabrary.formularios.principales
         public frmPrincipal()
         {
             InitializeComponent();
-            frmLogin f = new frmLogin();
+          
 
 
-
-
-        }
-
-        private void btnDashBoard_Click(object sender, EventArgs e)
-        {
-
-
-            MostrarPanel(new frmAutor());
 
 
         }
@@ -43,7 +23,7 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        private Form activeForm = null;
+        private Form activeForm;
 
 
         public void MostrarPanel(Form Panel)
@@ -82,19 +62,19 @@ namespace AdminLabrary.formularios.principales
         }
 
 
-        int Boton = 0;
+        int Boton;
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             if (Boton == 0)
             {
-                this.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized;
                 btnMaximizar.Visible = true;
                 btnMinimizar.Visible = true;
                 Boton = 1;
             }
             else
             {
-                this.WindowState = FormWindowState.Normal;
+                WindowState = FormWindowState.Normal;
                 btnMinimizar.Visible = true;
                 btnMaximizar.Visible = true;
                 Boton = 0;
@@ -105,20 +85,20 @@ namespace AdminLabrary.formularios.principales
         private void btnMinimizar_Click(object sender, EventArgs e)
 
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
 
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
+        private static extern void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
 
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int lParam, int v);
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int lParam, int v);
 
         private void PanelBarraTitulo_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            SendMessage(Handle, 0x112, 0xf012, 0);
 
 
         }
@@ -377,9 +357,9 @@ namespace AdminLabrary.formularios.principales
         {
             if (rol == 0)
             {
-                frmPrincipal.Lib.dgvLibros.Columns["NUEVO"].Visible = false;
-                frmPrincipal.Lib.dgvLibros.Columns["EDITAR"].Visible = false;
-                frmPrincipal.Lib.dgvLibros.Columns["ELIMINAR"].Visible = false;
+                Lib.dgvLibros.Columns["NUEVO"].Visible = false;
+                Lib.dgvLibros.Columns["EDITAR"].Visible = false;
+                Lib.dgvLibros.Columns["ELIMINAR"].Visible = false;
                 btnPrestamos.Hide();
                 btnAdmin.Hide();
                 btnCategoria.Hide();
@@ -390,9 +370,9 @@ namespace AdminLabrary.formularios.principales
             }
             else
             {
-                frmPrincipal.Lib.dgvLibros.Columns["NUEVO"].Visible = true;
-                frmPrincipal.Lib.dgvLibros.Columns["EDITAR"].Visible = true;
-                frmPrincipal.Lib.dgvLibros.Columns["ELIMINAR"].Visible = true;
+                Lib.dgvLibros.Columns["NUEVO"].Visible = true;
+                Lib.dgvLibros.Columns["EDITAR"].Visible = true;
+                Lib.dgvLibros.Columns["ELIMINAR"].Visible = true;
                 btnPrestamos.Show();
                 btnAdmin.Show();
                 btnCategoria.Show();
@@ -405,7 +385,7 @@ namespace AdminLabrary.formularios.principales
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
             frmLogin login = new frmLogin();
             login.Show();
         }

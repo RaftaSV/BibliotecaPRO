@@ -1,16 +1,9 @@
 ﻿using AdminLabrary.View.buscar;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.formularios.principales;
-using System.Windows.Forms.ComponentModel.Com2Interop;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
@@ -25,7 +18,7 @@ namespace AdminLabrary.View.insertUpdateDelete
         public int indicador = 1;
         public DateTime fecha_salida;
         public DateTime fecha_pre;
-        public int solicitud =0;
+        public int solicitud;
         public frmAlquileresCRUD()
         {
             InitializeComponent();
@@ -78,18 +71,20 @@ namespace AdminLabrary.View.insertUpdateDelete
 
                             if (cantidad >= int.Parse(txtCantidad.Text))
                             {
-                                Alquileres alquiler = new Alquileres();
-                                alquiler.Id_Lector = idLector;
-                                alquiler.Id_libro = IdLibro;
-                                alquiler.Entregado = idAdmin;
-                                alquiler.cantidad = int.Parse(txtCantidad.Text);
-                                alquiler.fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                                alquiler.fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8);
+                                Alquileres alquiler = new Alquileres
+                                {
+                                    Id_Lector = idLector,
+                                    Id_libro = IdLibro,
+                                    Entregado = idAdmin,
+                                    cantidad = int.Parse(txtCantidad.Text),
+                                    fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")),
+                                    fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8)
+                                };
                                 db.Alquileres.Add(alquiler);
                                 db.SaveChanges();
                                 frmPrincipal.prestamos.CargarDatos();
                                 limpiar();
-                                this.Close();
+                                Close();
                             }
                             else
                             {
@@ -132,19 +127,21 @@ namespace AdminLabrary.View.insertUpdateDelete
 
                         if (cantidad >= int.Parse(txtCantidad.Text))
                         {
-                            Alquileres alquiler = new Alquileres();
-                            alquiler.Id_Lector = idLector;
-                            alquiler.Id_libro = IdLibro;
-                            alquiler.Entregado = idAdmin;
-                            alquiler.cantidad = int.Parse(txtCantidad.Text);
-                            alquiler.fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                            alquiler.fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8);
+                            Alquileres alquiler = new Alquileres
+                            {
+                                Id_Lector = idLector,
+                                Id_libro = IdLibro,
+                                Entregado = idAdmin,
+                                cantidad = int.Parse(txtCantidad.Text),
+                                fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")),
+                                fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8)
+                            };
                             db.Alquileres.Add(alquiler);
                             db.SaveChanges();
                             frmPrincipal.prestamos.CargarDatos();
                             
                             solicitudes soli = new solicitudes();
-                            soli = db.solicitudes.Where(buscarID => buscarID.id_soli == solicitud).First();
+                            soli = db.solicitudes.First(buscarID => buscarID.id_soli == solicitud);
                             soli.Cantidad = int.Parse(txtCantidad.Text);
                             soli.libros = IdLibro;
                             soli.id_lector = idLector;
@@ -154,7 +151,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                             solicitud = 0;
                             limpiar();
                             frmPrincipal.Sol.CargarDatos();
-                            this.Close();
+                            Close();
 
                         }
                         else
@@ -179,7 +176,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                 }
                 else if (int.Parse(txtCantidad.Text) < cantidad && int.Parse(txtCantidad.Text) > 0)
                 {
-                    alqu = db.Alquileres.Where(buscarID => buscarID.Id_alquiler == idAlquiler).First();
+                    alqu = db.Alquileres.First(buscarID => buscarID.Id_alquiler == idAlquiler);
                     alqu.Id_Lector = idLector;
                     alqu.Id_libro = IdLibro;
                     alqu.cantidad = Int32.Parse(txtCantidad.Text);
@@ -190,19 +187,21 @@ namespace AdminLabrary.View.insertUpdateDelete
                     alqu.Recibido = idAdmin;
                     db.Entry(alqu).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    Alquileres alqui = new Alquileres();
-                    alqui.Id_Lector = idLector;
-                    alqui.Id_libro = IdLibro;
-                    alqui.cantidad = cantidad - int.Parse(txtCantidad.Text);
-                    alqui.Entregado = IdEntregado;
-                    alqui.fecha_salida = fecha_salida;
-                    alqui.fecha_prevista_de_entrega = fecha_pre;
+                    Alquileres alqui = new Alquileres
+                    {
+                        Id_Lector = idLector,
+                        Id_libro = IdLibro,
+                        cantidad = cantidad - int.Parse(txtCantidad.Text),
+                        Entregado = IdEntregado,
+                        fecha_salida = fecha_salida,
+                        fecha_prevista_de_entrega = fecha_pre
+                    };
                     db.Alquileres.Add(alqui);
                     db.SaveChanges();
                 }
                 else if (int.Parse(txtCantidad.Text) == cantidad && int.Parse(txtCantidad.Text) > 0)
                 {
-                    alqu = db.Alquileres.Where(buscarID => buscarID.Id_alquiler == idAlquiler).First();
+                    alqu = db.Alquileres.First(buscarID => buscarID.Id_alquiler == idAlquiler);
                     alqu.Id_Lector = idLector;
                     alqu.Id_libro = IdLibro;
                     alqu.cantidad = int.Parse(txtCantidad.Text);
@@ -220,7 +219,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             }
             limpiar();
             frmPrincipal.prestamos.CargarDatos();
-            this.Close();
+            Close();
             frmPrincipal.prestamos.ultimafila();
         }
         public void limpiar()

@@ -1,13 +1,7 @@
 ﻿using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminLabrary.View.insertUpdateDelete
@@ -38,7 +32,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.categoria.CargarDatos();
-                    this.Close();
+                    Close();
                 }
 
             }
@@ -50,14 +44,14 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    categoria = db.Categorias.Where(buscarId => buscarId.Id_categoria == ID).First();
+                    categoria = db.Categorias.First(buscarId => buscarId.Id_categoria == ID);
                     categoria.Categoria = txtCategoria.Text;
                     categoria.estado = 0;
                     db.Entry(categoria).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.categoria.CargarDatos();
-                    this.Close();
+                    Close();
 
 
                 }
@@ -69,14 +63,14 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                categoria = db.Categorias.Where(buscarId => buscarId.Id_categoria == ID).First();
+                categoria = db.Categorias.First(buscarId => buscarId.Id_categoria == ID);
                 categoria.Categoria = txtCategoria.Text;
                 categoria.estado = 1;
                 db.Entry(categoria).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 limpiar();
                 frmPrincipal.categoria.CargarDatos();
-                this.Close();
+                Close();
             }
         }
 

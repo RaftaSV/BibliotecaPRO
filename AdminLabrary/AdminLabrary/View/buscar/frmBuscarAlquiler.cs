@@ -1,13 +1,7 @@
 ﻿using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminLabrary.View.buscar
@@ -126,7 +120,7 @@ namespace AdminLabrary.View.buscar
             {
                 frmPrincipal.admin.admin.txtLector.Text = Nombre;
                 frmPrincipal.admin.admin.IDLector = int.Parse(Id);
-                this.Close();
+                Close();
             }
         }
 

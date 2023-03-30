@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
@@ -67,7 +60,7 @@ namespace AdminLabrary.View.principales
                     {
                         if(i.rol == 0)
                         {
-                           frmLogin.f.inicio();
+                           f.inicio();
                             frmPrincipal.Sol.solicitud.idlector = i.idLector;
                             frmPrincipal.Sol.ID = i.idLector;
                             frmPrincipal.Sol.Loging = 0;
@@ -76,14 +69,14 @@ namespace AdminLabrary.View.principales
                             frmPrincipal.Sol.solicitud.lblLector.Visible = false;
                             frmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = false;
 
-                            frmLogin.f.rol = 0;
-                            frmLogin.f.roles();
+                            f.rol = 0;
+                            f.roles();
                             
 
                         }
                         else
                         {
-                            frmLogin.f.inicio();
+                            f.inicio();
                             frmPrincipal.prestamos.alquiler.idAdmin = i.ID;
                             frmPrincipal.Sol.solicitud.idlector = i.idLector;
                             frmPrincipal.Sol.ID = i.idLector;
@@ -92,14 +85,14 @@ namespace AdminLabrary.View.principales
                             frmPrincipal.Sol.solicitud.txtLector.Visible = true;
                             frmPrincipal.Sol.solicitud.lblLector.Visible = true;
                             frmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = true;
-                            frmLogin.f.rol = 1;
-                            frmLogin.f.roles();
+                            f.rol = 1;
+                            f.roles();
                            
                         }
                         
                     }
                     f.Show();
-                    this.Hide();
+                    Hide();
 
 
                 }

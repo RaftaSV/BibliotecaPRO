@@ -1,12 +1,6 @@
 ﻿using AdminLabrary.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.formularios.principales;
 
@@ -57,7 +51,7 @@ namespace AdminLabrary.View.buscar
             string Nombre = dgvAutor.CurrentRow.Cells[1].Value.ToString();
             frmPrincipal.Lib.Libros.txtAutor.Text = Nombre;
             frmPrincipal.Lib.Libros.ID_Autor = int.Parse(Id);
-            this.Close();
+            Close();
             
         }
 
@@ -68,7 +62,7 @@ namespace AdminLabrary.View.buscar
                 seleccionar();
             }else if(e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Close();
             }
         }
 

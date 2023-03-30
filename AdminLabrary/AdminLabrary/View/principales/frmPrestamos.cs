@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
 using AdminLabrary.View.buscar;
 using AdminLabrary.View.insertUpdateDelete;
@@ -198,7 +189,7 @@ namespace AdminLabrary.View.principales
 
         private void dgvPrestamos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dgvPrestamos.Columns["Recibir"].Index)
+            if (e.ColumnIndex == dgvPrestamos.Columns["Recibir"].Index)
             {
 
                 try

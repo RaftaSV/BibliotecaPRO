@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
@@ -81,7 +75,7 @@ namespace AdminLabrary.formularios.principales
      
         private void dgvAutores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dgvAutores.Columns["NUEVO"].Index && e.RowIndex != -1)
+            if (e.ColumnIndex == dgvAutores.Columns["NUEVO"].Index && e.RowIndex != -1)
             {
                 autor.btnGuardar.Show();
                 autor.btnEditar.Hide();
@@ -90,7 +84,7 @@ namespace AdminLabrary.formularios.principales
                 autor.limpiar();
                 autor.ShowDialog();
             }
-            else if (e.ColumnIndex == this.dgvAutores.Columns["EDITAR"].Index && e.RowIndex != -1)
+            else if (e.ColumnIndex == dgvAutores.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
                 seleccionar();
                 autor.btnGuardar.Hide();
@@ -99,7 +93,7 @@ namespace AdminLabrary.formularios.principales
                 autor.btnEditar.Enabled = true;
                 autor.ShowDialog();
             }
-            else if (e.ColumnIndex == this.dgvAutores.Columns["ELIMINAR"].Index && e.RowIndex != -1)
+            else if (e.ColumnIndex == dgvAutores.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
                 seleccionar();
                 autor.btnGuardar.Hide();

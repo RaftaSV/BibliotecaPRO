@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.formularios.principales;
@@ -56,9 +50,9 @@ namespace AdminLabrary.View.insertUpdateDelete
                         limpiar();
                         frmPrincipal.Sol.CargarDatos();
 
-                        this.Close();
+                        Close();
 
-                    }
+                   }
       
                 }
                 else
@@ -85,7 +79,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    soli = db.solicitudes.Where(buscarID => buscarID.id_soli == ID).First();
+                    soli = db.solicitudes.First(buscarID => buscarID.id_soli == ID);
                     soli.Cantidad = int.Parse(txtCantidad.Text);
                     soli.libros = idlibro;
                     soli.id_lector = idlector;
@@ -94,7 +88,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.Sol.CargarDatos();
-                    this.Close();
+                    Close();
                 }
 
             }
@@ -107,7 +101,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    soli = db.solicitudes.Where(buscarID => buscarID.id_soli == ID).First();
+                    soli = db.solicitudes.First(buscarID => buscarID.id_soli == ID);
                     soli.Cantidad = int.Parse(txtCantidad.Text);
                     soli.libros = idlibro;
                     soli.id_lector = idlector;
@@ -116,7 +110,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.Sol.CargarDatos();
-                    this.Close();
+                    Close();
                 }
 
             }

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AdminLabrary.formularios.principales;
-using AdminLabrary.View.buscar;
 using AdminLabrary.View.principales;
 
 namespace AdminLabrary

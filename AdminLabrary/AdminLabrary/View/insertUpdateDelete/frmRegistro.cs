@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 
@@ -26,7 +19,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             txtContraseña.Text = "";
         }
 
-        int mostrar = 0;
+        int mostrar;
         private void picOcultar_Click(object sender, EventArgs e)
         {
 
@@ -102,22 +95,26 @@ namespace AdminLabrary.View.insertUpdateDelete
                 Console.WriteLine(name + User + pass + lastName);
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    Lectores lec = new Lectores();
-                    lec.Nombres = name;
-                    lec.Apellidos = lastName;
-                    lec.estado = 0;
+                    Lectores lec = new Lectores
+                    {
+                        Nombres = name,
+                        Apellidos = lastName,
+                        estado = 0
+                    };
                     db.Lectores.Add(lec);
                     db.SaveChanges();
                     int idUser = lec.Id_Lector;
-                    Roles rol = new Roles();
-                    rol.Usuario = User;
-                    rol.Contraseña = pass;
-                    rol.Id_Lector = idUser;
-                    rol.Rol = 0;
-                    rol.estado = 0;
+                    Roles rol = new Roles
+                    {
+                        Usuario = User,
+                        Contraseña = pass,
+                        Id_Lector = idUser,
+                        Rol = 0,
+                        estado = 0
+                    };
                     db.Roles.Add(rol);
                     db.SaveChanges();
-                    this.Close();
+                    Close();
                 }
             }
         }

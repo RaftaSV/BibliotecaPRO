@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
@@ -162,7 +156,7 @@ namespace AdminLabrary.formularios.principales
         private void dgvLibros_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
-                if (e.ColumnIndex == this.dgvLibros.Columns["NUEVO"].Index && e.RowIndex != -1)
+                if (e.ColumnIndex == dgvLibros.Columns["NUEVO"].Index && e.RowIndex != -1)
                 {
                     Libros.btnGuardar.Show();
                     Libros.btnGuardar.Enabled = true;
@@ -172,7 +166,7 @@ namespace AdminLabrary.formularios.principales
                     Libros.indi = 0;
                     Libros.ShowDialog();
                 }
-                else if (e.ColumnIndex == this.dgvLibros.Columns["EDITAR"].Index && e.RowIndex != -1)
+                else if (e.ColumnIndex == dgvLibros.Columns["EDITAR"].Index && e.RowIndex != -1)
                 {
                     Libros.btnGuardar.Hide();
                     Libros.btnActualizar.Show();
@@ -182,7 +176,7 @@ namespace AdminLabrary.formularios.principales
                     seleccionar();
                     Libros.ShowDialog();
                 }
-                else if (e.ColumnIndex == this.dgvLibros.Columns["ELIMINAR"].Index && e.RowIndex != -1)
+                else if (e.ColumnIndex == dgvLibros.Columns["ELIMINAR"].Index && e.RowIndex != -1)
                 {
                     Libros.btnGuardar.Hide();
                     Libros.btnActualizar.Hide();
@@ -194,7 +188,7 @@ namespace AdminLabrary.formularios.principales
                     seleccionar();
                     Libros.ShowDialog();
                 }
-            }
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {

@@ -1,13 +1,7 @@
 ﻿using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminLabrary.View.insertUpdateDelete
@@ -45,7 +39,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     frmPrincipal.Autor.CargarDatos();
                     limpiar();
-                    this.Close();
+                    Close();
                 }
 
             }
@@ -57,7 +51,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    autor = db.Autores.Where(buscarID => buscarID.Id_autor == ID).First();
+                    autor = db.Autores.First(buscarID => buscarID.Id_autor == ID);
                     autor.Nombre = txtNombre.Text;
                     autor.Nacionalidad = txtNacionalidad.Text;
                     autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
@@ -66,7 +60,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.Autor.CargarDatos();
-                    this.Close();
+                    Close();
                 }
 
             }
@@ -76,7 +70,7 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                autor = db.Autores.Where(buscarID => buscarID.Id_autor == ID).First();
+                autor = db.Autores.First(buscarID => buscarID.Id_autor == ID);
                 autor.Nombre = txtNombre.Text;
                 autor.Nacionalidad = txtNacionalidad.Text;
                 autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
@@ -85,7 +79,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                 db.SaveChanges();
                 limpiar();
                 frmPrincipal.Autor.CargarDatos();
-                this.Close();
+                Close();
             }
         }
 

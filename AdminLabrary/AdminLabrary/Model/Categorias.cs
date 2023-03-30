@@ -22,7 +22,7 @@ namespace AdminLabrary.Model
     
         public int Id_categoria { get; set; }
         public string Categoria { get; set; }
-        public int estado { get; set; }
+        public Nullable<int> estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Libros> Libros { get; set; }

@@ -1,12 +1,6 @@
 ﻿using AdminLabrary.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.formularios.principales;
 
@@ -68,7 +62,7 @@ namespace AdminLabrary.View.buscar
                 String Nombre = dgvLibro.CurrentRow.Cells[1].Value.ToString();
                 frmPrincipal.prestamos.alquiler.txtLibro.Text = Nombre;
                 frmPrincipal.prestamos.alquiler.IdLibro = int.Parse(Id);
-                this.Close();
+                Close();
 
             }
             else
@@ -77,7 +71,7 @@ namespace AdminLabrary.View.buscar
                 String Nombre = dgvLibro.CurrentRow.Cells[1].Value.ToString();
                 frmPrincipal.Sol.solicitud.txtLibro.Text = Nombre;
                 frmPrincipal.Sol.solicitud.idlibro = int.Parse(Id);
-                this.Close();
+                Close();
             }
 
         }

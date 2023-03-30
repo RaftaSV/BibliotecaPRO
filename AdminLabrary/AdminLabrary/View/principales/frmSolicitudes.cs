@@ -1,15 +1,8 @@
 ﻿using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
-using AdminLabrary.View.buscar;
 using AdminLabrary.View.insertUpdateDelete;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminLabrary.View.principales
@@ -61,14 +54,7 @@ namespace AdminLabrary.View.principales
                         }
                     }
 
-                    if (lista.Count() > 0)
-                    {
-                        lblMessage.Visible = false;
-                    }
-                    else
-                    {
-                        lblMessage.Visible = true;
-                    }
+                    lblMessage.Visible = !lista.Any();
                 }
                 else if (Loging == 1)
                 {
@@ -100,14 +86,7 @@ namespace AdminLabrary.View.principales
                            
                         }
                     }
-                    if (lista.Count() > 0)
-                    {
-                        lblMessage.Visible = false;
-                    }
-                    else
-                    {
-                        lblMessage.Visible = true;
-                    }
+                    lblMessage.Visible = !lista.Any();
                 }
             }
 
@@ -152,7 +131,7 @@ namespace AdminLabrary.View.principales
 
         private void dgvSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-                if (e.ColumnIndex == this.dgvSolicitudes.Columns["NUEVA"].Index )
+                if (e.ColumnIndex == dgvSolicitudes.Columns["NUEVA"].Index )
                 {
                     solicitud.btnGuardar.Show();
                     solicitud.btnGuardar.Enabled = true;
@@ -164,7 +143,7 @@ namespace AdminLabrary.View.principales
                     solicitud.limpiar();
                     solicitud.ShowDialog();
                 }
-                else if (e.ColumnIndex == this.dgvSolicitudes.Columns["EDITAR"].Index && e.RowIndex != -1)
+                else if (e.ColumnIndex == dgvSolicitudes.Columns["EDITAR"].Index && e.RowIndex != -1)
                 {
                     solicitud.btnGuardar.Hide();
                     solicitud.btnActualizar.Show();
@@ -173,7 +152,7 @@ namespace AdminLabrary.View.principales
                     Seleccionar();
                     solicitud.ShowDialog();
                 }
-                else if (e.ColumnIndex == this.dgvSolicitudes.Columns["ELIMINAR"].Index && e.RowIndex != -1)
+                else if (e.ColumnIndex == dgvSolicitudes.Columns["ELIMINAR"].Index && e.RowIndex != -1)
                 {
                     solicitud.btnGuardar.Hide();
                     solicitud.btnActualizar.Hide();
@@ -184,7 +163,7 @@ namespace AdminLabrary.View.principales
                     Seleccionar();
                     solicitud.ShowDialog();
                 }
-                else if (e.ColumnIndex == this.dgvSolicitudes.Columns["RECIBIR"].Index && e.RowIndex != -1)
+                else if (e.ColumnIndex == dgvSolicitudes.Columns["RECIBIR"].Index && e.RowIndex != -1)
                 {
                     int IdLector = int.Parse(dgvSolicitudes.CurrentRow.Cells[4].Value.ToString());
                     string Lector = dgvSolicitudes.CurrentRow.Cells[1].Value.ToString();
@@ -214,24 +193,24 @@ namespace AdminLabrary.View.principales
 
                 if (cantidadLibros < Int32.Parse(Cantidad)) { 
 
-                DialogResult resultado = MessageBox.Show("La cantidad de libros solicitada es menor a la exitente, desea alquilar "+cantidadLibros.ToString() +" libros?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    DialogResult resultado = MessageBox.Show("La cantidad de libros solicitada es menor a la exitente, desea alquilar "+cantidadLibros.ToString() +" libros?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
-                if(resultado == DialogResult.Yes)
-                {
-                    frmPrincipal.prestamos.alquiler.IdLibro = IdLibro;
-                    frmPrincipal.prestamos.alquiler.txtLibro.Text = Libro;
-                    frmPrincipal.prestamos.alquiler.txtLector.Text = Lector;
-                    frmPrincipal.prestamos.alquiler.idLector = IdLector;
-                    frmPrincipal.prestamos.alquiler.txtCantidad.Text = cantidadLibros.ToString();
-                    frmPrincipal.prestamos.alquiler.solicitud = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
-                    frmPrincipal.prestamos.alquiler.txtCantidad.Enabled = false;
-                    frmPrincipal.prestamos.alquiler.btnRecibir.Hide();
-                    frmPrincipal.prestamos.alquiler.btnGuardar.Enabled = true;
-                    frmPrincipal.prestamos.alquiler.btnGuardar.Show();
-                    frmPrincipal.prestamos.alquiler.btnSeleccionarLector.Hide();
-                    frmPrincipal.prestamos.alquiler.btnSeleccionarLibro.Hide();
-                    frmPrincipal.prestamos.alquiler.ShowDialog();
-                }
+                    if(resultado == DialogResult.Yes)
+                    {
+                        frmPrincipal.prestamos.alquiler.IdLibro = IdLibro;
+                        frmPrincipal.prestamos.alquiler.txtLibro.Text = Libro;
+                        frmPrincipal.prestamos.alquiler.txtLector.Text = Lector;
+                        frmPrincipal.prestamos.alquiler.idLector = IdLector;
+                        frmPrincipal.prestamos.alquiler.txtCantidad.Text = cantidadLibros.ToString();
+                        frmPrincipal.prestamos.alquiler.solicitud = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
+                        frmPrincipal.prestamos.alquiler.txtCantidad.Enabled = false;
+                        frmPrincipal.prestamos.alquiler.btnRecibir.Hide();
+                        frmPrincipal.prestamos.alquiler.btnGuardar.Enabled = true;
+                        frmPrincipal.prestamos.alquiler.btnGuardar.Show();
+                        frmPrincipal.prestamos.alquiler.btnSeleccionarLector.Hide();
+                        frmPrincipal.prestamos.alquiler.btnSeleccionarLibro.Hide();
+                        frmPrincipal.prestamos.alquiler.ShowDialog();
+                    }
 
                 }
                 else
@@ -250,15 +229,12 @@ namespace AdminLabrary.View.principales
                     frmPrincipal.prestamos.alquiler.btnSeleccionarLibro.Hide();
                     frmPrincipal.prestamos.alquiler.ShowDialog();
                 }
-            }
+                }
             
 
-            }
+        }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-                    }
-
+       
         private void lblMessage_Click(object sender, EventArgs e)
         {
 

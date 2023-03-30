@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.Model;
@@ -70,7 +69,7 @@ namespace AdminLabrary.formularios.principales
 
         private void dgvEditorial_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dgvEditorial.Columns["NUEVO"].Index && e.RowIndex != -1)
+            if (e.ColumnIndex == dgvEditorial.Columns["NUEVO"].Index && e.RowIndex != -1)
             {
 
                 Editorial.btnGuardar.Enabled = true;
@@ -81,7 +80,7 @@ namespace AdminLabrary.formularios.principales
 
                 Editorial.ShowDialog();
             }
-            else if (e.ColumnIndex == this.dgvEditorial.Columns["EDITAR"].Index && e.RowIndex != -1)
+            else if (e.ColumnIndex == dgvEditorial.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
                 seleccionar();
                 Editorial.btnEditar.Enabled = true;
@@ -93,7 +92,7 @@ namespace AdminLabrary.formularios.principales
                 Editorial.dtpFecha.Enabled = true;
                 Editorial.ShowDialog();
             }
-            else if (e.ColumnIndex == this.dgvEditorial.Columns["ELIMINAR"].Index && e.RowIndex != -1)
+            else if (e.ColumnIndex == dgvEditorial.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
                 seleccionar();
                 Editorial.btnEliminar.Enabled = true;

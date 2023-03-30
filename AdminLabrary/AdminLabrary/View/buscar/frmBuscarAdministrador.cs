@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
@@ -43,15 +37,15 @@ namespace AdminLabrary.View.buscar
                              };
                 foreach (var iterar in ListaA)
                 {
-                    if(iterar.rol == 0)
-                    {
-                        dgvAdministrador.Rows.Add(iterar.ID, iterar.Usuario, iterar.Contraseña,"Lector");
-                    }
-                    else
+                    // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                    if (iterar.rol != 0)
                     {
                         dgvAdministrador.Rows.Add(iterar.ID, iterar.Usuario, iterar.Contraseña, "Admin");
                     }
-                  
+                    else
+                    {
+                        dgvAdministrador.Rows.Add(iterar.ID, iterar.Usuario, iterar.Contraseña, "Lector");
+                    }
                 }
             }
         }
@@ -66,7 +60,7 @@ namespace AdminLabrary.View.buscar
             {
                 frmPrincipal.admin.admin.txtLector.Text = Nombre;
                 frmPrincipal.admin.admin.IDLector = int.Parse(Id);
-                this.Close();
+                Close();
             }
         }
 

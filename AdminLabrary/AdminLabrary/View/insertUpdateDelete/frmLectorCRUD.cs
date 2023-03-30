@@ -1,13 +1,7 @@
 ﻿using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminLabrary.View.insertUpdateDelete
@@ -43,7 +37,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.lector.CargarDatos();
-                    this.Close();
+                    Close();
                 }
             }
         }
@@ -55,7 +49,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
                     int id = int.Parse(ID);
-                    lector = db.Lectores.Where(buscarid => buscarid.Id_Lector == id).First();
+                    lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
                     lector.Nombres = txtNombre.Text;
                     lector.Apellidos = txtApellidos.Text;
                     lector.estado = 0;
@@ -63,7 +57,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.SaveChanges();
                     limpiar();
                     frmPrincipal.lector.CargarDatos();
-                    this.Close();
+                    Close();
                 }
 
 
@@ -80,7 +74,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 int id = int.Parse(ID);
-                lector = db.Lectores.Where(buscarid => buscarid.Id_Lector == id).First();
+                lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
                 lector.Nombres = txtNombre.Text;
                 lector.Apellidos = txtApellidos.Text;
                 lector.estado = 1;
@@ -89,7 +83,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                 limpiar();
                 frmPrincipal.lector.CargarDatos();
                 Console.WriteLine("eliminar" + id);
-                this.Close();
+                Close();
                
             }
         }
