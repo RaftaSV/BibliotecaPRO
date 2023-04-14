@@ -1,35 +1,38 @@
-﻿using AdminLabrary.formularios.principales;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
-    public partial class frmBuscarAlquiler : Form
+    public partial class FrmBuscarAlquiler : Form
     {
-        public frmBuscarAlquiler()
+        public FrmBuscarAlquiler()
         {
             InitializeComponent();
         }
 
         private void frmBuscarAlquiler_Load(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
             rbtnLector.Checked = true; 
         }
 
-        void filtro()
+        void Filtro()
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
+                Alquileres Alq = new Alquileres();
+                Lectores Lec = new Lectores();
+                Libros Lib = new Libros();
                 dgvAlquiler.Rows.Clear();
                 string buscar = txtBuscar.Text;
-                if(rbtnLector.Checked == true)
+                if(rbtnLector.Checked)
                 {
-                    var ListaA = from Alq in db.Alquileres
-                                 from Lec in db.Lectores
-                                 from Lib in db.Libros
+                    var listaA = from alq in db.Alquileres
+                                 from lec in db.Lectores
+                                 from lib in db.Libros
                                  from admi in db.Roles
                                  from admin in db.Roles
                                  where Alq.Entregado == admi.Id_rol
@@ -48,15 +51,15 @@ namespace AdminLabrary.View.buscar
                                      Fecha_Entrega = Alq.fecha_de_entrega,
                                      Recibido = admin.Usuario
                                  };
-                    foreach (var iterar in ListaA)
+                    foreach (var iterar in listaA)
                     {
                         dgvAlquiler.Rows.Add(iterar.ID, iterar.Lector, iterar.Libro, iterar.Cantidad, iterar.entregado, iterar.Fecha_Entrega, iterar.Recibido);
                     }
-                }else if (rbtnLibro.Checked == true)
+                }else if (rbtnLibro.Checked)
                 {
-                    var ListaA = from Alq in db.Alquileres
-                                 from Lec in db.Lectores
-                                 from Lib in db.Libros
+                    var listaA = from alq in db.Alquileres
+                                 from lec in db.Lectores
+                                 from lib in db.Libros
                                  from admi in db.Roles
                                  from admin in db.Roles
                                  where Alq.Entregado == admi.Id_rol
@@ -75,16 +78,16 @@ namespace AdminLabrary.View.buscar
                                      Fecha_Entrega = Alq.fecha_de_entrega,
                                      Recibido = admin.Usuario
                                  };
-                    foreach (var iterar in ListaA)
+                    foreach (var iterar in listaA)
                     {
                         dgvAlquiler.Rows.Add(iterar.ID, iterar.Lector, iterar.Libro, iterar.Cantidad, iterar.entregado, iterar.Fecha_Entrega, iterar.Recibido);
                     }
                 }
                 else
                 {
-                    var ListaA = from Alq in db.Alquileres
-                                 from Lec in db.Lectores
-                                 from Lib in db.Libros
+                    var listaA = from alq in db.Alquileres
+                                 from lec in db.Lectores
+                                 from lib in db.Libros
                                  from admi in db.Roles
                                  from admin in db.Roles
                                  where Alq.Entregado == admi.Id_rol
@@ -103,7 +106,7 @@ namespace AdminLabrary.View.buscar
                                      Fecha_Entrega = Alq.fecha_de_entrega,
                                      Recibido = admin.Usuario
                                  };
-                    foreach (var iterar in ListaA)
+                    foreach (var iterar in listaA)
                     {
                         dgvAlquiler.Rows.Add(iterar.ID, iterar.Lector, iterar.Libro, iterar.Cantidad, iterar.entregado, iterar.Fecha_Entrega, iterar.Recibido);
                     }
@@ -111,40 +114,35 @@ namespace AdminLabrary.View.buscar
             }
         }
 
-        public int indicador;
-        void seleccionar()
+        public int Indicador;
+        void Seleccionar()
         {
-            string Id = dgvAlquiler.CurrentRow.Cells[0].Value.ToString();
-            string Nombre = dgvAlquiler.CurrentRow.Cells[1].Value.ToString();
-            if (indicador == 1)
+            string id = dgvAlquiler.CurrentRow.Cells[0].Value.ToString();
+            string nombre = dgvAlquiler.CurrentRow.Cells[1].Value.ToString();
+            if (Indicador == 1)
             {
-                frmPrincipal.admin.admin.txtLector.Text = Nombre;
-                frmPrincipal.admin.admin.IDLector = int.Parse(Id);
+                FrmPrincipal.Admin.Admin.txtLector.Text = nombre;
+                FrmPrincipal.Admin.Admin.IdLector = int.Parse(id);
                 Close();
             }
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
 
         private void dgvAlquiler_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            seleccionar();
+            Seleccionar();
         }
 
         private void dgvAlquiler_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                seleccionar();
+                Seleccionar();
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label1_Click(object sender, EventArgs e)

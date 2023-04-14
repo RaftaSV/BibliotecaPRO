@@ -7,9 +7,9 @@ using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
-    public partial class frmPrestamos : Form
+    public partial class FrmPrestamos : Form
     {
-        public frmPrestamos()
+        public FrmPrestamos()
         {
             InitializeComponent();
         }
@@ -26,7 +26,7 @@ namespace AdminLabrary.View.principales
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                
-                if (rbtnLector.Checked == true)
+                if (rbtnLector.Checked)
                 {
                     string buscar = txtBuscar.Text;
                     var lista = from pre in db.Alquileres
@@ -59,7 +59,7 @@ namespace AdminLabrary.View.principales
                         dgvPrestamos.Rows.Add(i.ID, i.Lector, i.Libro, i.Cantidad, i.Entregado, i.Fecha_salida, i.Fecha_prevista_Entrega, i.IDLector, i.IDLibro, i.IDEntregado) ;
                     }
                 }
-                else if (rbtnLibro.Checked == true)
+                else if (rbtnLibro.Checked)
                 {
                     {
                         string buscar = txtBuscar.Text;
@@ -95,7 +95,7 @@ namespace AdminLabrary.View.principales
                         }
                     }
                 }
-                else if (rbtnAdministrador.Checked == true)
+                else if (rbtnAdministrador.Checked)
                 {
                     {
                         string buscar = txtBuscar.Text;
@@ -136,7 +136,7 @@ namespace AdminLabrary.View.principales
             }
 
         }
-        public void ultimafila()
+        public void Ultimafila()
         {
             dgvPrestamos.ClearSelection();
             if (dgvPrestamos.Rows.Count > 0)
@@ -146,32 +146,27 @@ namespace AdminLabrary.View.principales
                 dgvPrestamos.Rows[ultimafila].Selected = true;
             }
         }
-        public frmAlquileresCRUD alquiler = new frmAlquileresCRUD();
+        public FrmAlquileresCrud Alquiler = new FrmAlquileresCrud();
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            alquiler.limpiar();
-            alquiler.txtCantidad.Enabled = true;
+            Alquiler.Limpiar();
+            Alquiler.txtCantidad.Enabled = true;
            
-            alquiler.indicador = 1;
-            alquiler.btnGuardar.Show();
-            alquiler.btnRecibir.Hide();
-            alquiler.btnSeleccionarLector.Show();
-            alquiler.btnSeleccionarLibro.Show();
-            alquiler.ShowDialog();
+            Alquiler.Indicador = 1;
+            Alquiler.btnGuardar.Show();
+            Alquiler.btnRecibir.Hide();
+            Alquiler.btnSeleccionarLector.Show();
+            Alquiler.btnSeleccionarLibro.Show();
+            Alquiler.ShowDialog();
 
         }
 
-       
-
-        private void btnRecibir_Click(object sender, EventArgs e)
-        {
-        }
-
+        
 
         private void btnVer_Click(object sender, EventArgs e)
         {
         
-            frmLogin.f.MostrarPanel(new frmBuscarAlquiler());
+            FrmLogin.F.MostrarPanel(new FrmBuscarAlquiler());
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -182,7 +177,7 @@ namespace AdminLabrary.View.principales
         private void btnRetrazo_Click(object sender, EventArgs e)
         {
             
-            frmLogin.f.MostrarPanel(new frmHistorial());
+            FrmLogin.F.MostrarPanel(new FrmHistorial());
         }
 
         
@@ -196,35 +191,30 @@ namespace AdminLabrary.View.principales
                 {
                     if (dgvPrestamos.RowCount > 0)
                     {
-                        alquiler.txtCantidad.Enabled = true;
-                        alquiler.txtLector.Text = dgvPrestamos.CurrentRow.Cells[1].Value.ToString();
-                        alquiler.idLector = int.Parse(dgvPrestamos.CurrentRow.Cells[7].Value.ToString());
-                        alquiler.txtLibro.Text = dgvPrestamos.CurrentRow.Cells[2].Value.ToString();
-                        alquiler.txtCantidad.Text = dgvPrestamos.CurrentRow.Cells[3].Value.ToString();
-                        alquiler.cantidad = int.Parse(dgvPrestamos.CurrentRow.Cells[3].Value.ToString());
-                        alquiler.IdLibro = int.Parse(dgvPrestamos.CurrentRow.Cells[8].Value.ToString());
-                        alquiler.IdEntregado = int.Parse(dgvPrestamos.CurrentRow.Cells[9].Value.ToString());
-                        alquiler.fecha_salida = Convert.ToDateTime(dgvPrestamos.CurrentRow.Cells[5].Value.ToString());
-                        alquiler.fecha_pre = Convert.ToDateTime(dgvPrestamos.CurrentRow.Cells[5].Value.ToString());
-                        alquiler.idAlquiler = int.Parse(dgvPrestamos.CurrentRow.Cells[0].Value.ToString());
-                        alquiler.indicador = 2;
-                        alquiler.btnGuardar.Hide();
-                        alquiler.btnRecibir.Show();
-                        alquiler.btnSeleccionarLector.Hide();
-                        alquiler.btnSeleccionarLibro.Hide();
-                        alquiler.ShowDialog();
+                        Alquiler.txtCantidad.Enabled = true;
+                        Alquiler.txtLector.Text = dgvPrestamos.CurrentRow.Cells[1].Value.ToString();
+                        Alquiler.IdLector = int.Parse(dgvPrestamos.CurrentRow.Cells[7].Value.ToString());
+                        Alquiler.txtLibro.Text = dgvPrestamos.CurrentRow.Cells[2].Value.ToString();
+                        Alquiler.txtCantidad.Text = dgvPrestamos.CurrentRow.Cells[3].Value.ToString();
+                        Alquiler.Cantidad = int.Parse(dgvPrestamos.CurrentRow.Cells[3].Value.ToString());
+                        Alquiler.IdLibro = int.Parse(dgvPrestamos.CurrentRow.Cells[8].Value.ToString());
+                        Alquiler.IdEntregado = int.Parse(dgvPrestamos.CurrentRow.Cells[9].Value.ToString());
+                        Alquiler.FechaSalida = Convert.ToDateTime(dgvPrestamos.CurrentRow.Cells[5].Value.ToString());
+                        Alquiler.FechaPre = Convert.ToDateTime(dgvPrestamos.CurrentRow.Cells[5].Value.ToString());
+                        Alquiler.IdAlquiler = int.Parse(dgvPrestamos.CurrentRow.Cells[0].Value.ToString());
+                        Alquiler.Indicador = 2;
+                        Alquiler.btnGuardar.Hide();
+                        Alquiler.btnRecibir.Show();
+                        Alquiler.btnSeleccionarLector.Hide();
+                        Alquiler.btnSeleccionarLibro.Hide();
+                        Alquiler.ShowDialog();
                     }
                 }
                 catch
                 {
-
+                    // ignored
                 }
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label1_Click(object sender, EventArgs e)

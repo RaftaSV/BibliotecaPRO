@@ -1,15 +1,14 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 
-namespace AdminLabrary.formularios.principales
+namespace AdminLabrary.View.principales
 {
-    public partial class frmLectores : Form
+    public partial class FrmLectores : Form
     {
-        public frmLectores()
+        public FrmLectores()
         {
             InitializeComponent();
         }
@@ -28,7 +27,7 @@ namespace AdminLabrary.formularios.principales
                              where lec.estado == 0
                             select new
                             {
-                                ID = lec.Id_Lector,Nombre=lec.Nombres, Apellidos = lec.Apellidos
+                                ID = lec.Id_Lector,Nombre=lec.Nombres, lec.Apellidos
                                 
                             };
               foreach(var i in lista)
@@ -39,17 +38,17 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        frmLectorCRUD nuevo = new frmLectorCRUD();
+        FrmLectorCrud _nuevo = new FrmLectorCrud();
      
 
-        private void seleccionar()
+        private void Seleccionar()
         {
             string id = dgvLectores.CurrentRow.Cells[0].Value.ToString();
             string nombre = dgvLectores.CurrentRow.Cells[1].Value.ToString();
             string apellido = dgvLectores.CurrentRow.Cells[2].Value.ToString();
-            nuevo.ID = id;
-            nuevo.txtNombre.Text = nombre;
-            nuevo.txtApellidos.Text = apellido;
+            _nuevo.Id = id;
+            _nuevo.txtNombre.Text = nombre;
+            _nuevo.txtApellidos.Text = apellido;
         }
 
        
@@ -58,34 +57,34 @@ namespace AdminLabrary.formularios.principales
         {
             if (e.ColumnIndex == dgvLectores.Columns["NUEV"].Index && e.RowIndex != -1)
             {
-                nuevo.limpiar();
-                nuevo.btnGuardar.Show();
-                nuevo.btnEditar.Hide();
-                nuevo.btnEliminar.Hide();
-                nuevo.btnGuardar.Enabled = true;
+                _nuevo.Limpiar();
+                _nuevo.btnGuardar.Show();
+                _nuevo.btnEditar.Hide();
+                _nuevo.btnEliminar.Hide();
+                _nuevo.btnGuardar.Enabled = true;
 
-                nuevo.ShowDialog();
+                _nuevo.ShowDialog();
             }
             else if (e.ColumnIndex == dgvLectores.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
-                seleccionar();
-                nuevo.btnGuardar.Hide();
-                nuevo.btnEditar.Show();
-                nuevo.btnEliminar.Hide();
-                nuevo.btnEditar.Enabled = true;
+                Seleccionar();
+                _nuevo.btnGuardar.Hide();
+                _nuevo.btnEditar.Show();
+                _nuevo.btnEliminar.Hide();
+                _nuevo.btnEditar.Enabled = true;
 
-                nuevo.ShowDialog();
+                _nuevo.ShowDialog();
             }
             else if (e.ColumnIndex == dgvLectores.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
-                nuevo.btnGuardar.Hide();
-                nuevo.btnEditar.Hide();
-                nuevo.btnEliminar.Show();
-                nuevo.btnEliminar.Enabled = true;
-                nuevo.txtNombre.Enabled = false;
-                nuevo.txtApellidos.Enabled = false;
-                seleccionar();
-                nuevo.ShowDialog();
+                _nuevo.btnGuardar.Hide();
+                _nuevo.btnEditar.Hide();
+                _nuevo.btnEliminar.Show();
+                _nuevo.btnEliminar.Enabled = true;
+                _nuevo.txtNombre.Enabled = false;
+                _nuevo.txtApellidos.Enabled = false;
+                Seleccionar();
+                _nuevo.ShowDialog();
             }
 
         }

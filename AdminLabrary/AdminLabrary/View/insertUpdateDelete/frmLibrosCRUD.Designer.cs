@@ -1,6 +1,6 @@
 ﻿namespace AdminLabrary.View.insertUpdateDelete
 {
-    partial class frmLibrosCRUD
+    partial class FrmLibrosCrud
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLibrosCRUD));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLibrosCrud));
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -323,7 +323,7 @@
             this.Controls.Add(this.txtNombre);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmLibrosCRUD";
+            this.Name = "FrmLibrosCrud";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmLibrosCRUD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

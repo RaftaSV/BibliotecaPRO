@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
-    public partial class frmBuscarAdministrador : Form
+    public partial class FrmBuscarAdministrador : Form
     {
-        public frmBuscarAdministrador()
+        public FrmBuscarAdministrador()
         {
             InitializeComponent();
-            filtro();
+            Filtro();
                 
         }
 
@@ -19,23 +19,23 @@ namespace AdminLabrary.View.buscar
         {
 
         }
-        void filtro()
+        void Filtro()
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 dgvAdministrador.Rows.Clear();
                 string buscar = txtBuscar.Text;
-                var ListaA = from Adm in db.Roles
-                             where Adm.Usuario.Contains(buscar)
-                             && Adm.estado==0
+                var listaA = from adm in db.Roles
+                             where adm.Usuario.Contains(buscar)
+                             && adm.estado==0
                              select new
                              {
-                                 ID = Adm.Id_rol,
-                                 Usuario = Adm.Usuario,
-                                 Contraseña = Adm.Contraseña,
-                                 rol = Adm.Rol
+                                 ID = adm.Id_rol,
+                                 adm.Usuario,
+                                 adm.Contraseña,
+                                 rol = adm.Rol
                              };
-                foreach (var iterar in ListaA)
+                foreach (var iterar in listaA)
                 {
                     // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
                     if (iterar.rol != 0)
@@ -50,36 +50,36 @@ namespace AdminLabrary.View.buscar
             }
         }
 
-        public int indicador;
+        public int Indicador;
 
-        void seleccionar()
+        void Seleccionar()
         {
-            string Id = dgvAdministrador.CurrentRow.Cells[0].Value.ToString();
-            string Nombre = dgvAdministrador.CurrentRow.Cells[1].Value.ToString();
-            if (indicador == 1)
+            string id = dgvAdministrador.CurrentRow.Cells[0].Value.ToString();
+            string nombre = dgvAdministrador.CurrentRow.Cells[1].Value.ToString();
+            if (Indicador == 1)
             {
-                frmPrincipal.admin.admin.txtLector.Text = Nombre;
-                frmPrincipal.admin.admin.IDLector = int.Parse(Id);
+                FrmPrincipal.Admin.Admin.txtLector.Text = nombre;
+                FrmPrincipal.Admin.Admin.IdLector = int.Parse(id);
                 Close();
             }
         }
 
         private void dgvAdministrador_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            seleccionar();
+            Seleccionar();
         }
 
         private void dgvAdministrador_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                seleccionar();
+                Seleccionar();
             }
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
     }
 }

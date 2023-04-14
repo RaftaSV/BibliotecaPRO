@@ -4,11 +4,11 @@ using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 
-namespace AdminLabrary.formularios.principales
+namespace AdminLabrary.View.principales
 {
-    public partial class frmAutor : Form
+    public partial class FrmAutor : Form
     {
-        public frmAutor()
+        public FrmAutor()
         {
             InitializeComponent();
         }
@@ -31,10 +31,10 @@ namespace AdminLabrary.formularios.principales
                             select new
                             {
                                 ID = autores.Id_autor,
-                                Nombre = autores.Nombre,
+                                autores.Nombre,
                                 Fecha_Nacimiento
                                 = autores.fecha_nacimiento,
-                                Nacionalidad = autores.Nacionalidad
+                                autores.Nacionalidad
                             };
 
                 foreach (var i in lista)
@@ -47,7 +47,7 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        public static frmAutoresCRUD autor = new frmAutoresCRUD();
+        public static FrmAutoresCrud Autor = new FrmAutoresCrud();
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -60,16 +60,16 @@ namespace AdminLabrary.formularios.principales
            
         }
 
-        void seleccionar()
+        void Seleccionar()
         {
             string id = dgvAutores.CurrentRow.Cells[0].Value.ToString();
             string nombre = dgvAutores.CurrentRow.Cells[1].Value.ToString();
             string nacionalidad = dgvAutores.CurrentRow.Cells[2].Value.ToString();
             string fecha = dgvAutores.CurrentRow.Cells[3].Value.ToString();
-            autor.txtNacionalidad.Text = nacionalidad;
-            autor.txtNombre.Text = nombre;
-            autor.dtpFecha.Text = fecha;
-            autor.ID = int.Parse(id);
+            Autor.txtNacionalidad.Text = nacionalidad;
+            Autor.txtNombre.Text = nombre;
+            Autor.dtpFecha.Text = fecha;
+            Autor.Id = int.Parse(id);
         }
 
      
@@ -77,49 +77,38 @@ namespace AdminLabrary.formularios.principales
         {
             if (e.ColumnIndex == dgvAutores.Columns["NUEVO"].Index && e.RowIndex != -1)
             {
-                autor.btnGuardar.Show();
-                autor.btnEditar.Hide();
-                autor.btnEliminar.Hide();
-                autor.btnGuardar.Enabled = true;
-                autor.limpiar();
-                autor.ShowDialog();
+                Autor.btnGuardar.Show();
+                Autor.btnEditar.Hide();
+                Autor.btnEliminar.Hide();
+                Autor.btnGuardar.Enabled = true;
+                Autor.Limpiar();
+                Autor.ShowDialog();
             }
             else if (e.ColumnIndex == dgvAutores.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
-                seleccionar();
-                autor.btnGuardar.Hide();
-                autor.btnEliminar.Hide();
-                autor.btnEditar.Show();
-                autor.btnEditar.Enabled = true;
-                autor.ShowDialog();
+                Seleccionar();
+                Autor.btnGuardar.Hide();
+                Autor.btnEliminar.Hide();
+                Autor.btnEditar.Show();
+                Autor.btnEditar.Enabled = true;
+                Autor.ShowDialog();
             }
             else if (e.ColumnIndex == dgvAutores.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
-                seleccionar();
-                autor.btnGuardar.Hide();
-                autor.btnEliminar.Show();
-                autor.btnEditar.Hide();
-                autor.btnEliminar.Enabled = true;
-                autor.dtpFecha.Enabled = false;
-                autor.txtNacionalidad.Enabled = false;
-                autor.txtNombre.Enabled = false;
-                autor.ShowDialog();
+                Seleccionar();
+                Autor.btnGuardar.Hide();
+                Autor.btnEliminar.Show();
+                Autor.btnEditar.Hide();
+                Autor.btnEliminar.Enabled = true;
+                Autor.dtpFecha.Enabled = false;
+                Autor.txtNacionalidad.Enabled = false;
+                Autor.txtNombre.Enabled = false;
+                Autor.ShowDialog();
             }
 
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dgvAutores.RowCount > 0)
-            {
-                
-            }
-        }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {

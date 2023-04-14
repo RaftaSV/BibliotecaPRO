@@ -3,46 +3,46 @@ using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.View.buscar;
 using AdminLabrary.Model;
-using AdminLabrary.formularios.principales;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmLibrosCRUD : Form
+    public partial class FrmLibrosCrud : Form
     {
-        public frmLibrosCRUD()
+        public FrmLibrosCrud()
         {
             InitializeComponent();
             CargarCombo();
         }
 
-        public int ID_Libro;
-        public string ID_Cate="";
-        public int id =0;
-        public int ID_Editorial;
-        public int ID_Autor;
-        public int indi = 0;
+        public int IdLibro;
+        public string IdCate="";
+        public int Id =0;
+        public int IdEditorial;
+        public int IdAutor;
+        public int Indi = 0;
         
 
-       public void limpiar()
+       public void Limpiar()
         {
             txtAutor.Text = "";
             txtCantidad.Text = "";
             txtEditorial.Text = "";
             txtNombre.Text = "";
             txtNumero_de_Edicion.Text = "";
-            ID_Autor = 0;
-            ID_Cate = "0";
-            ID_Editorial = 0;
+            IdAutor = 0;
+            IdCate = "0";
+            IdEditorial = 0;
             dtpAño.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private void btnSeleccionarA_Click(object sender, EventArgs e)
         {
-            frmBuscarAutor BuscarA = new frmBuscarAutor();
-            BuscarA.ShowDialog();
+            FrmBuscarAutor buscarA = new FrmBuscarAutor();
+            buscarA.ShowDialog();
 
         }
-        Libros Lib = new Libros();
+        Libros _lib = new Libros();
 
         void CargarCombo()
         {
@@ -55,7 +55,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                 cmbCategoria.DataSource = lista.ToList();
                 cmbCategoria.DisplayMember = "Categoria";
                 cmbCategoria.ValueMember = "Id_categoria";
-                cmbCategoria.SelectedIndex = id;
+                cmbCategoria.SelectedIndex = Id;
                
                
             }
@@ -72,18 +72,18 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    Lib.Nombre = txtNombre.Text;
-                    Lib.cantidad = int.Parse(txtCantidad.Text);
-                    Lib.Año = Convert.ToDateTime(dtpAño.Text);
-                    Lib.Id_categoria = int.Parse(ID_Cate);
-                    Lib.Id_autor = ID_Autor;
-                    Lib.Id_Editorial = ID_Editorial;
-                    Lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
-                    Lib.estado = 0;
-                    db.Libros.Add(Lib);
+                    _lib.Nombre = txtNombre.Text;
+                    _lib.cantidad = int.Parse(txtCantidad.Text);
+                    _lib.Año = Convert.ToDateTime(dtpAño.Text);
+                    _lib.Id_categoria = int.Parse(IdCate);
+                    _lib.Id_autor = IdAutor;
+                    _lib.Id_Editorial = IdEditorial;
+                    _lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
+                    _lib.estado = 0;
+                    db.Libros.Add(_lib);
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.Lib.CargaDatos();
+                    Limpiar();
+                    FrmPrincipal.Lib.CargaDatos();
                     Close();
                 }
             }
@@ -99,7 +99,7 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             CargarCombo();
           
-            if (indi !=0)
+            if (Indi !=0)
             {
                 txtAutor.Enabled = false;
                 txtCantidad.Enabled = false;
@@ -131,14 +131,14 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void btnSeleccionarE_Click(object sender, EventArgs e)
         {
-            frmBuscarEditoriales edi = new frmBuscarEditoriales();
+            FrmBuscarEditoriales edi = new FrmBuscarEditoriales();
             edi.ShowDialog();
         }
 
         private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-           ID_Cate = cmbCategoria.SelectedValue.ToString();
+           IdCate = cmbCategoria.SelectedValue.ToString();
 
 
         }
@@ -150,19 +150,19 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    Lib = db.Libros.First(buscarid => buscarid.Id_libro== ID_Libro);
-                    Lib.Nombre = txtNombre.Text;
-                    Lib.cantidad = int.Parse(txtCantidad.Text);
-                    Lib.Año = Convert.ToDateTime(dtpAño.Text);
-                    Lib.Id_categoria = int.Parse(ID_Cate);
-                    Lib.Id_autor = ID_Autor;
-                    Lib.Id_Editorial = ID_Editorial;
-                    Lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
-                    Lib.estado = 0;
-                    db.Entry(Lib).State = System.Data.Entity.EntityState.Modified;
+                    _lib = db.Libros.First(buscarid => buscarid.Id_libro== IdLibro);
+                    _lib.Nombre = txtNombre.Text;
+                    _lib.cantidad = int.Parse(txtCantidad.Text);
+                    _lib.Año = Convert.ToDateTime(dtpAño.Text);
+                    _lib.Id_categoria = int.Parse(IdCate);
+                    _lib.Id_autor = IdAutor;
+                    _lib.Id_Editorial = IdEditorial;
+                    _lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
+                    _lib.estado = 0;
+                    db.Entry(_lib).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.Lib.CargaDatos();
+                    Limpiar();
+                    FrmPrincipal.Lib.CargaDatos();
                     Close();
                 }
             }
@@ -177,19 +177,19 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    Lib = db.Libros.First(buscarid => buscarid.Id_libro == ID_Libro);
-                    Lib.Nombre = txtNombre.Text;
-                    Lib.cantidad = int.Parse(txtCantidad.Text);
-                    Lib.Año = Convert.ToDateTime(dtpAño.Text);
-                    Lib.Id_categoria = int.Parse(ID_Cate);
-                    Lib.Id_autor = ID_Autor;
-                    Lib.Id_Editorial = ID_Editorial;
-                    Lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
-                    Lib.estado = 1;
-                    db.Entry(Lib).State = System.Data.Entity.EntityState.Modified;
+                    _lib = db.Libros.First(buscarid => buscarid.Id_libro == IdLibro);
+                    _lib.Nombre = txtNombre.Text;
+                    _lib.cantidad = int.Parse(txtCantidad.Text);
+                    _lib.Año = Convert.ToDateTime(dtpAño.Text);
+                    _lib.Id_categoria = int.Parse(IdCate);
+                    _lib.Id_autor = IdAutor;
+                    _lib.Id_Editorial = IdEditorial;
+                    _lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
+                    _lib.estado = 1;
+                    db.Entry(_lib).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.Lib.CargaDatos();
+                    Limpiar();
+                    FrmPrincipal.Lib.CargaDatos();
                     Close();
                 }
             }

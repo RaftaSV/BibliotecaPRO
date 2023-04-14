@@ -1,15 +1,14 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 
-namespace AdminLabrary.formularios.principales
+namespace AdminLabrary.View.principales
 {
-    public partial class frmEditorial : Form
+    public partial class FrmEditorial : Form
     {
-        public frmEditorial()
+        public FrmEditorial()
         {
             InitializeComponent();
         }
@@ -28,8 +27,10 @@ namespace AdminLabrary.formularios.principales
             {
                 var lista = from ed in db.Editoriales
                             where ed.estado==0
-                            select new {ID = ed.Id_Editorial,Editorial= ed.Editorial,
-                                Fundada=ed.Fundada,Direccion= ed.Direccion };
+                            select new {ID = ed.Id_Editorial,
+                                ed.Editorial,
+                                ed.Fundada,
+                                ed.Direccion };
                foreach(var i in lista)
                 {
                     dgvEditorial.Rows.Add(i.ID, i.Editorial, i.Fundada, i.Direccion);
@@ -43,18 +44,18 @@ namespace AdminLabrary.formularios.principales
            
         }
 
-        public static frmEditorialesCRUD Editorial = new frmEditorialesCRUD();
+        public static FrmEditorialesCrud Editorial = new FrmEditorialesCrud();
        
-        void seleccionar()
+        void Seleccionar()
         {
-            int Id = int.Parse(dgvEditorial.CurrentRow.Cells[0].Value.ToString());
+            int id = int.Parse(dgvEditorial.CurrentRow.Cells[0].Value.ToString());
             string edit = dgvEditorial.CurrentRow.Cells[1].Value.ToString();
             string fundada = dgvEditorial.CurrentRow.Cells[2].Value.ToString();
             string direccion = dgvEditorial.CurrentRow.Cells[3].Value.ToString();
 
             Editorial.txtDirecion.Text = direccion;
             Editorial.txtEditorial.Text = edit;
-            Editorial.ID = Id;
+            Editorial.Id = id;
             Editorial.dtpFecha.Text = fundada;
         }
 
@@ -62,10 +63,7 @@ namespace AdminLabrary.formularios.principales
 
     
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void dgvEditorial_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -76,13 +74,13 @@ namespace AdminLabrary.formularios.principales
                 Editorial.btnGuardar.Show();
                 Editorial.btnEditar.Hide();
                 Editorial.btnEliminar.Hide();
-                Editorial.limpiar();
+                Editorial.Limpiar();
 
                 Editorial.ShowDialog();
             }
             else if (e.ColumnIndex == dgvEditorial.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
-                seleccionar();
+                Seleccionar();
                 Editorial.btnEditar.Enabled = true;
                 Editorial.btnGuardar.Hide();
                 Editorial.btnEditar.Show();
@@ -94,7 +92,7 @@ namespace AdminLabrary.formularios.principales
             }
             else if (e.ColumnIndex == dgvEditorial.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
-                seleccionar();
+                Seleccionar();
                 Editorial.btnEliminar.Enabled = true;
                 Editorial.btnGuardar.Hide();
                 Editorial.btnEditar.Hide();

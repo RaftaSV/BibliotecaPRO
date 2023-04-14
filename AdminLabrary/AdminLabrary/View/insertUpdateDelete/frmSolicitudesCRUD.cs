@@ -2,22 +2,22 @@
 using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.Model;
-using AdminLabrary.formularios.principales;
 using AdminLabrary.View.buscar;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmSolicitudesCRUD : Form
+    public partial class FrmSolicitudesCrud : Form
     {
-        public frmSolicitudesCRUD()
+        public FrmSolicitudesCrud()
         {
             InitializeComponent();
-            limpiar();
+            Limpiar();
             
            
         }
        
-        public void limpiar()
+        public void Limpiar()
         {
             txtLibro.Text = "";
             txtCantidad.Text = "";
@@ -25,11 +25,11 @@ namespace AdminLabrary.View.insertUpdateDelete
             
 
         }
-        public int idlector;
+        public int Idlector;
       
-        public int idlibro;
-        public int ID;
-        solicitudes soli = new solicitudes();
+        public int Idlibro;
+        public int Id;
+        solicitudes _soli = new solicitudes();
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -41,14 +41,14 @@ namespace AdminLabrary.View.insertUpdateDelete
                    if (int.Parse(txtCantidad.Text) > 0 )
                    {
 
-                        soli.Cantidad = int.Parse(txtCantidad.Text);
-                        soli.libros = idlibro;
-                        soli.id_lector = idlector;
-                        soli.estado = 0;
-                        db.solicitudes.Add(soli);
+                        _soli.Cantidad = int.Parse(txtCantidad.Text);
+                        _soli.libros = Idlibro;
+                        _soli.id_lector = Idlector;
+                        _soli.estado = 0;
+                        db.solicitudes.Add(_soli);
                         db.SaveChanges();
-                        limpiar();
-                        frmPrincipal.Sol.CargarDatos();
+                        Limpiar();
+                        FrmPrincipal.Sol.CargarDatos();
 
                         Close();
 
@@ -66,10 +66,10 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void btnSeleccionarLector_Click(object sender, EventArgs e)
         {
-            frmBuscarLibros BuscarL = new frmBuscarLibros();
+            FrmBuscarLibros buscarL = new FrmBuscarLibros();
 
-            BuscarL.indicador = 1;
-            BuscarL.ShowDialog();
+            buscarL.Indicador = 1;
+            buscarL.ShowDialog();
 
         }
 
@@ -79,15 +79,15 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    soli = db.solicitudes.First(buscarID => buscarID.id_soli == ID);
-                    soli.Cantidad = int.Parse(txtCantidad.Text);
-                    soli.libros = idlibro;
-                    soli.id_lector = idlector;
-                    soli.estado = 0;
-                    db.Entry(soli).State = System.Data.Entity.EntityState.Modified;
+                    _soli = db.solicitudes.First(buscarId => buscarId.id_soli == Id);
+                    _soli.Cantidad = int.Parse(txtCantidad.Text);
+                    _soli.libros = Idlibro;
+                    _soli.id_lector = Idlector;
+                    _soli.estado = 0;
+                    db.Entry(_soli).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.Sol.CargarDatos();
+                    Limpiar();
+                    FrmPrincipal.Sol.CargarDatos();
                     Close();
                 }
 
@@ -101,15 +101,15 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    soli = db.solicitudes.First(buscarID => buscarID.id_soli == ID);
-                    soli.Cantidad = int.Parse(txtCantidad.Text);
-                    soli.libros = idlibro;
-                    soli.id_lector = idlector;
-                    soli.estado = 1;
-                    db.Entry(soli).State = System.Data.Entity.EntityState.Modified;
+                    _soli = db.solicitudes.First(buscarId => buscarId.id_soli == Id);
+                    _soli.Cantidad = int.Parse(txtCantidad.Text);
+                    _soli.libros = Idlibro;
+                    _soli.id_lector = Idlector;
+                    _soli.estado = 1;
+                    db.Entry(_soli).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.Sol.CargarDatos();
+                    Limpiar();
+                    FrmPrincipal.Sol.CargarDatos();
                     Close();
                 }
 
@@ -145,9 +145,9 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void btnSeleccionarLector_Click_1(object sender, EventArgs e)
         {
-            frmBuscarLector lec = new frmBuscarLector();
-            lec.indicador = 3;
-            lec.filtro();
+            FrmBuscarLector lec = new FrmBuscarLector();
+            lec.Indicador = 3;
+            lec.Filtro();
             lec.ShowDialog();
         }
     }

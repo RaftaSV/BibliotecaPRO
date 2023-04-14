@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using AdminLabrary.View.principales;
+using System.Windows.Forms;
 
-namespace AdminLabrary.formularios.principales
+namespace AdminLabrary.View.principales
 {
-    public partial class frmPrincipal : Form
+    public partial class FrmPrincipal : Form
     {
-        public frmPrincipal()
+        public FrmPrincipal()
         {
             InitializeComponent();
           
@@ -23,28 +22,28 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        private Form activeForm;
+        private Form _activeForm;
 
 
-        public void MostrarPanel(Form Panel)
+        public void MostrarPanel(Form panel)
         {
-            if (activeForm != null)
-                activeForm = Panel;
-            Panel.TopLevel = false;
-            Panel.FormBorderStyle = FormBorderStyle.None;
-            Panel.Dock = DockStyle.Fill;
-            pPrincipal.Controls.Add(Panel);
-            pPrincipal.Tag = Panel;
-            Panel.BringToFront();
-            Panel.Show();
+            if (_activeForm != null)
+                _activeForm = panel;
+            panel.TopLevel = false;
+            panel.FormBorderStyle = FormBorderStyle.None;
+            panel.Dock = DockStyle.Fill;
+            pPrincipal.Controls.Add(panel);
+            pPrincipal.Tag = panel;
+            panel.BringToFront();
+            panel.Show();
         }
 
 
-        public static frmEditorial Editorial = new frmEditorial();
+        public static FrmEditorial Editorial = new FrmEditorial();
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            color = 5;
-            cambiarcolor();
+            _color = 5;
+            Cambiarcolor();
             MostrarPanel(Editorial);
 
         }
@@ -62,22 +61,22 @@ namespace AdminLabrary.formularios.principales
         }
 
 
-        int Boton;
+        int _boton;
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            if (Boton == 0)
+            if (_boton == 0)
             {
                 WindowState = FormWindowState.Maximized;
                 btnMaximizar.Visible = true;
                 btnMinimizar.Visible = true;
-                Boton = 1;
+                _boton = 1;
             }
             else
             {
                 WindowState = FormWindowState.Normal;
                 btnMinimizar.Visible = true;
                 btnMaximizar.Visible = true;
-                Boton = 0;
+                _boton = 0;
             }
 
         }
@@ -108,57 +107,52 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        private void pPrincipal_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
 
         private void PanelMenu_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        public static frmAdministradores admin = new frmAdministradores();
+        public static FrmAdministradores Admin = new FrmAdministradores();
         private void btnAdministrador_Click(object sender, EventArgs e)
         {
-            color = 3;
-            cambiarcolor();
-            MostrarPanel(admin);
+            _color = 3;
+            Cambiarcolor();
+            MostrarPanel(Admin);
         }
 
 
-        public static frmLectores lector = new frmLectores();
+        public static FrmLectores Lector = new FrmLectores();
         private void btnLectores_Click(object sender, EventArgs e)
         {
-            color = 8;
-            cambiarcolor();
-            MostrarPanel(lector);
+            _color = 8;
+            Cambiarcolor();
+            MostrarPanel(Lector);
 
         }
-        public static frmCategoria categoria = new frmCategoria();
+        public static FrmCategoria Categoria = new FrmCategoria();
         private void btnCategoria_Click(object sender, EventArgs e)
         {
-            color = 4;
-            cambiarcolor();
-            MostrarPanel(categoria);
+            _color = 4;
+            Cambiarcolor();
+            MostrarPanel(Categoria);
 
         }
-        public static frmLibros Lib = new frmLibros();
+        public static FrmLibros Lib = new FrmLibros();
         private void btnLibros_Click(object sender, EventArgs e)
         {
-            color = 2;
-            cambiarcolor();
+            _color = 2;
+            Cambiarcolor();
             Lib.CargaDatos();
 
             MostrarPanel(Lib);
 
         }
 
-        int color;
-        void cambiarcolor()
+        int _color;
+        void Cambiarcolor()
         {
-            if(color == 0)
+            if(_color == 0)
             {
                 btnPrestamos.BackColor = Color.Teal;
                 btnSolicitudes.BackColor = Color.FromArgb(64,64,64,64);
@@ -169,7 +163,7 @@ namespace AdminLabrary.formularios.principales
                 btnAutor.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
-            }else if (color == 1)
+            }else if (_color == 1)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.Teal;
@@ -181,7 +175,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
             }
-            else if (color == 2)
+            else if (_color == 2)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -193,7 +187,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
             }
-            else if (color == 3)
+            else if (_color == 3)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -205,7 +199,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
             }
-            else if (color == 4)
+            else if (_color == 4)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -217,7 +211,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
             }
-            else if (color == 5)
+            else if (_color == 5)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -229,7 +223,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
             }
-            else if (color == 6)
+            else if (_color == 6)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -241,7 +235,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
             }
-            else if (color == 7)
+            else if (_color == 7)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -253,7 +247,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.Teal;
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
             }
-            else if (color == 8)
+            else if (_color == 8)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -265,7 +259,7 @@ namespace AdminLabrary.formularios.principales
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.Teal;
             }
-            else if (color == 9)
+            else if (_color == 9)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -280,21 +274,21 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        public static frmPrestamos prestamos = new frmPrestamos();
+        public static FrmPrestamos Prestamos = new FrmPrestamos();
         private void btnPrestamos_Click(object sender, EventArgs e)
         {
-            color = 0;
-            cambiarcolor();
-            MostrarPanel(prestamos);
+            _color = 0;
+            Cambiarcolor();
+            MostrarPanel(Prestamos);
 
 
         }
 
-        public static frmAutor Autor = new frmAutor();
+        public static FrmAutor Autor = new FrmAutor();
         private void btnAutor_Click(object sender, EventArgs e)
         {
-            color = 6;
-            cambiarcolor();
+            _color = 6;
+            Cambiarcolor();
             MostrarPanel(Autor);
         }
 
@@ -313,28 +307,22 @@ namespace AdminLabrary.formularios.principales
             btnMostrar.Hide();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
+      
 
-        }
-
-        private void pPrincipal_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-         public static frmRoles r = new frmRoles();
+       
+         public static FrmRoles R = new FrmRoles();
         private void btnRoles_Click(object sender, EventArgs e)
         {
-            color = 7;
-            r.CargarDatos();
-            cambiarcolor();
-            MostrarPanel(r);
+            _color = 7;
+            R.CargarDatos();
+            Cambiarcolor();
+            MostrarPanel(R);
         }
-        public static frmSolicitudes Sol = new frmSolicitudes();
+        public static FrmSolicitudes Sol = new FrmSolicitudes();
         private void button2_Click(object sender, EventArgs e)
         {
-            color = 1;
-            cambiarcolor();
+            _color = 1;
+            Cambiarcolor();
             Sol.CargarDatos();
 
             MostrarPanel(Sol);
@@ -343,19 +331,19 @@ namespace AdminLabrary.formularios.principales
         public void PictureBox5_Click(object sender, EventArgs e)
         {
             picLogo.BringToFront();
-            color = 9;
-            cambiarcolor();
+            _color = 9;
+            Cambiarcolor();
         }
-        public void inicio()
+        public void Inicio()
         {
             picLogo.BringToFront();
-            color = 9;
-            cambiarcolor();
+            _color = 9;
+            Cambiarcolor();
         }
-        public int rol;
-        public void roles()
+        public int Rol;
+        public void Roles()
         {
-            if (rol == 0)
+            if (Rol == 0)
             {
                 Lib.dgvLibros.Columns["NUEVO"].Visible = false;
                 Lib.dgvLibros.Columns["EDITAR"].Visible = false;
@@ -386,7 +374,7 @@ namespace AdminLabrary.formularios.principales
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             Hide();
-            frmLogin login = new frmLogin();
+            FrmLogin login = new FrmLogin();
             login.Show();
         }
     }

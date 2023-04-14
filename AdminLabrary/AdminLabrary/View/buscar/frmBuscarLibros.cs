@@ -2,14 +2,14 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.formularios.principales;
+using AdminLabrary.View.principales;
 
 
 namespace AdminLabrary.View.buscar
 {
-    public partial class frmBuscarLibros : Form
+    public partial class FrmBuscarLibros : Form
     {
-        public frmBuscarLibros()
+        public FrmBuscarLibros()
         {
             InitializeComponent();
            
@@ -17,18 +17,20 @@ namespace AdminLabrary.View.buscar
 
         private void frmBuscarLibros_Load(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
 
-        void filtro()
+        void Filtro()
         {
 
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 dgvLibro.Rows.Clear();
-                string buscar = txtBuscar.Text;
-                var ListaLib = from Lib in db.Libros
-                               from Aut in db.Autores where Lib.Id_autor == Aut.Id_autor
+                Libros Lib = new Libros();
+                Autores Aut = new Autores();
+                    string buscar = txtBuscar.Text;
+                var listaLib = from lib in db.Libros
+                               from aut in db.Autores where Lib.Id_autor == Aut.Id_autor
                                from ca in db.Categorias where Lib.Id_categoria == ca.Id_categoria
                                from ed in db.Editoriales where Lib.Id_Editorial == ed.Id_Editorial
                                where Lib.Nombre.Contains(buscar)
@@ -40,12 +42,12 @@ namespace AdminLabrary.View.buscar
                                select new
                                {
                                    Id = Lib.Id_libro,
-                                   Nombre = Lib.Nombre,
+                                   Lib.Nombre,
                                    Autor = Aut.Nombre,
                                    Cantidad = Lib.cantidad
                                };
 
-                foreach (var iterar in ListaLib )
+                foreach (var iterar in listaLib )
                 {
                     dgvLibro.Rows.Add(iterar.Id, iterar.Nombre, iterar.Autor, iterar.Cantidad);
                 }
@@ -53,24 +55,24 @@ namespace AdminLabrary.View.buscar
             }
 
         }
-        public int indicador;
-        void seleccionar()
+        public int Indicador;
+        void Seleccionar()
         {
-            if (indicador == 0)
+            if (Indicador == 0)
             {
-                String Id = dgvLibro.CurrentRow.Cells[0].Value.ToString();
-                String Nombre = dgvLibro.CurrentRow.Cells[1].Value.ToString();
-                frmPrincipal.prestamos.alquiler.txtLibro.Text = Nombre;
-                frmPrincipal.prestamos.alquiler.IdLibro = int.Parse(Id);
+                String id = dgvLibro.CurrentRow.Cells[0].Value.ToString();
+                String nombre = dgvLibro.CurrentRow.Cells[1].Value.ToString();
+                FrmPrincipal.Prestamos.Alquiler.txtLibro.Text = nombre;
+                FrmPrincipal.Prestamos.Alquiler.IdLibro = int.Parse(id);
                 Close();
 
             }
             else
             {
-                String Id = dgvLibro.CurrentRow.Cells[0].Value.ToString();
-                String Nombre = dgvLibro.CurrentRow.Cells[1].Value.ToString();
-                frmPrincipal.Sol.solicitud.txtLibro.Text = Nombre;
-                frmPrincipal.Sol.solicitud.idlibro = int.Parse(Id);
+                String id = dgvLibro.CurrentRow.Cells[0].Value.ToString();
+                String nombre = dgvLibro.CurrentRow.Cells[1].Value.ToString();
+                FrmPrincipal.Sol.Solicitud.txtLibro.Text = nombre;
+                FrmPrincipal.Sol.Solicitud.Idlibro = int.Parse(id);
                 Close();
             }
 
@@ -78,20 +80,20 @@ namespace AdminLabrary.View.buscar
 
         private void dgvLibro_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            seleccionar();
+            Seleccionar();
         }
 
         private void dgvLibro_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                seleccionar();
+                Seleccionar();
             }
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
     }
 }

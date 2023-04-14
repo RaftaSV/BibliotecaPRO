@@ -1,6 +1,6 @@
-﻿namespace AdminLabrary.formularios.principales
+﻿namespace AdminLabrary.View.principales
 {
-    partial class frmEditorial
+    partial class FrmEditorial
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditorial));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditorial));
             this.dgvEditorial = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -175,7 +175,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dgvEditorial);
-            this.Name = "frmEditorial";
+            this.Name = "FrmEditorial";
             this.Text = "Editoriales";
             this.Load += new System.EventHandler(this.FpEditoriales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditorial)).EndInit();

@@ -1,15 +1,14 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 
-namespace AdminLabrary.formularios.principales
+namespace AdminLabrary.View.principales
 {
-    public partial class frmAdministradores : Form
+    public partial class FrmAdministradores : Form
     {
-        public frmAdministradores()
+        public FrmAdministradores()
         {
             InitializeComponent();
         }
@@ -32,8 +31,8 @@ namespace AdminLabrary.formularios.principales
                             {
                                 ID = ad.Id_rol,
                                 Nombre = lec.Nombres,
-                                Usuario = ad.Usuario,
-                                Contraseña = ad.Contraseña,
+                                ad.Usuario,
+                                ad.Contraseña,
                                 IDLector = lec.Id_Lector
                             };
                 foreach(var i in lista)
@@ -45,7 +44,7 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        public frmAdministradoresCRUD admin = new frmAdministradoresCRUD();
+        public FrmAdministradoresCrud Admin = new FrmAdministradoresCrud();
         
 
         
@@ -58,16 +57,16 @@ namespace AdminLabrary.formularios.principales
         }
         void Seleccionar()
         {
-            string Id = dgvAdmi.CurrentRow.Cells[0].Value.ToString();
+            string id = dgvAdmi.CurrentRow.Cells[0].Value.ToString();
             string usuario = dgvAdmi.CurrentRow.Cells[1].Value.ToString();
             string contraseña = dgvAdmi.CurrentRow.Cells[2].Value.ToString();
             string idU = dgvAdmi.CurrentRow.Cells[4].Value.ToString();
             string lector = dgvAdmi.CurrentRow.Cells[3].Value.ToString();
-            admin.txtLector.Text = lector;
-            admin.txtContraseña.Text = contraseña;
-            admin.IDLector = int.Parse(idU);
-            admin.txtUsuario.Text = usuario;
-            admin.IDAdmin = int.Parse(Id);
+            Admin.txtLector.Text = lector;
+            Admin.txtContraseña.Text = contraseña;
+            Admin.IdLector = int.Parse(idU);
+            Admin.txtUsuario.Text = usuario;
+            Admin.IdAdmin = int.Parse(id);
         }
 
         private void dgvAdmi_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -76,16 +75,16 @@ namespace AdminLabrary.formularios.principales
             {
                 if (dgvAdmi.RowCount > 0)
                 {
-                    admin.btnEditar.Show();
-                    admin.btnEliminar.Hide();
-                    admin.btnSeleccionar.Show();
-                    admin.btnGuardar.Hide();
-                    admin.btnEditar.Show();
-                    admin.btnEditar.Enabled = true;
-                    admin.rbtnAdmi.Checked = true;
+                    Admin.btnEditar.Show();
+                    Admin.btnEliminar.Hide();
+                    Admin.btnSeleccionar.Show();
+                    Admin.btnGuardar.Hide();
+                    Admin.btnEditar.Show();
+                    Admin.btnEditar.Enabled = true;
+                    Admin.rbtnAdmi.Checked = true;
                     Seleccionar();
-                    admin.btnSeleccionar.Visible = false;
-                    admin.ShowDialog();
+                    Admin.btnSeleccionar.Visible = false;
+                    Admin.ShowDialog();
                 }
             }
         }

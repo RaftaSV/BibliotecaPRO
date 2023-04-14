@@ -1,7 +1,7 @@
 ﻿
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    partial class frmRegistro
+    partial class FrmRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace AdminLabrary.View.insertUpdateDelete
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegistro));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.txtApellidos = new System.Windows.Forms.TextBox();
@@ -202,7 +202,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             this.Controls.Add(this.lblApellidos);
             this.Controls.Add(this.lblNombre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmRegistro";
+            this.Name = "FrmRegistro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmRegistro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

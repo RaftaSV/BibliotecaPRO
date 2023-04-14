@@ -15,7 +15,7 @@ namespace AdminLabrary
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            frmLogin login = new frmLogin();
+            FrmLogin login = new FrmLogin();
             login.Show();
             Application.Run();
         }

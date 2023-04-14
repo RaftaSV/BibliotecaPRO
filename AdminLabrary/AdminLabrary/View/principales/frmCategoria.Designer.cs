@@ -1,6 +1,6 @@
-﻿namespace AdminLabrary.formularios.principales
+﻿namespace AdminLabrary.View.principales
 {
-    partial class frmCategoria
+    partial class FrmCategoria
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCategoria));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategoria));
             this.dgvCat = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CARTEGORIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -160,7 +160,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dgvCat);
-            this.Name = "frmCategoria";
+            this.Name = "FrmCategoria";
             this.Text = "Categoria";
             this.Load += new System.EventHandler(this.FpCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCat)).EndInit();

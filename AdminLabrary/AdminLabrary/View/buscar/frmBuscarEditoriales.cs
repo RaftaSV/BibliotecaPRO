@@ -1,17 +1,17 @@
-﻿using AdminLabrary.formularios.principales;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
-    public partial class frmBuscarEditoriales : Form
+    public partial class FrmBuscarEditoriales : Form
     {
-        public frmBuscarEditoriales()
+        public FrmBuscarEditoriales()
         {
             InitializeComponent();
-            filtro();
+            Filtro();
         }
 
         private void frmBuscarEditoriales_Load(object sender, EventArgs e)
@@ -19,23 +19,23 @@ namespace AdminLabrary.View.buscar
 
         }
 
-        void filtro()
+        void Filtro()
         {
             using(BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 dgvEditorial.Rows.Clear();
                 string buscar = txtBuscar.Text;
-                var ListaE = from Edit in db.Editoriales
-                             where Edit.Editorial.Contains(buscar)
-                             && Edit.estado ==0
+                var listaE = from edit in db.Editoriales
+                             where edit.Editorial.Contains(buscar)
+                             && edit.estado ==0
                              select new
                              {
-                                 ID = Edit.Id_Editorial,
-                                 Editorial = Edit.Editorial,
-                                 Fundada = Edit.Fundada,
-                                 Direccion = Edit.Direccion
+                                 ID = edit.Id_Editorial,
+                                 edit.Editorial,
+                                 edit.Fundada,
+                                 edit.Direccion
                              };
-                foreach (var iterar in ListaE)
+                foreach (var iterar in listaE)
                 {
                     dgvEditorial.Rows.Add(iterar.ID, iterar.Editorial, iterar.Fundada, iterar.Direccion);
                 }
@@ -43,13 +43,13 @@ namespace AdminLabrary.View.buscar
             }
         }
     
-        void seleccionar()
+        void Seleccionar()
         {
-            string Id = dgvEditorial.CurrentRow.Cells[0].Value.ToString();
-            string Nombre = dgvEditorial.CurrentRow.Cells[1].Value.ToString();
+            string id = dgvEditorial.CurrentRow.Cells[0].Value.ToString();
+            string nombre = dgvEditorial.CurrentRow.Cells[1].Value.ToString();
 
-            frmPrincipal.Lib.Libros.txtEditorial.Text = Nombre;
-            frmPrincipal.Lib.Libros.ID_Editorial = int.Parse(Id);
+            FrmPrincipal.Lib.Libros.txtEditorial.Text = nombre;
+            FrmPrincipal.Lib.Libros.IdEditorial = int.Parse(id);
             Close();
 
 
@@ -59,19 +59,19 @@ namespace AdminLabrary.View.buscar
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
 
         private void dgvEditorial_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            seleccionar();
+            Seleccionar();
         }
 
         private void dgvEditorial_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                seleccionar();
+                Seleccionar();
             }
             if (e.KeyCode == Keys.Escape)
             {

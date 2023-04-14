@@ -4,14 +4,14 @@ using AdminLabrary.Model;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmRegistro : Form
+    public partial class FrmRegistro : Form
     {
-        public frmRegistro()
+        public FrmRegistro()
         {
             InitializeComponent();
         }
 
-        public void limpiar()
+        public void Limpiar()
         {
             txtNombre.Text = "";
             txtApellidos.Text = "";
@@ -19,23 +19,23 @@ namespace AdminLabrary.View.insertUpdateDelete
             txtContraseña.Text = "";
         }
 
-        int mostrar;
+        int _mostrar;
         private void picOcultar_Click(object sender, EventArgs e)
         {
 
-            if (mostrar == 0)
+            if (_mostrar == 0)
             {
                 picVer.Hide();
                 picOcultar.Show();
                 txtContraseña.UseSystemPasswordChar = false;
-                mostrar = 1;
+                _mostrar = 1;
             }
             else
             {
                 picVer.Show();
                 picOcultar.Hide();
                 txtContraseña.UseSystemPasswordChar = true;
-                mostrar = 0;
+                _mostrar = 0;
             }
         }
 
@@ -48,19 +48,19 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void picVer_Click(object sender, EventArgs e)
         {
-            if (mostrar == 0)
+            if (_mostrar == 0)
             {
                 picVer.Hide();
                 picOcultar.Show();
                 txtContraseña.UseSystemPasswordChar = false;
-                mostrar = 1;
+                _mostrar = 1;
             }
             else
             {
                 picVer.Show();
                 picOcultar.Hide();
                 txtContraseña.UseSystemPasswordChar = true;
-                mostrar = 0;
+                _mostrar = 0;
             }
         }
 
@@ -68,7 +68,7 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             String name = txtNombre.Text;
             String lastName = txtApellidos.Text;
-            String User = txtUsuario.Text;
+            String user = txtUsuario.Text;
             string pass = txtContraseña.Text;
 
             if(name == "")
@@ -80,7 +80,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                 MessageBox.Show("El apellido de usuario es obligatorio");
                 txtApellidos.Focus();
             }
-            else if (User == "")
+            else if (user == "")
             {
                 MessageBox.Show("El campo  usuario es obligatorio");
                 txtUsuario.Focus();
@@ -92,7 +92,7 @@ namespace AdminLabrary.View.insertUpdateDelete
             }
             else
             {
-                Console.WriteLine(name + User + pass + lastName);
+                Console.WriteLine(name + user + pass + lastName);
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
                     Lectores lec = new Lectores
@@ -106,7 +106,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     int idUser = lec.Id_Lector;
                     Roles rol = new Roles
                     {
-                        Usuario = User,
+                        Usuario = user,
                         Contraseña = pass,
                         Id_Lector = idUser,
                         Rol = 0,

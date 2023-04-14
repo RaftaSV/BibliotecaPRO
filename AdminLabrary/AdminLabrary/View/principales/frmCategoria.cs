@@ -1,16 +1,14 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 
-
-namespace AdminLabrary.formularios.principales
+namespace AdminLabrary.View.principales
 {
-    public partial class frmCategoria : Form
+    public partial class FrmCategoria : Form
     {
-        public frmCategoria()
+        public FrmCategoria()
         {
             InitializeComponent();
         }
@@ -26,7 +24,7 @@ namespace AdminLabrary.formularios.principales
             {
                 var lista = from cat in db.Categorias
                             where cat.estado ==0
-                            select new {ID = cat.Id_categoria,Categoria =cat.Categoria };
+                            select new {ID = cat.Id_categoria, cat.Categoria };
 
                 foreach( var i in lista) {
                     dgvCat.Rows.Add(i.ID,i.Categoria);
@@ -36,12 +34,12 @@ namespace AdminLabrary.formularios.principales
             }
 
         }
-        void seleccionar()
+        void Seleccionar()
         {
-            int Id = int.Parse(dgvCat.CurrentRow.Cells[0].Value.ToString());
+            int id = int.Parse(dgvCat.CurrentRow.Cells[0].Value.ToString());
             string cate = dgvCat.CurrentRow.Cells[1].Value.ToString();
-            categoria.txtCategoria.Text = cate;
-            categoria.ID = Id;
+            _categoria.txtCategoria.Text = cate;
+            _categoria.Id = id;
         }
 
         private void dgvCat_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -50,38 +48,38 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        frmCategoriasCRUD categoria = new frmCategoriasCRUD();
+        FrmCategoriasCrud _categoria = new FrmCategoriasCrud();
 
 
         private void dgvCat_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvCat.Columns["NUEVO"].Index && e.RowIndex != -1)
             {
-                categoria.btnGuardar.Show();
-                categoria.btnEditar.Hide();
-                categoria.btnEliminar.Hide();
-                categoria.btnGuardar.Enabled = true;
-                categoria.limpiar();
-                categoria.ShowDialog();
+                _categoria.btnGuardar.Show();
+                _categoria.btnEditar.Hide();
+                _categoria.btnEliminar.Hide();
+                _categoria.btnGuardar.Enabled = true;
+                _categoria.Limpiar();
+                _categoria.ShowDialog();
             }
             else if (e.ColumnIndex == dgvCat.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
-                seleccionar();
-                categoria.btnEditar.Enabled = true;
-                categoria.btnGuardar.Hide();
-                categoria.btnEditar.Show();
-                categoria.btnEliminar.Hide();
-                categoria.ShowDialog();
+                Seleccionar();
+                _categoria.btnEditar.Enabled = true;
+                _categoria.btnGuardar.Hide();
+                _categoria.btnEditar.Show();
+                _categoria.btnEliminar.Hide();
+                _categoria.ShowDialog();
             }
             else if (e.ColumnIndex == dgvCat.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
-                seleccionar();
-                categoria.btnEliminar.Enabled = true;
-                categoria.btnGuardar.Hide();
-                categoria.btnEditar.Hide();
-                categoria.btnEliminar.Show();
-                categoria.txtCategoria.Enabled = false;
-                categoria.ShowDialog();
+                Seleccionar();
+                _categoria.btnEliminar.Enabled = true;
+                _categoria.btnGuardar.Hide();
+                _categoria.btnEditar.Hide();
+                _categoria.btnEliminar.Show();
+                _categoria.txtCategoria.Enabled = false;
+                _categoria.ShowDialog();
             }
 
         }

@@ -1,6 +1,6 @@
 ﻿namespace AdminLabrary.View.principales
 {
-    partial class frmPrestamos
+    partial class FrmPrestamos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrestamos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrestamos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -379,7 +379,7 @@
             this.Controls.Add(this.rbtnLector);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnVer);
-            this.Name = "frmPrestamos";
+            this.Name = "FrmPrestamos";
             this.Text = "frmPrestamos";
             this.Load += new System.EventHandler(this.frmPrestamos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

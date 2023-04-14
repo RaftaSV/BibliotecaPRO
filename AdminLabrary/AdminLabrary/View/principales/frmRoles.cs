@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace AdminLabrary.View.principales
 {
-    public partial class frmRoles : Form
+    public partial class FrmRoles : Form
     {
-        public frmRoles()
+        public FrmRoles()
         {
             InitializeComponent();
         }
@@ -32,8 +32,8 @@ namespace AdminLabrary.View.principales
                             {
                                 ID = ad.Id_rol,
                                 Nombre = lec.Nombres,
-                                Usuario = ad.Usuario,
-                                Contraseña = ad.Contraseña,
+                                ad.Usuario,
+                                ad.Contraseña,
                                 IDLector = lec.Id_Lector,
                                 rol = ad.Rol,
                                 roln = ad.Rol
@@ -57,7 +57,7 @@ namespace AdminLabrary.View.principales
 
         }
 
-        public frmAdministradoresCRUD admin = new frmAdministradoresCRUD();
+        public FrmAdministradoresCrud Admin = new FrmAdministradoresCrud();
 
 
 
@@ -68,7 +68,7 @@ namespace AdminLabrary.View.principales
         }
         void Seleccionar()
         {
-            string Id = dgvAdmi.CurrentRow.Cells[0].Value.ToString();
+            string id = dgvAdmi.CurrentRow.Cells[0].Value.ToString();
             string usuario = dgvAdmi.CurrentRow.Cells[1].Value.ToString();
             string contraseña = dgvAdmi.CurrentRow.Cells[2].Value.ToString();
             string idU = dgvAdmi.CurrentRow.Cells[4].Value.ToString();
@@ -76,62 +76,57 @@ namespace AdminLabrary.View.principales
             int idR = int.Parse(dgvAdmi.CurrentRow.Cells[6].Value.ToString());
             if (idR == 0)
             {
-                admin.rbtnLector.Checked = true;
+                Admin.rbtnLector.Checked = true;
             }
             else
             {
-                admin.rbtnAdmi.Checked = true;
+                Admin.rbtnAdmi.Checked = true;
             }
-            admin.txtLector.Text = lector;
-            admin.txtContraseña.Text = contraseña;
-            admin.IDLector = int.Parse(idU);
-            admin.txtUsuario.Text = usuario;
-            admin.IDAdmin = int.Parse(Id);
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
+            Admin.txtLector.Text = lector;
+            Admin.txtContraseña.Text = contraseña;
+            Admin.IdLector = int.Parse(idU);
+            Admin.txtUsuario.Text = usuario;
+            Admin.IdAdmin = int.Parse(id);
         }
 
         private void dgvAdmi_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvAdmi.Columns["NUEVO"].Index && e.RowIndex != -1)
             {
-                admin.btnGuardar.Show();
-                admin.btnGuardar.Enabled = true;
-                admin.btnEditar.Hide();
-                admin.btnEliminar.Hide();
-                admin.btnSeleccionar.Show();
-                admin.btnGuardar.Show();
-                admin.rbtnLector.Checked = true;
-                admin.Limpiar();
-                admin.ShowDialog();
-                admin.btnSeleccionar.Visible = true;
+                Admin.btnGuardar.Show();
+                Admin.btnGuardar.Enabled = true;
+                Admin.btnEditar.Hide();
+                Admin.btnEliminar.Hide();
+                Admin.btnSeleccionar.Show();
+                Admin.btnGuardar.Show();
+                Admin.rbtnLector.Checked = true;
+                Admin.Limpiar();
+                Admin.ShowDialog();
+                Admin.btnSeleccionar.Visible = true;
             }
             else if (e.ColumnIndex == dgvAdmi.Columns["EDITAR"].Index && e.RowIndex != -1)
             {
-                admin.btnGuardar.Hide();
-                admin.btnEditar.Show();
-                admin.btnEliminar.Hide();
-                admin.btnEditar.Enabled = true;
-                admin.btnSeleccionar.Enabled = true;
-                admin.rbtnAdmi.Checked = true;
+                Admin.btnGuardar.Hide();
+                Admin.btnEditar.Show();
+                Admin.btnEliminar.Hide();
+                Admin.btnEditar.Enabled = true;
+                Admin.btnSeleccionar.Enabled = true;
+                Admin.rbtnAdmi.Checked = true;
                 Seleccionar();
-                admin.ShowDialog();
+                Admin.ShowDialog();
             }
             else if (e.ColumnIndex == dgvAdmi.Columns["ELIMINAR"].Index && e.RowIndex != -1)
             {
-                admin.btnGuardar.Hide();
-                admin.btnEliminar.Show();
-                admin.btnEditar.Hide();
-                admin.btnEliminar.Enabled = true;
-                admin.btnSeleccionar.Hide();
-                admin.txtContraseña.Enabled = false;
-                admin.txtUsuario.Enabled = false;
-                admin.rbtnAdmi.Checked = true;
+                Admin.btnGuardar.Hide();
+                Admin.btnEliminar.Show();
+                Admin.btnEditar.Hide();
+                Admin.btnEliminar.Enabled = true;
+                Admin.btnSeleccionar.Hide();
+                Admin.txtContraseña.Enabled = false;
+                Admin.txtUsuario.Enabled = false;
+                Admin.rbtnAdmi.Checked = true;
                 Seleccionar();
-                admin.ShowDialog();
+                Admin.ShowDialog();
             }
         }
 

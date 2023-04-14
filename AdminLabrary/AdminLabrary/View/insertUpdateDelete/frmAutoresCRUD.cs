@@ -1,21 +1,21 @@
-﻿using AdminLabrary.formularios.principales;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmAutoresCRUD : Form
+    public partial class FrmAutoresCrud : Form
     {
-        Autores autor = new Autores();
-        public frmAutoresCRUD()
+        Autores _autor = new Autores();
+        public FrmAutoresCrud()
         {
             InitializeComponent();
         }
-        public int ID;
+        public int Id;
 
-        public void limpiar()
+        public void Limpiar()
         {
             txtNacionalidad.Text = "";
             txtNombre.Text = "";
@@ -31,14 +31,14 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    autor.Nombre = txtNombre.Text;
-                    autor.Nacionalidad = txtNacionalidad.Text;
-                    autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
-                    autor.estado = 0;
-                    db.Autores.Add(autor);
+                    _autor.Nombre = txtNombre.Text;
+                    _autor.Nacionalidad = txtNacionalidad.Text;
+                    _autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
+                    _autor.estado = 0;
+                    db.Autores.Add(_autor);
                     db.SaveChanges();
-                    frmPrincipal.Autor.CargarDatos();
-                    limpiar();
+                    FrmPrincipal.Autor.CargarDatos();
+                    Limpiar();
                     Close();
                 }
 
@@ -51,15 +51,15 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    autor = db.Autores.First(buscarID => buscarID.Id_autor == ID);
-                    autor.Nombre = txtNombre.Text;
-                    autor.Nacionalidad = txtNacionalidad.Text;
-                    autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
-                    autor.estado = 0;
-                    db.Entry(autor).State = System.Data.Entity.EntityState.Modified;
+                    _autor = db.Autores.First(buscarId => buscarId.Id_autor == Id);
+                    _autor.Nombre = txtNombre.Text;
+                    _autor.Nacionalidad = txtNacionalidad.Text;
+                    _autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
+                    _autor.estado = 0;
+                    db.Entry(_autor).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.Autor.CargarDatos();
+                    Limpiar();
+                    FrmPrincipal.Autor.CargarDatos();
                     Close();
                 }
 
@@ -70,15 +70,15 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                autor = db.Autores.First(buscarID => buscarID.Id_autor == ID);
-                autor.Nombre = txtNombre.Text;
-                autor.Nacionalidad = txtNacionalidad.Text;
-                autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
-                autor.estado = 1;
-                db.Entry(autor).State = System.Data.Entity.EntityState.Modified;
+                _autor = db.Autores.First(buscarId => buscarId.Id_autor == Id);
+                _autor.Nombre = txtNombre.Text;
+                _autor.Nacionalidad = txtNacionalidad.Text;
+                _autor.fecha_nacimiento = Convert.ToDateTime(dtpFecha.Text);
+                _autor.estado = 1;
+                db.Entry(_autor).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                limpiar();
-                frmPrincipal.Autor.CargarDatos();
+                Limpiar();
+                FrmPrincipal.Autor.CargarDatos();
                 Close();
             }
         }

@@ -1,37 +1,37 @@
-﻿using AdminLabrary.formularios.principales;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmCategoriasCRUD : Form
+    public partial class FrmCategoriasCrud : Form
     {
-        public frmCategoriasCRUD()
+        public FrmCategoriasCrud()
         {
             InitializeComponent();
         }
 
-        public void limpiar()
+        public void Limpiar()
         {
             txtCategoria.Text = "";
             txtCategoria.Enabled = true;
         }
-        Categorias categoria = new Categorias();
-        public int ID;
+        Categorias _categoria = new Categorias();
+        public int Id;
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (txtCategoria.Text!= "")
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    categoria.Categoria = txtCategoria.Text;
-                    categoria.estado = 0;
-                    db.Categorias.Add(categoria);
+                    _categoria.Categoria = txtCategoria.Text;
+                    _categoria.estado = 0;
+                    db.Categorias.Add(_categoria);
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.categoria.CargarDatos();
+                    Limpiar();
+                    FrmPrincipal.Categoria.CargarDatos();
                     Close();
                 }
 
@@ -44,13 +44,13 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    categoria = db.Categorias.First(buscarId => buscarId.Id_categoria == ID);
-                    categoria.Categoria = txtCategoria.Text;
-                    categoria.estado = 0;
-                    db.Entry(categoria).State = System.Data.Entity.EntityState.Modified;
+                    _categoria = db.Categorias.First(buscarId => buscarId.Id_categoria == Id);
+                    _categoria.Categoria = txtCategoria.Text;
+                    _categoria.estado = 0;
+                    db.Entry(_categoria).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.categoria.CargarDatos();
+                    Limpiar();
+                    FrmPrincipal.Categoria.CargarDatos();
                     Close();
 
 
@@ -63,13 +63,13 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                categoria = db.Categorias.First(buscarId => buscarId.Id_categoria == ID);
-                categoria.Categoria = txtCategoria.Text;
-                categoria.estado = 1;
-                db.Entry(categoria).State = System.Data.Entity.EntityState.Modified;
+                _categoria = db.Categorias.First(buscarId => buscarId.Id_categoria == Id);
+                _categoria.Categoria = txtCategoria.Text;
+                _categoria.estado = 1;
+                db.Entry(_categoria).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                limpiar();
-                frmPrincipal.categoria.CargarDatos();
+                Limpiar();
+                FrmPrincipal.Categoria.CargarDatos();
                 Close();
             }
         }

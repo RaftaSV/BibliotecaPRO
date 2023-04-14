@@ -1,22 +1,22 @@
-﻿using AdminLabrary.formularios.principales;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmLectorCRUD : Form
+    public partial class FrmLectorCrud : Form
     {
-        public string ID;
-        public frmLectorCRUD()
+        public string Id;
+        public FrmLectorCrud()
         {
            
             InitializeComponent();
           
         }
 
-        public void limpiar()
+        public void Limpiar()
         {
             txtApellidos.Text = "";
             txtNombre.Text = "";
@@ -24,19 +24,19 @@ namespace AdminLabrary.View.insertUpdateDelete
             txtNombre.Enabled = true;
         }
 
-        Lectores lector = new Lectores();
+        Lectores _lector = new Lectores();
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (txtApellidos.Text !="" && txtNombre.Text != "") {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    lector.Nombres = txtNombre.Text;
-                    lector.Apellidos = txtApellidos.Text;
-                    lector.estado = 0;
-                    db.Lectores.Add(lector);
+                    _lector.Nombres = txtNombre.Text;
+                    _lector.Apellidos = txtApellidos.Text;
+                    _lector.estado = 0;
+                    db.Lectores.Add(_lector);
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.lector.CargarDatos();
+                    Limpiar();
+                    FrmPrincipal.Lector.CargarDatos();
                     Close();
                 }
             }
@@ -48,15 +48,15 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    int id = int.Parse(ID);
-                    lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
-                    lector.Nombres = txtNombre.Text;
-                    lector.Apellidos = txtApellidos.Text;
-                    lector.estado = 0;
-                    db.Entry(lector).State = System.Data.Entity.EntityState.Modified;
+                    int id = int.Parse(Id);
+                    _lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
+                    _lector.Nombres = txtNombre.Text;
+                    _lector.Apellidos = txtApellidos.Text;
+                    _lector.estado = 0;
+                    db.Entry(_lector).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                    limpiar();
-                    frmPrincipal.lector.CargarDatos();
+                    Limpiar();
+                    FrmPrincipal.Lector.CargarDatos();
                     Close();
                 }
 
@@ -73,15 +73,15 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                int id = int.Parse(ID);
-                lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
-                lector.Nombres = txtNombre.Text;
-                lector.Apellidos = txtApellidos.Text;
-                lector.estado = 1;
-                db.Entry(lector).State = System.Data.Entity.EntityState.Modified;
+                int id = int.Parse(Id);
+                _lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
+                _lector.Nombres = txtNombre.Text;
+                _lector.Apellidos = txtApellidos.Text;
+                _lector.estado = 1;
+                db.Entry(_lector).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                limpiar();
-                frmPrincipal.lector.CargarDatos();
+                Limpiar();
+                FrmPrincipal.Lector.CargarDatos();
                 Console.WriteLine("eliminar" + id);
                 Close();
                

@@ -1,6 +1,6 @@
-﻿namespace AdminLabrary.formularios.principales
+﻿namespace AdminLabrary.View.principales
 {
-    partial class frmAutor
+    partial class FrmAutor
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAutor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAutor));
             this.dgvAutores = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -202,7 +202,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.dgvAutores);
             this.Controls.Add(this.panel1);
-            this.Name = "frmAutor";
+            this.Name = "FrmAutor";
             this.Text = "AdminLabrary-autor";
             this.Load += new System.EventHandler(this.FpAutor_Load);
             this.Click += new System.EventHandler(this.btnNuevo_Click);

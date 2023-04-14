@@ -4,13 +4,11 @@ using System.Windows.Forms;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 
-
-
-namespace AdminLabrary.formularios.principales
+namespace AdminLabrary.View.principales
 {
-    public partial class frmLibros : Form
+    public partial class FrmLibros : Form
     {
-        public frmLibros()
+        public FrmLibros()
         {
             InitializeComponent();
 
@@ -30,7 +28,7 @@ namespace AdminLabrary.formularios.principales
             {
                 string buscar = txtBuscar.Text;
                 dgvLibros.Rows.Clear();
-                if (rbtnLibro.Checked == true)
+                if (rbtnLibro.Checked)
                 {
                     var lista = from li in db.Libros
                                 from au in db.Autores
@@ -47,13 +45,13 @@ namespace AdminLabrary.formularios.principales
                                 select new
                                 {
                                     ID = li.Id_libro,
-                                    Nombre = li.Nombre,
+                                    li.Nombre,
                                     Cantidad = li.cantidad,
-                                    Año = li.Año,
-                                    Numero_edicion = li.Numero_edicion,
+                                    li.Año,
+                                    li.Numero_edicion,
                                     Autor = au.Nombre,
-                                    Editorial = ed.Editorial,
-                                    Categoria = ca.Categoria,
+                                    ed.Editorial,
+                                    ca.Categoria,
                                     idAutor = li.Id_autor,
                                     idEditorial = li.Id_Editorial,
                                     idCategoria = ca.Id_categoria
@@ -80,13 +78,13 @@ namespace AdminLabrary.formularios.principales
                                 select new
                                 {
                                     ID = li.Id_libro,
-                                    Nombre = li.Nombre,
+                                    li.Nombre,
                                     Cantidad = li.cantidad,
-                                    Año = li.Año,
-                                    Numero_edicion = li.Numero_edicion,
+                                    li.Año,
+                                    li.Numero_edicion,
                                     Autor = au.Nombre,
-                                    Editorial = ed.Editorial,
-                                    Categoria = ca.Categoria,
+                                    ed.Editorial,
+                                    ca.Categoria,
                                     idAutor = li.Id_autor,
                                     idEditorial = li.Id_Editorial,
                                     idCategoria = ca.Id_categoria
@@ -103,7 +101,7 @@ namespace AdminLabrary.formularios.principales
 
         }
 
-        public frmLibrosCRUD Libros = new frmLibrosCRUD();
+        public FrmLibrosCrud Libros = new FrmLibrosCrud();
        
 
         private void dgvLibros_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -112,12 +110,12 @@ namespace AdminLabrary.formularios.principales
         }
 
     
-        void seleccionar()
+        void Seleccionar()
         {
-            int Id = int.Parse(dgvLibros.CurrentRow.Cells[0].Value.ToString());
-            int Id_autor = int.Parse(dgvLibros.CurrentRow.Cells[8].Value.ToString());
-            int Id_Editorial = int.Parse(dgvLibros.CurrentRow.Cells[9].Value.ToString());
-            string Id_Categoria = (dgvLibros.CurrentRow.Cells[10].Value.ToString());
+            int id = int.Parse(dgvLibros.CurrentRow.Cells[0].Value.ToString());
+            int idAutor = int.Parse(dgvLibros.CurrentRow.Cells[8].Value.ToString());
+            int idEditorial = int.Parse(dgvLibros.CurrentRow.Cells[9].Value.ToString());
+            string idCategoria = (dgvLibros.CurrentRow.Cells[10].Value.ToString());
             string autor = dgvLibros.CurrentRow.Cells[5].Value.ToString();
             string editorial = dgvLibros.CurrentRow.Cells[6].Value.ToString();
             string nombre = dgvLibros.CurrentRow.Cells[1].Value.ToString();
@@ -131,22 +129,14 @@ namespace AdminLabrary.formularios.principales
             Libros.txtCantidad.Text = cantidad;
             Libros.dtpAño.Text = año;
             Libros.txtNumero_de_Edicion.Text = numero;
-            Libros.ID_Libro = Id;
-            Libros.ID_Autor = Id_autor;
-            Libros.ID_Editorial = Id_Editorial;
-            Libros.ID_Cate = Id_Categoria;
-            Libros.id = int.Parse(Id_Categoria) - 1;
+            Libros.IdLibro = id;
+            Libros.IdAutor = idAutor;
+            Libros.IdEditorial = idEditorial;
+            Libros.IdCate = idCategoria;
+            Libros.Id = int.Parse(idCategoria) - 1;
 
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dgvLibros.RowCount > 0)
-            {
-
-            }
-
-        }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
@@ -162,8 +152,8 @@ namespace AdminLabrary.formularios.principales
                     Libros.btnGuardar.Enabled = true;
                     Libros.btnActualizar.Hide();
                     Libros.btnEliminar.Hide();
-                    Libros.limpiar();
-                    Libros.indi = 0;
+                    Libros.Limpiar();
+                    Libros.Indi = 0;
                     Libros.ShowDialog();
                 }
                 else if (e.ColumnIndex == dgvLibros.Columns["EDITAR"].Index && e.RowIndex != -1)
@@ -172,8 +162,8 @@ namespace AdminLabrary.formularios.principales
                     Libros.btnActualizar.Show();
                     Libros.btnActualizar.Enabled = true;
                     Libros.btnEliminar.Hide();
-                    Libros.indi = 0;
-                    seleccionar();
+                    Libros.Indi = 0;
+                    Seleccionar();
                     Libros.ShowDialog();
                 }
                 else if (e.ColumnIndex == dgvLibros.Columns["ELIMINAR"].Index && e.RowIndex != -1)
@@ -184,8 +174,8 @@ namespace AdminLabrary.formularios.principales
                     Libros.btnSeleccionarE.Hide();
                     Libros.btnEliminar.Show();
                     Libros.btnEliminar.Enabled = true;
-                    Libros.indi = 1;
-                    seleccionar();
+                    Libros.Indi = 1;
+                    Seleccionar();
                     Libros.ShowDialog();
                 }
         }

@@ -5,18 +5,18 @@ using System.Windows.Forms;
 
 namespace AdminLabrary.View.buscar
 {
-    public partial class frmHistorial : Form
+    public partial class FrmHistorial : Form
     {
-        public frmHistorial()
+        public FrmHistorial()
         {
             InitializeComponent();
         }
 
         private void frmHistorial_Load(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
-        public void filtro()
+        public void Filtro()
         {
             dgvAlquiler.Rows.Clear();
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
@@ -46,7 +46,6 @@ namespace AdminLabrary.View.buscar
                             };
                 foreach (var i in lista)
                 {
-                    DateTime fechasalida = i.fechaS;
                     DateTime fechaPre = i.fechaP;
                     TimeSpan con = DateTime.Now - fechaPre;
 
@@ -72,7 +71,7 @@ namespace AdminLabrary.View.buscar
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
 
         private void dgvAlquiler_CellContentClick(object sender, DataGridViewCellEventArgs e)

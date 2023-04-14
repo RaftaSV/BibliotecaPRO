@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
-    public partial class frmBuscarLector : Form
+    public partial class FrmBuscarLector : Form
     {
-        public int indicador = 1;
-        public frmBuscarLector()
+        public int Indicador = 1;
+        public FrmBuscarLector()
         {
             InitializeComponent();
         }
@@ -17,27 +17,27 @@ namespace AdminLabrary.View.buscar
 
         private void frmBuscarLector_Load(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
 
         }
-        public void filtro()
+        public void Filtro()
         {
-            if (indicador == 1)
+            if (Indicador == 1)
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
 
                     dgvLecto.Rows.Clear();
                     string buscar = txtBuscar.Text;
-                    var listaL = from LEC in db.Lectores
-                                 where !(from adm in db.Roles select adm.Id_Lector).Contains(LEC.Id_Lector)
-                                 && LEC.Nombres.Contains(buscar)
-                                 && LEC.estado == 0
+                    var listaL = from lec in db.Lectores
+                                 where !(from adm in db.Roles select adm.Id_Lector).Contains(lec.Id_Lector)
+                                 && lec.Nombres.Contains(buscar)
+                                 && lec.estado == 0
                                  select new
                                  {
-                                     ID = LEC.Id_Lector,
-                                     Nombres = LEC.Nombres,
-                                     Apellidos = LEC.Apellidos
+                                     ID = lec.Id_Lector,
+                                     lec.Nombres,
+                                     lec.Apellidos
                                  };
                     foreach (var i in listaL)
                     {
@@ -47,20 +47,20 @@ namespace AdminLabrary.View.buscar
 
                 }
             }
-            else if(indicador == 2)
+            else if(Indicador == 2)
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
                     dgvLecto.Rows.Clear();
                     string buscar = txtBuscar.Text;
-                    var listaL = from LEC in db.Lectores
-                                 where LEC.Nombres.Contains(buscar)
-                                  && LEC.estado == 0
+                    var listaL = from lec in db.Lectores
+                                 where lec.Nombres.Contains(buscar)
+                                  && lec.estado == 0
                                  select new
                                  {
-                                     ID = LEC.Id_Lector,
-                                     Nombres = LEC.Nombres,
-                                     Apellidos = LEC.Apellidos
+                                     ID = lec.Id_Lector,
+                                     lec.Nombres,
+                                     lec.Apellidos
                                  };
                     foreach (var i in listaL)
                     {
@@ -70,7 +70,7 @@ namespace AdminLabrary.View.buscar
                                     && pres.Recibido == null
                                     select new
                                     {
-                                        cantidad = pres.cantidad
+                                        pres.cantidad
                                     };
                         foreach (var it in lista)
                         {
@@ -92,14 +92,14 @@ namespace AdminLabrary.View.buscar
 
                     dgvLecto.Rows.Clear();
                     string buscar = txtBuscar.Text;
-                    var listaL = from LEC in db.Lectores
-                                 where LEC.Nombres.Contains(buscar)
-                                 && LEC.estado == 0
+                    var listaL = from lec in db.Lectores
+                                 where lec.Nombres.Contains(buscar)
+                                 && lec.estado == 0
                                  select new
                                  {
-                                     ID = LEC.Id_Lector,
-                                     Nombres = LEC.Nombres,
-                                     Apellidos = LEC.Apellidos
+                                     ID = lec.Id_Lector,
+                                     lec.Nombres,
+                                     lec.Apellidos
                                  };
                     foreach (var i in listaL)
                     {
@@ -111,41 +111,36 @@ namespace AdminLabrary.View.buscar
             }
         }
 
-        private void dgvLectores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            seleccionar();
-        }
-        void seleccionar()
+       
+        void Seleccionar()
         {
 
-            if (indicador == 1)
+            if (Indicador == 1)
             {
                 string id = dgvLecto.CurrentRow.Cells[0].Value.ToString();
-                string Nombre = dgvLecto.CurrentRow.Cells[1].Value.ToString();
-                frmPrincipal.admin.admin.txtLector.Text = Nombre;
-                frmPrincipal.admin.admin.IDLector = int.Parse(id);
-                string idro = dgvLecto.CurrentRow.Cells[0].Value.ToString();
-                string Nombrer = dgvLecto.CurrentRow.Cells[1].Value.ToString();
-                frmPrincipal.r.admin.txtLector.Text = Nombre;
-                frmPrincipal.r.admin.IDLector = int.Parse(id);
+                string nombre = dgvLecto.CurrentRow.Cells[1].Value.ToString();
+                FrmPrincipal.Admin.Admin.txtLector.Text = nombre;
+                FrmPrincipal.Admin.Admin.IdLector = int.Parse(id);
+                FrmPrincipal.R.Admin.txtLector.Text = nombre;
+                FrmPrincipal.R.Admin.IdLector = int.Parse(id);
                 Close();
             }
-            else if (indicador == 2)
+            else if (Indicador == 2)
             {
                 string idl = dgvLecto.CurrentRow.Cells[0].Value.ToString();
-                string Nombrel = dgvLecto.CurrentRow.Cells[1].Value.ToString();
-                frmPrincipal.prestamos.alquiler.cantidad = 3 - int.Parse(dgvLecto.CurrentRow.Cells[3].Value.ToString());
-                frmPrincipal.prestamos.alquiler.txtCantidad.Text = (3 - int.Parse(dgvLecto.CurrentRow.Cells[3].Value.ToString())).ToString();
-                frmPrincipal.prestamos.alquiler.txtLector.Text = Nombrel;
-                frmPrincipal.prestamos.alquiler.idLector = int.Parse(idl);
+                string nombrel = dgvLecto.CurrentRow.Cells[1].Value.ToString();
+                FrmPrincipal.Prestamos.Alquiler.Cantidad = 3 - int.Parse(dgvLecto.CurrentRow.Cells[3].Value.ToString());
+                FrmPrincipal.Prestamos.Alquiler.txtCantidad.Text = (3 - int.Parse(dgvLecto.CurrentRow.Cells[3].Value.ToString())).ToString();
+                FrmPrincipal.Prestamos.Alquiler.txtLector.Text = nombrel;
+                FrmPrincipal.Prestamos.Alquiler.IdLector = int.Parse(idl);
                 Close();
             }
             else
             {
                 string idl = dgvLecto.CurrentRow.Cells[0].Value.ToString();
-                string Nombrel = dgvLecto.CurrentRow.Cells[1].Value.ToString();
-                frmPrincipal.Sol.solicitud.txtLector.Text = Nombrel;
-                frmPrincipal.Sol.solicitud.idlector = int.Parse(idl);
+                string nombrel = dgvLecto.CurrentRow.Cells[1].Value.ToString();
+                FrmPrincipal.Sol.Solicitud.txtLector.Text = nombrel;
+                FrmPrincipal.Sol.Solicitud.Idlector = int.Parse(idl);
                 Close();
             }
         }
@@ -155,19 +150,19 @@ namespace AdminLabrary.View.buscar
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            filtro();
+            Filtro();
         }
 
         private void dgvLecto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            seleccionar();
+            Seleccionar();
         }
 
         private void dgvLecto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                seleccionar();
+                Seleccionar();
             }
         }
 

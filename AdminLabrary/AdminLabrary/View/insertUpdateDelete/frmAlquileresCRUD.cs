@@ -3,38 +3,38 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using AdminLabrary.Model;
-using AdminLabrary.formularios.principales;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmAlquileresCRUD : Form
+    public partial class FrmAlquileresCrud : Form
     {
         public int IdEntregado;
-        public int idAlquiler;
+        public int IdAlquiler;
         public int IdLibro;
-        public int idLector;
-        public int idAdmin;
-        public int cantidad;
-        public int indicador = 1;
-        public DateTime fecha_salida;
-        public DateTime fecha_pre;
-        public int solicitud;
-        public frmAlquileresCRUD()
+        public int IdLector;
+        public int IdAdmin;
+        public int Cantidad;
+        public int Indicador = 1;
+        public DateTime FechaSalida;
+        public DateTime FechaPre;
+        public int Solicitud;
+        public FrmAlquileresCrud()
         {
             InitializeComponent();
         }
         
         private void btnSeleccionarLibro_Click(object sender, EventArgs e)
         {
-            frmBuscarLibros li = new frmBuscarLibros();
+            FrmBuscarLibros li = new FrmBuscarLibros();
             li.ShowDialog();
         }
        
         private void btnSeleccionarLector_Click(object sender, EventArgs e)
         {
-            frmBuscarLector lec = new frmBuscarLector();
-            lec.indicador = 2;
-            lec.filtro();
+            FrmBuscarLector lec = new FrmBuscarLector();
+            lec.Indicador = 2;
+            lec.Filtro();
             lec.ShowDialog();
         }
     
@@ -43,17 +43,17 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             
         }
-        Alquileres alqu = new Alquileres();
+        Alquileres _alqu = new Alquileres();
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (solicitud == 0)
+            if (Solicitud == 0)
             {
 
 
                 if (txtLector.Text != "" && txtLibro.Text != "" && int.Parse(txtCantidad.Text) > 0)
                 {
-                    if  (int.Parse(txtCantidad.Text) <= cantidad)     
+                    if  (int.Parse(txtCantidad.Text) <= Cantidad)     
                     {
 
                         using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
@@ -62,33 +62,33 @@ namespace AdminLabrary.View.insertUpdateDelete
                                         where lis.Id_libro == IdLibro
                                         select new
                                         {
-                                            cantidad = lis.cantidad
+                                            lis.cantidad
                                         };
                             foreach (var i in lista)
                             {
-                                cantidad = i.cantidad;
+                                Cantidad = i.cantidad;
                             }
 
-                            if (cantidad >= int.Parse(txtCantidad.Text))
+                            if (Cantidad >= int.Parse(txtCantidad.Text))
                             {
                                 Alquileres alquiler = new Alquileres
                                 {
-                                    Id_Lector = idLector,
+                                    Id_Lector = IdLector,
                                     Id_libro = IdLibro,
-                                    Entregado = idAdmin,
+                                    Entregado = IdAdmin,
                                     cantidad = int.Parse(txtCantidad.Text),
                                     fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")),
                                     fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8)
                                 };
                                 db.Alquileres.Add(alquiler);
                                 db.SaveChanges();
-                                frmPrincipal.prestamos.CargarDatos();
-                                limpiar();
+                                FrmPrincipal.Prestamos.CargarDatos();
+                                Limpiar();
                                 Close();
                             }
                             else
                             {
-                                MessageBox.Show("La cantidad de libros en existencia es: " + cantidad.ToString());
+                                MessageBox.Show("La cantidad de libros en existencia es: " + Cantidad.ToString());
                             }
 
                         }
@@ -96,7 +96,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     }else
                     {
                         MessageBox.Show("La cantidad ingresada sobrepasa al limite permitido.\r" +
-                            "El limite es: " + cantidad.ToString());
+                            "El limite es: " + Cantidad.ToString());
                     }
                 }
                 else
@@ -118,120 +118,119 @@ namespace AdminLabrary.View.insertUpdateDelete
                                     where lis.Id_libro == IdLibro
                                     select new
                                     {
-                                        cantidad = lis.cantidad
+                                        lis.cantidad
                                     };
                         foreach (var i in lista)
                         {
-                            cantidad = i.cantidad;
+                            Cantidad = i.cantidad;
                         }
 
-                        if (cantidad >= int.Parse(txtCantidad.Text))
+                       
+                        if (Cantidad >= int.Parse(txtCantidad.Text))
                         {
                             Alquileres alquiler = new Alquileres
                             {
-                                Id_Lector = idLector,
+                                Id_Lector = IdLector,
                                 Id_libro = IdLibro,
-                                Entregado = idAdmin,
+                                Entregado = IdAdmin,
                                 cantidad = int.Parse(txtCantidad.Text),
                                 fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")),
                                 fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8)
                             };
                             db.Alquileres.Add(alquiler);
                             db.SaveChanges();
-                            frmPrincipal.prestamos.CargarDatos();
-                            
-                            solicitudes soli = new solicitudes();
-                            soli = db.solicitudes.First(buscarID => buscarID.id_soli == solicitud);
+                            FrmPrincipal.Prestamos.CargarDatos();
+                            var soli = db.solicitudes.First(buscarId => buscarId.id_soli == Solicitud);
                             soli.Cantidad = int.Parse(txtCantidad.Text);
                             soli.libros = IdLibro;
-                            soli.id_lector = idLector;
+                            soli.id_lector = IdLector;
                             soli.estado = 1;
                             db.Entry(soli).State = System.Data.Entity.EntityState.Modified;
                             db.SaveChanges();
-                            solicitud = 0;
-                            limpiar();
-                            frmPrincipal.Sol.CargarDatos();
+                            Solicitud = 0;
+                            Limpiar();
+                            FrmPrincipal.Sol.CargarDatos();
                             Close();
 
                         }
                         else
                         {
-                            MessageBox.Show("La cantidad de libros en existencia es: " + cantidad.ToString());
+                            MessageBox.Show("La cantidad de libros en existencia es: " + Cantidad.ToString());
                         }
 
                     }
 
                 }
             }
-            frmPrincipal.prestamos.ultimafila();
+            FrmPrincipal.Prestamos.Ultimafila();
         }
 
         private void btnRecibir_Click(object sender, EventArgs e)
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                if (int.Parse(txtCantidad.Text) > cantidad || int.Parse(txtCantidad.Text) <= 0)
+                if (int.Parse(txtCantidad.Text) > Cantidad || int.Parse(txtCantidad.Text) <= 0)
                 {
                     MessageBox.Show("Cantidad incorrecta");
                 }
-                else if (int.Parse(txtCantidad.Text) < cantidad && int.Parse(txtCantidad.Text) > 0)
+                else if (int.Parse(txtCantidad.Text) < Cantidad && int.Parse(txtCantidad.Text) > 0)
                 {
-                    alqu = db.Alquileres.First(buscarID => buscarID.Id_alquiler == idAlquiler);
-                    alqu.Id_Lector = idLector;
-                    alqu.Id_libro = IdLibro;
-                    alqu.cantidad = Int32.Parse(txtCantidad.Text);
-                    alqu.Entregado = IdEntregado;
-                    alqu.fecha_salida = fecha_salida;
-                    alqu.fecha_prevista_de_entrega = fecha_pre;
-                    alqu.fecha_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                    alqu.Recibido = idAdmin;
-                    db.Entry(alqu).State = System.Data.Entity.EntityState.Modified;
+                    _alqu = db.Alquileres.First(buscarId => buscarId.Id_alquiler == IdAlquiler);
+                    _alqu.Id_Lector = IdLector;
+                    _alqu.Id_libro = IdLibro;
+                    _alqu.cantidad = Int32.Parse(txtCantidad.Text);
+                    _alqu.Entregado = IdEntregado;
+                    _alqu.fecha_salida = FechaSalida;
+                    _alqu.fecha_prevista_de_entrega = FechaPre;
+                    _alqu.fecha_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+                    _alqu.Recibido = IdAdmin;
+                    db.Entry(_alqu).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     Alquileres alqui = new Alquileres
                     {
-                        Id_Lector = idLector,
+                        Id_Lector = IdLector,
                         Id_libro = IdLibro,
-                        cantidad = cantidad - int.Parse(txtCantidad.Text),
+                        cantidad = Cantidad - int.Parse(txtCantidad.Text),
                         Entregado = IdEntregado,
-                        fecha_salida = fecha_salida,
-                        fecha_prevista_de_entrega = fecha_pre
+                        fecha_salida = FechaSalida,
+                        fecha_prevista_de_entrega = FechaPre
                     };
                     db.Alquileres.Add(alqui);
                     db.SaveChanges();
                 }
-                else if (int.Parse(txtCantidad.Text) == cantidad && int.Parse(txtCantidad.Text) > 0)
+                else if (int.Parse(txtCantidad.Text) == Cantidad && int.Parse(txtCantidad.Text) > 0)
                 {
-                    alqu = db.Alquileres.First(buscarID => buscarID.Id_alquiler == idAlquiler);
-                    alqu.Id_Lector = idLector;
-                    alqu.Id_libro = IdLibro;
-                    alqu.cantidad = int.Parse(txtCantidad.Text);
-                    alqu.Entregado = IdEntregado;
-                    alqu.fecha_salida = fecha_salida;
-                    alqu.fecha_prevista_de_entrega = fecha_pre;
-                    alqu.fecha_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                    alqu.Recibido = idAdmin;
-                    db.Entry(alqu).State = System.Data.Entity.EntityState.Modified;
+                    _alqu = db.Alquileres.First(buscarId => buscarId.Id_alquiler == IdAlquiler);
+                    _alqu.Id_Lector = IdLector;
+                    _alqu.Id_libro = IdLibro;
+                    _alqu.cantidad = int.Parse(txtCantidad.Text);
+                    _alqu.Entregado = IdEntregado;
+                    _alqu.fecha_salida = FechaSalida;
+                    _alqu.fecha_prevista_de_entrega = FechaPre;
+                    _alqu.fecha_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+                    _alqu.Recibido = IdAdmin;
+                    db.Entry(_alqu).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
 
 
 
             }
-            limpiar();
-            frmPrincipal.prestamos.CargarDatos();
+            Limpiar();
+            FrmPrincipal.Prestamos.CargarDatos();
             Close();
-            frmPrincipal.prestamos.ultimafila();
+            FrmPrincipal.Prestamos.Ultimafila();
         }
-        public void limpiar()
+        public void Limpiar()
         {
 
             txtLector.Text = "";
             txtLibro.Text = "";
             txtCantidad.Text = "";
             IdEntregado = 0;
-            idAlquiler = 0;
+            IdAlquiler = 0;
             IdLibro = 0;
-            idLector = 0;
+            IdLector = 0;
             
            
 

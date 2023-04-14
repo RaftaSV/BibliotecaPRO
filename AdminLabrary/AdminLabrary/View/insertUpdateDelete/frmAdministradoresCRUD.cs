@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
 using AdminLabrary.View.buscar;
+using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
-    public partial class frmAdministradoresCRUD : Form
+    public partial class FrmAdministradoresCrud : Form
     {
-        public frmAdministradoresCRUD()
+        public FrmAdministradoresCrud()
         {
             InitializeComponent();
         }
 
-        public int IDLector;
-        public int IDAdmin;
-        Roles rol = new Roles();
+        public int IdLector;
+        public int IdAdmin;
+        Roles _rol = new Roles();
 
         private void frmAdministradoresCRUD_Load(object sender, EventArgs e)
         {
@@ -40,32 +40,32 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    if (rbtnLector.Checked == true)
+                    if (rbtnLector.Checked)
                     {
-                        rol.Usuario = txtUsuario.Text;
-                        rol.Contraseña = txtContraseña.Text;
-                        rol.Id_Lector = IDLector;
-                        rol.Rol = 0;
-                        rol.estado = 0;
-                        db.Roles.Add(rol);
+                        _rol.Usuario = txtUsuario.Text;
+                        _rol.Contraseña = txtContraseña.Text;
+                        _rol.Id_Lector = IdLector;
+                        _rol.Rol = 0;
+                        _rol.estado = 0;
+                        db.Roles.Add(_rol);
                         db.SaveChanges();
                         Limpiar();
-                        frmPrincipal.r.CargarDatos();
-                        frmPrincipal.admin.CargarDatos();
+                        FrmPrincipal.R.CargarDatos();
+                        FrmPrincipal.Admin.CargarDatos();
                         Close();
                     }
                     else
                     {
-                        rol.Usuario = txtUsuario.Text;
-                        rol.Contraseña = txtContraseña.Text;
-                        rol.Id_Lector = IDLector;
-                        rol.Rol = 1;
-                        rol.estado = 0;
-                        db.Roles.Add(rol);
+                        _rol.Usuario = txtUsuario.Text;
+                        _rol.Contraseña = txtContraseña.Text;
+                        _rol.Id_Lector = IdLector;
+                        _rol.Rol = 1;
+                        _rol.estado = 0;
+                        db.Roles.Add(_rol);
                         db.SaveChanges();
                         Limpiar();
-                        frmPrincipal.r.CargarDatos();
-                        frmPrincipal.admin.CargarDatos();
+                        FrmPrincipal.R.CargarDatos();
+                        FrmPrincipal.Admin.CargarDatos();
                         Close();
                     }
 
@@ -85,34 +85,34 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                if (rbtnLector.Checked == true)
+                if (rbtnLector.Checked)
                 {
-                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
-                    rol.Usuario = txtUsuario.Text;
-                    rol.Contraseña = txtContraseña.Text;
-                    rol.Id_Lector = IDLector;
-                    rol.Rol = 0;
-                    rol.estado = 0;
-                    db.Entry(rol).State = System.Data.Entity.EntityState.Modified;
+                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                    _rol.Usuario = txtUsuario.Text;
+                    _rol.Contraseña = txtContraseña.Text;
+                    _rol.Id_Lector = IdLector;
+                    _rol.Rol = 0;
+                    _rol.estado = 0;
+                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     Limpiar();
-                    frmPrincipal.r.CargarDatos();
-                    frmPrincipal.admin.CargarDatos();
+                    FrmPrincipal.R.CargarDatos();
+                    FrmPrincipal.Admin.CargarDatos();
                     Close();
                 }
                 else
                 {
-                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
-                    rol.Usuario = txtUsuario.Text;
-                    rol.Contraseña = txtContraseña.Text;
-                    rol.Id_Lector = IDLector;
-                    rol.Rol = 1;
-                    rol.estado = 0;
-                    db.Entry(rol).State = System.Data.Entity.EntityState.Modified;
+                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                    _rol.Usuario = txtUsuario.Text;
+                    _rol.Contraseña = txtContraseña.Text;
+                    _rol.Id_Lector = IdLector;
+                    _rol.Rol = 1;
+                    _rol.estado = 0;
+                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     Limpiar();
-                    frmPrincipal.r.CargarDatos();
-                    frmPrincipal.admin.CargarDatos();
+                    FrmPrincipal.R.CargarDatos();
+                    FrmPrincipal.Admin.CargarDatos();
                     Close();
                 }
                
@@ -124,34 +124,34 @@ namespace AdminLabrary.View.insertUpdateDelete
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                if (rbtnLector.Checked == true)
+                if (rbtnLector.Checked)
                 {
-                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
-                    rol.Usuario = txtUsuario.Text;
-                    rol.Contraseña = txtContraseña.Text;
-                    rol.Id_Lector = IDLector;
-                    rol.Rol = 0;
-                    rol.estado = 1;
-                    db.Entry(rol).State = System.Data.Entity.EntityState.Modified;
+                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                    _rol.Usuario = txtUsuario.Text;
+                    _rol.Contraseña = txtContraseña.Text;
+                    _rol.Id_Lector = IdLector;
+                    _rol.Rol = 0;
+                    _rol.estado = 1;
+                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     Limpiar();
-                    frmPrincipal.r.CargarDatos();
-                    frmPrincipal.admin.CargarDatos();
+                    FrmPrincipal.R.CargarDatos();
+                    FrmPrincipal.Admin.CargarDatos();
                     Close();
                 }
                 else
                 {
-                    rol = db.Roles.First(buscarID => buscarID.Id_rol == IDAdmin);
-                    rol.Usuario = txtUsuario.Text;
-                    rol.Contraseña = txtContraseña.Text;
-                    rol.Id_Lector = IDLector;
-                    rol.Rol = 1;
-                    rol.estado = 1;
-                    db.Entry(rol).State = System.Data.Entity.EntityState.Modified;
+                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                    _rol.Usuario = txtUsuario.Text;
+                    _rol.Contraseña = txtContraseña.Text;
+                    _rol.Id_Lector = IdLector;
+                    _rol.Rol = 1;
+                    _rol.estado = 1;
+                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     Limpiar();
-                    frmPrincipal.r.CargarDatos();
-                    frmPrincipal.admin.CargarDatos();
+                    FrmPrincipal.R.CargarDatos();
+                    FrmPrincipal.Admin.CargarDatos();
                     Close();
                 }
 
@@ -160,28 +160,28 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            frmBuscarLector lec = new frmBuscarLector();
-            lec.indicador = 1;
+            FrmBuscarLector lec = new FrmBuscarLector();
+            lec.Indicador = 1;
             lec.ShowDialog();
         }
 
-        int mostrar;
+        int _mostrar;
         private void btnVerC_Click(object sender, EventArgs e)
         {
            
-            if (mostrar==0)
+            if (_mostrar==0)
             {
                 picVer.Hide();
                 picOcultar.Show();
                 txtContraseña.UseSystemPasswordChar = false;
-                mostrar = 1;
+                _mostrar = 1;
             }
             else
             {
                 picVer.Show();
                 picOcultar.Hide();
                 txtContraseña.UseSystemPasswordChar = true;
-                mostrar=0;
+                _mostrar=0;
             }
             
         }

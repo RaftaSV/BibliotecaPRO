@@ -1,6 +1,6 @@
 ﻿namespace AdminLabrary.View.principales
 {
-    partial class frmSolicitudes
+    partial class FrmSolicitudes
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSolicitudes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSolicitudes));
             this.dgvSolicitudes = new System.Windows.Forms.DataGridView();
             this.IdSolicitud = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lector = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -218,7 +218,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dgvSolicitudes);
             this.Controls.Add(this.pictureBox2);
-            this.Name = "frmSolicitudes";
+            this.Name = "FrmSolicitudes";
             this.Text = "frmSolicitudes";
             this.Load += new System.EventHandler(this.frmSolicitudes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitudes)).EndInit();

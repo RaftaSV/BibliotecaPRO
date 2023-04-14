@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.formularios.principales;
 using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
-    public partial class frmLogin : Form
+    public partial class FrmLogin : Form
     {
-        public frmLogin()
+        public FrmLogin()
         {
             InitializeComponent();
 
@@ -17,18 +16,16 @@ namespace AdminLabrary.View.principales
             picOcultar.Visible = false;
         }
 
-        public static frmPrincipal f = new frmPrincipal();
+        public static FrmPrincipal F = new FrmPrincipal();
         public void btnIniciarsesion_Click(object sender, EventArgs e)
 
         {
          
-            if (registro != null) { 
-                registro.Close();
+            if (_registro != null) { 
+                _registro.Close();
 
             }
 
-
-            string u = txtUsuario.Text;
 
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
@@ -51,47 +48,47 @@ namespace AdminLabrary.View.principales
                             };
 
 
-                if (lista.Count() > 0)
+                if (lista.Any())
                 {
 
                     string usu = txtUsuario.Text;
-                    f.lblUsuarioARecibir.Text = usu;
+                    F.lblUsuarioARecibir.Text = usu;
                     foreach (var i in lista)
                     {
                         if(i.rol == 0)
                         {
-                           f.inicio();
-                            frmPrincipal.Sol.solicitud.idlector = i.idLector;
-                            frmPrincipal.Sol.ID = i.idLector;
-                            frmPrincipal.Sol.Loging = 0;
-                            frmPrincipal.Sol.solicitud.btnSeleccionarLector.Visible = false;
-                            frmPrincipal.Sol.solicitud.txtLector.Visible = false;
-                            frmPrincipal.Sol.solicitud.lblLector.Visible = false;
-                            frmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = false;
+                           F.Inicio();
+                            FrmPrincipal.Sol.Solicitud.Idlector = i.idLector;
+                            FrmPrincipal.Sol.Id = i.idLector;
+                            FrmPrincipal.Sol.Loging = 0;
+                            FrmPrincipal.Sol.Solicitud.btnSeleccionarLector.Visible = false;
+                            FrmPrincipal.Sol.Solicitud.txtLector.Visible = false;
+                            FrmPrincipal.Sol.Solicitud.lblLector.Visible = false;
+                            FrmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = false;
 
-                            f.rol = 0;
-                            f.roles();
+                            F.Rol = 0;
+                            F.Roles();
                             
 
                         }
                         else
                         {
-                            f.inicio();
-                            frmPrincipal.prestamos.alquiler.idAdmin = i.ID;
-                            frmPrincipal.Sol.solicitud.idlector = i.idLector;
-                            frmPrincipal.Sol.ID = i.idLector;
-                            frmPrincipal.Sol.Loging = 1;
-                            frmPrincipal.Sol.solicitud.btnSeleccionarLector.Visible = true;
-                            frmPrincipal.Sol.solicitud.txtLector.Visible = true;
-                            frmPrincipal.Sol.solicitud.lblLector.Visible = true;
-                            frmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = true;
-                            f.rol = 1;
-                            f.roles();
+                            F.Inicio();
+                            FrmPrincipal.Prestamos.Alquiler.IdAdmin = i.ID;
+                            FrmPrincipal.Sol.Solicitud.Idlector = i.idLector;
+                            FrmPrincipal.Sol.Id = i.idLector;
+                            FrmPrincipal.Sol.Loging = 1;
+                            FrmPrincipal.Sol.Solicitud.btnSeleccionarLector.Visible = true;
+                            FrmPrincipal.Sol.Solicitud.txtLector.Visible = true;
+                            FrmPrincipal.Sol.Solicitud.lblLector.Visible = true;
+                            FrmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = true;
+                            F.Rol = 1;
+                            F.Roles();
                            
                         }
                         
                     }
-                    f.Show();
+                    F.Show();
                     Hide();
 
 
@@ -125,31 +122,31 @@ namespace AdminLabrary.View.principales
             Application.Exit();
         }
 
-        int mostrar = 1;
+        int _mostrar = 1;
 
         private void picVer_Click(object sender, EventArgs e)
         {
-            if (mostrar == 1)
+            if (_mostrar == 1)
             {
                 picVer.Hide();
                 picOcultar.Show();
                 txtContraseña.UseSystemPasswordChar = true;
-                mostrar = 0;
+                _mostrar = 0;
             }
             else
             {
                 picVer.Show();
                 picOcultar.Hide();
                 txtContraseña.UseSystemPasswordChar = false;
-                mostrar = 1;
+                _mostrar = 1;
             }
         }
-        frmRegistro registro;
+        FrmRegistro _registro;
         private void label1_Click(object sender, EventArgs e)
         {
-            registro  = new frmRegistro();
-            registro.limpiar(); 
-            registro.Show();
+            _registro  = new FrmRegistro();
+            _registro.Limpiar(); 
+            _registro.Show();
         }
 
     }

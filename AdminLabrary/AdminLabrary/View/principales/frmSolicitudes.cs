@@ -1,5 +1,4 @@
-﻿using AdminLabrary.formularios.principales;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using AdminLabrary.View.insertUpdateDelete;
 using System;
 using System.Linq;
@@ -7,18 +6,19 @@ using System.Windows.Forms;
 
 namespace AdminLabrary.View.principales
 {
-    public partial class frmSolicitudes : Form
+    public partial class FrmSolicitudes : Form
     {
-        public frmSolicitudes()
+        public FrmSolicitudes()
         {
             InitializeComponent();
 
         }
         public int Loging;
-        public int ID;
+        public int Id;
 
         public void CargarDatos()
         {
+            Libros Lib = new Libros();
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 dgvSolicitudes.Rows.Clear();
@@ -26,9 +26,9 @@ namespace AdminLabrary.View.principales
                 {
                     var lista = from solic in db.solicitudes
                                 from lec in db.Lectores
-                                from Lib in db.Libros
+                                from lib in db.Libros
 
-                                where solic.id_lector == ID
+                                where solic.id_lector == Id
                                 where solic.id_lector == lec.Id_Lector
                                 where solic.libros == Lib.Id_libro
                                 where solic.estado == 0
@@ -37,9 +37,9 @@ namespace AdminLabrary.View.principales
                                     ID = solic.id_soli,
                                     Lector = lec.Nombres,
                                     Libros = Lib.Nombre,
-                                    Cantidad = solic.Cantidad,
+                                    solic.Cantidad,
                                     Estado = solic.estado,
-                                    Id_Lector = lec.Id_Lector,
+                                    lec.Id_Lector,
                                     Id_Libro = solic.libros
 
                                 };
@@ -58,10 +58,10 @@ namespace AdminLabrary.View.principales
                 }
                 else if (Loging == 1)
                 {
-
+                    Lectores Lec = new Lectores();
                     var lista = from solic in db.solicitudes
-                                from Lec in db.Lectores
-                                from Lib in db.Libros
+                                from lec in db.Lectores
+                                from lib in db.Libros
                                 where solic.estado == 0
                                 where solic.id_lector == Lec.Id_Lector
                                 where solic.libros == Lib.Id_libro
@@ -70,7 +70,7 @@ namespace AdminLabrary.View.principales
                                     ID = solic.id_soli,
                                     Lector = Lec.Nombres,
                                     Libros = Lib.Nombre,
-                                    Cantidad = solic.Cantidad,
+                                    solic.Cantidad,
                                     Estado = solic.estado,
                                     Id_Lector = solic.id_lector,
                                     Id_Libro = solic.libros
@@ -94,22 +94,22 @@ namespace AdminLabrary.View.principales
 
         public void Seleccionar()
         {
-            int Id = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
-            string Lector = dgvSolicitudes.CurrentRow.Cells[1].Value.ToString();
-            string Libro = dgvSolicitudes.CurrentRow.Cells[2].Value.ToString();
-            string Cantidad = dgvSolicitudes.CurrentRow.Cells[3].Value.ToString();
-            int IdLector = int.Parse(dgvSolicitudes.CurrentRow.Cells[4].Value.ToString());
-            int IdLibro = int.Parse(dgvSolicitudes.CurrentRow.Cells[5].Value.ToString());
+            int id = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
+            string lector = dgvSolicitudes.CurrentRow.Cells[1].Value.ToString();
+            string libro = dgvSolicitudes.CurrentRow.Cells[2].Value.ToString();
+            string cantidad = dgvSolicitudes.CurrentRow.Cells[3].Value.ToString();
+            int idLector = int.Parse(dgvSolicitudes.CurrentRow.Cells[4].Value.ToString());
+            int idLibro = int.Parse(dgvSolicitudes.CurrentRow.Cells[5].Value.ToString());
 
-            solicitud.txtCantidad.Text = Cantidad;
-            solicitud.txtLibro.Text = Libro;
-            solicitud.ID = Id;
-            solicitud.idlector = IdLector;
-            solicitud.idlibro = IdLibro;
-            solicitud.txtLector.Text = Lector;
+            Solicitud.txtCantidad.Text = cantidad;
+            Solicitud.txtLibro.Text = libro;
+            Solicitud.Id = id;
+            Solicitud.Idlector = idLector;
+            Solicitud.Idlibro = idLibro;
+            Solicitud.txtLector.Text = lector;
 
         }
-        public frmSolicitudesCRUD solicitud = new frmSolicitudesCRUD();
+        public FrmSolicitudesCrud Solicitud = new FrmSolicitudesCrud();
 
 
         
@@ -133,53 +133,48 @@ namespace AdminLabrary.View.principales
         {
                 if (e.ColumnIndex == dgvSolicitudes.Columns["NUEVA"].Index )
                 {
-                    solicitud.btnGuardar.Show();
-                    solicitud.btnGuardar.Enabled = true;
-                    solicitud.btnActualizar.Hide();
-                    solicitud.btnEliminar.Hide();
-                    solicitud.btnSeleccionarLibro.Show();
-                    solicitud.btnSeleccionarLibro.Enabled = true;
-                    solicitud.txtCantidad.Enabled = true;
-                    solicitud.limpiar();
-                    solicitud.ShowDialog();
+                    Solicitud.btnGuardar.Show();
+                    Solicitud.btnGuardar.Enabled = true;
+                    Solicitud.btnActualizar.Hide();
+                    Solicitud.btnEliminar.Hide();
+                    Solicitud.btnSeleccionarLibro.Show();
+                    Solicitud.btnSeleccionarLibro.Enabled = true;
+                    Solicitud.txtCantidad.Enabled = true;
+                    Solicitud.Limpiar();
+                    Solicitud.ShowDialog();
                 }
                 else if (e.ColumnIndex == dgvSolicitudes.Columns["EDITAR"].Index && e.RowIndex != -1)
                 {
-                    solicitud.btnGuardar.Hide();
-                    solicitud.btnActualizar.Show();
-                    solicitud.btnActualizar.Enabled = true;
-                    solicitud.btnEliminar.Hide();
+                    Solicitud.btnGuardar.Hide();
+                    Solicitud.btnActualizar.Show();
+                    Solicitud.btnActualizar.Enabled = true;
+                    Solicitud.btnEliminar.Hide();
                     Seleccionar();
-                    solicitud.ShowDialog();
+                    Solicitud.ShowDialog();
                 }
                 else if (e.ColumnIndex == dgvSolicitudes.Columns["ELIMINAR"].Index && e.RowIndex != -1)
                 {
-                    solicitud.btnGuardar.Hide();
-                    solicitud.btnActualizar.Hide();
-                    solicitud.btnEliminar.Show();
-                    solicitud.btnEliminar.Enabled = true;
-                    solicitud.btnSeleccionarLibro.Hide();
-                    solicitud.txtCantidad.Enabled = false;
+                    Solicitud.btnGuardar.Hide();
+                    Solicitud.btnActualizar.Hide();
+                    Solicitud.btnEliminar.Show();
+                    Solicitud.btnEliminar.Enabled = true;
+                    Solicitud.btnSeleccionarLibro.Hide();
+                    Solicitud.txtCantidad.Enabled = false;
                     Seleccionar();
-                    solicitud.ShowDialog();
+                    Solicitud.ShowDialog();
                 }
                 else if (e.ColumnIndex == dgvSolicitudes.Columns["RECIBIR"].Index && e.RowIndex != -1)
                 {
-                    int IdLector = int.Parse(dgvSolicitudes.CurrentRow.Cells[4].Value.ToString());
-                    string Lector = dgvSolicitudes.CurrentRow.Cells[1].Value.ToString();
-                    int IdLibro = int.Parse(dgvSolicitudes.CurrentRow.Cells[5].Value.ToString());
-                    string Libro = dgvSolicitudes.CurrentRow.Cells[2].Value.ToString();
-                    string Cantidad = dgvSolicitudes.CurrentRow.Cells[3].Value.ToString();
+                    int idLector = int.Parse(dgvSolicitudes.CurrentRow.Cells[4].Value.ToString());
+                    string lector = dgvSolicitudes.CurrentRow.Cells[1].Value.ToString();
+                    int idLibro = int.Parse(dgvSolicitudes.CurrentRow.Cells[5].Value.ToString());
+                    string libro = dgvSolicitudes.CurrentRow.Cells[2].Value.ToString();
+                    string cantidad = dgvSolicitudes.CurrentRow.Cells[3].Value.ToString();
                 int cantidadLibros =0;
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    var lista = from libros in db.Libros
-                                where libros.Id_libro == IdLibro
-                                select new
-                                {
-                                   cantidad = libros.cantidad
-
-                                };
+                    var lista = db.Libros.Where(libros => libros.Id_libro == idLibro)
+                        .Select(libros => new { libros.cantidad });
 
 
                    
@@ -191,43 +186,43 @@ namespace AdminLabrary.View.principales
                 }
 
 
-                if (cantidadLibros < Int32.Parse(Cantidad)) { 
+                if (cantidadLibros < Int32.Parse(cantidad)) { 
 
                     DialogResult resultado = MessageBox.Show("La cantidad de libros solicitada es menor a la exitente, desea alquilar "+cantidadLibros.ToString() +" libros?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
                     if(resultado == DialogResult.Yes)
                     {
-                        frmPrincipal.prestamos.alquiler.IdLibro = IdLibro;
-                        frmPrincipal.prestamos.alquiler.txtLibro.Text = Libro;
-                        frmPrincipal.prestamos.alquiler.txtLector.Text = Lector;
-                        frmPrincipal.prestamos.alquiler.idLector = IdLector;
-                        frmPrincipal.prestamos.alquiler.txtCantidad.Text = cantidadLibros.ToString();
-                        frmPrincipal.prestamos.alquiler.solicitud = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
-                        frmPrincipal.prestamos.alquiler.txtCantidad.Enabled = false;
-                        frmPrincipal.prestamos.alquiler.btnRecibir.Hide();
-                        frmPrincipal.prestamos.alquiler.btnGuardar.Enabled = true;
-                        frmPrincipal.prestamos.alquiler.btnGuardar.Show();
-                        frmPrincipal.prestamos.alquiler.btnSeleccionarLector.Hide();
-                        frmPrincipal.prestamos.alquiler.btnSeleccionarLibro.Hide();
-                        frmPrincipal.prestamos.alquiler.ShowDialog();
+                        FrmPrincipal.Prestamos.Alquiler.IdLibro = idLibro;
+                        FrmPrincipal.Prestamos.Alquiler.txtLibro.Text = libro;
+                        FrmPrincipal.Prestamos.Alquiler.txtLector.Text = lector;
+                        FrmPrincipal.Prestamos.Alquiler.IdLector = idLector;
+                        FrmPrincipal.Prestamos.Alquiler.txtCantidad.Text = cantidadLibros.ToString();
+                        FrmPrincipal.Prestamos.Alquiler.Solicitud = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
+                        FrmPrincipal.Prestamos.Alquiler.txtCantidad.Enabled = false;
+                        FrmPrincipal.Prestamos.Alquiler.btnRecibir.Hide();
+                        FrmPrincipal.Prestamos.Alquiler.btnGuardar.Enabled = true;
+                        FrmPrincipal.Prestamos.Alquiler.btnGuardar.Show();
+                        FrmPrincipal.Prestamos.Alquiler.btnSeleccionarLector.Hide();
+                        FrmPrincipal.Prestamos.Alquiler.btnSeleccionarLibro.Hide();
+                        FrmPrincipal.Prestamos.Alquiler.ShowDialog();
                     }
 
                 }
                 else
                 {
-                    frmPrincipal.prestamos.alquiler.IdLibro = IdLibro;
-                    frmPrincipal.prestamos.alquiler.txtLibro.Text = Libro;
-                    frmPrincipal.prestamos.alquiler.txtLector.Text = Lector;
-                    frmPrincipal.prestamos.alquiler.idLector = IdLector;
-                    frmPrincipal.prestamos.alquiler.txtCantidad.Text = Cantidad;
-                    frmPrincipal.prestamos.alquiler.solicitud = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
-                    frmPrincipal.prestamos.alquiler.txtCantidad.Enabled = false;
-                    frmPrincipal.prestamos.alquiler.btnRecibir.Hide();
-                    frmPrincipal.prestamos.alquiler.btnGuardar.Enabled = true;
-                    frmPrincipal.prestamos.alquiler.btnGuardar.Show();
-                    frmPrincipal.prestamos.alquiler.btnSeleccionarLector.Hide();
-                    frmPrincipal.prestamos.alquiler.btnSeleccionarLibro.Hide();
-                    frmPrincipal.prestamos.alquiler.ShowDialog();
+                    FrmPrincipal.Prestamos.Alquiler.IdLibro = idLibro;
+                    FrmPrincipal.Prestamos.Alquiler.txtLibro.Text = libro;
+                    FrmPrincipal.Prestamos.Alquiler.txtLector.Text = lector;
+                    FrmPrincipal.Prestamos.Alquiler.IdLector = idLector;
+                    FrmPrincipal.Prestamos.Alquiler.txtCantidad.Text = cantidad;
+                    FrmPrincipal.Prestamos.Alquiler.Solicitud = int.Parse(dgvSolicitudes.CurrentRow.Cells[0].Value.ToString());
+                    FrmPrincipal.Prestamos.Alquiler.txtCantidad.Enabled = false;
+                    FrmPrincipal.Prestamos.Alquiler.btnRecibir.Hide();
+                    FrmPrincipal.Prestamos.Alquiler.btnGuardar.Enabled = true;
+                    FrmPrincipal.Prestamos.Alquiler.btnGuardar.Show();
+                    FrmPrincipal.Prestamos.Alquiler.btnSeleccionarLector.Hide();
+                    FrmPrincipal.Prestamos.Alquiler.btnSeleccionarLibro.Hide();
+                    FrmPrincipal.Prestamos.Alquiler.ShowDialog();
                 }
                 }
             
