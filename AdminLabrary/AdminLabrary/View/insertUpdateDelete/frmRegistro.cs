@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
-using AdminLabrary.Model;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
@@ -22,7 +24,6 @@ namespace AdminLabrary.View.insertUpdateDelete
         int _mostrar;
         private void picOcultar_Click(object sender, EventArgs e)
         {
-
             if (_mostrar == 0)
             {
                 picVer.Hide();
@@ -64,35 +65,51 @@ namespace AdminLabrary.View.insertUpdateDelete
             }
         }
 
+        private string HashSHA256(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            String name = txtNombre.Text;
-            String lastName = txtApellidos.Text;
-            String user = txtUsuario.Text;
+            string name = txtNombre.Text.Trim();
+            string lastName = txtApellidos.Text.Trim();
+            string user = txtUsuario.Text.Trim();
             string pass = txtContraseña.Text;
 
-            if(name == "")
+            if (string.IsNullOrWhiteSpace(name))
             {
                 MessageBox.Show("El nombre de usuario es obligatorio");
                 txtNombre.Focus();
-            }else if (lastName == "")
+            }
+            else if (string.IsNullOrWhiteSpace(lastName))
             {
                 MessageBox.Show("El apellido de usuario es obligatorio");
                 txtApellidos.Focus();
             }
-            else if (user == "")
+            else if (string.IsNullOrWhiteSpace(user))
             {
-                MessageBox.Show("El campo  usuario es obligatorio");
+                MessageBox.Show("El campo de usuario es obligatorio");
                 txtUsuario.Focus();
             }
-            else if (pass == "")
+            else if (string.IsNullOrWhiteSpace(pass))
             {
-                MessageBox.Show("La el campo contraseña es obligatorio");
+                MessageBox.Show("El campo de contraseña es obligatorio");
                 txtContraseña.Focus();
             }
             else
             {
-                Console.WriteLine(name + user + pass + lastName);
+                string hashedPassword = HashSHA256(pass);
+
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
                     Lectores lec = new Lectores
@@ -107,7 +124,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     Roles rol = new Roles
                     {
                         Usuario = user,
-                        Contraseña = pass,
+                        Contraseña = hashedPassword,
                         Id_Lector = idUser,
                         Rol = 0,
                         estado = 0

@@ -10,7 +10,7 @@ namespace AdminLabrary.View.principales
         public FrmPrincipal()
         {
             InitializeComponent();
-          
+
 
 
 
@@ -152,10 +152,10 @@ namespace AdminLabrary.View.principales
         int _color;
         void Cambiarcolor()
         {
-            if(_color == 0)
+            if (_color == 0)
             {
                 btnPrestamos.BackColor = Color.Teal;
-                btnSolicitudes.BackColor = Color.FromArgb(64,64,64,64);
+                btnSolicitudes.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLibros.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnAdmin.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnCategoria.BackColor = Color.FromArgb(64, 64, 64, 64);
@@ -163,7 +163,8 @@ namespace AdminLabrary.View.principales
                 btnAutor.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnRoles.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnLectores.BackColor = Color.FromArgb(64, 64, 64, 64);
-            }else if (_color == 1)
+            }
+            else if (_color == 1)
             {
                 btnPrestamos.BackColor = Color.FromArgb(64, 64, 64, 64);
                 btnSolicitudes.BackColor = Color.Teal;
@@ -303,14 +304,14 @@ namespace AdminLabrary.View.principales
         public void btnMostrar_Click(object sender, EventArgs e)
         {
             PanelMenu.Show();
-            picce2.Hide();  
+            picce2.Hide();
             btnMostrar.Hide();
         }
 
-      
 
-       
-         public static FrmRoles R = new FrmRoles();
+
+
+        public static FrmRoles R = new FrmRoles();
         private void btnRoles_Click(object sender, EventArgs e)
         {
             _color = 7;

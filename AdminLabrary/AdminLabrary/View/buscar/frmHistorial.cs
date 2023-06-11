@@ -24,50 +24,47 @@ namespace AdminLabrary.View.buscar
                 string buscar = txtBuscar.Text;
 
                 var lista = from al in db.Alquileres
-                            from lec in db.Lectores
-                            from li in db.Libros
-                            from adm in db.Roles
-                            where al.Id_Lector == lec.Id_Lector
-                            && al.Id_libro == li.Id_libro
-                            && al.Entregado == adm.Id_rol
-                            && lec.Nombres.Contains(buscar)
-
-
+                            join lec in db.Lectores on al.Id_Lector equals lec.Id_Lector
+                            join li in db.Libros on al.Id_libro equals li.Id_libro
+                            join adm in db.Roles on al.Entregado equals adm.Id_rol
+                            where lec.Nombres.Contains(buscar)
                             select new
                             {
                                 ID = al.Id_alquiler,
                                 Lector = lec.Nombres,
                                 Libro = li.Nombre,
-                                entregado = adm.Usuario,
-                                fechaS = al.fecha_salida,
-                                fechaP = al.fecha_prevista_de_entrega,
-                                fecha = al.fecha_de_entrega,
-                                recibido = al.Recibido
+                                Entregado = adm.Usuario,
+                                FechaS = al.fecha_salida,
+                                FechaP = al.fecha_prevista_de_entrega,
+                                Fecha = al.fecha_de_entrega,
+                                Recibido = al.Recibido
                             };
+
                 foreach (var i in lista)
                 {
-                    DateTime fechaPre = i.fechaP;
+                    DateTime fechaPre = i.FechaP;
                     TimeSpan con = DateTime.Now - fechaPre;
 
-                    if (i.recibido == null)
+                    if (i.Recibido == null)
                     {
-                        if (int.Parse(con.Days.ToString()) > 0)
+                        if (con.Days > 0)
                         {
-                            dgvAlquiler.Rows.Add(i.ID, i.Lector, i.Libro, i.entregado, "Pendiente", con.Days);
+                            dgvAlquiler.Rows.Add(i.ID, i.Lector, i.Libro, i.Entregado, "Pendiente", con.Days);
                         }
                     }
                     else
                     {
-                        DateTime fechaentrega = i.fecha.Value;
-                        TimeSpan contadorEn = fechaPre - fechaentrega;
+                        DateTime fechaEntrega = i.Fecha.Value;
+                        TimeSpan contadorEn = fechaPre - fechaEntrega;
                         if (contadorEn.Days < 0)
                         {
-                            dgvAlquiler.Rows.Add(i.ID, i.Lector, i.Libro, i.entregado, "Entregado", -contadorEn.Days);
+                            dgvAlquiler.Rows.Add(i.ID, i.Lector, i.Libro, i.Entregado, "Entregado", -contadorEn.Days);
                         }
                     }
                 }
             }
         }
+
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {

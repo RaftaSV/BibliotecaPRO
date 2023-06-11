@@ -1,8 +1,8 @@
 ﻿using AdminLabrary.Model;
+using AdminLabrary.View.principales;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
@@ -21,13 +21,13 @@ namespace AdminLabrary.View.buscar
 
         void Filtro()
         {
-            using(BibliotecaprogramEntities db = new BibliotecaprogramEntities())
+            using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 dgvEditorial.Rows.Clear();
                 string buscar = txtBuscar.Text;
                 var listaE = from edit in db.Editoriales
                              where edit.Editorial.Contains(buscar)
-                             && edit.estado ==0
+                             && edit.estado == 0
                              select new
                              {
                                  ID = edit.Id_Editorial,
@@ -42,7 +42,7 @@ namespace AdminLabrary.View.buscar
 
             }
         }
-    
+
         void Seleccionar()
         {
             string id = dgvEditorial.CurrentRow.Cells[0].Value.ToString();

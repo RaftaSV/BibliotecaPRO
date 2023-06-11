@@ -1,8 +1,8 @@
 ﻿using AdminLabrary.Model;
+using AdminLabrary.View.principales;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
@@ -16,103 +16,52 @@ namespace AdminLabrary.View.buscar
         private void frmBuscarAlquiler_Load(object sender, EventArgs e)
         {
             Filtro();
-            rbtnLector.Checked = true; 
+            rbtnLector.Checked = true;
         }
 
         void Filtro()
         {
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-                Alquileres Alq = new Alquileres();
-                Lectores Lec = new Lectores();
-                Libros Lib = new Libros();
                 dgvAlquiler.Rows.Clear();
                 string buscar = txtBuscar.Text;
-                if(rbtnLector.Checked)
+                var query = from alq in db.Alquileres
+                            join lec in db.Lectores on alq.Id_Lector equals lec.Id_Lector
+                            join lib in db.Libros on alq.Id_libro equals lib.Id_libro
+                            join admi in db.Roles on alq.Entregado equals admi.Id_rol
+                            join admin in db.Roles on alq.Recibido equals admin.Id_rol
+                            where alq.Recibido != null
+                            select new
+                            {
+                                ID = alq.Id_alquiler,
+                                Lector = lec.Nombres,
+                                Libro = lib.Nombre,
+                                entregado = admi.Usuario,
+                                Cantidad = alq.cantidad,
+                                Fecha_Entrega = alq.fecha_de_entrega,
+                                Recibido = admin.Usuario
+                            };
+
+                if (rbtnLector.Checked)
                 {
-                    var listaA = from alq in db.Alquileres
-                                 from lec in db.Lectores
-                                 from lib in db.Libros
-                                 from admi in db.Roles
-                                 from admin in db.Roles
-                                 where Alq.Entregado == admi.Id_rol
-                                 where Alq.Recibido == admin.Id_rol
-                                 where Lec.Id_Lector == Alq.Id_Lector
-                                 where Alq.Id_libro == Lib.Id_libro
-                                 where Alq.Recibido != null
-                                 where Lec.Nombres.Contains(buscar)
-                                 select new
-                                 {
-                                     ID = Alq.Id_alquiler,
-                                     Lector = Lec.Nombres,
-                                     Libro = Lib.Nombre,
-                                     entregado = admi.Usuario,
-                                     Cantidad = Alq.cantidad,
-                                     Fecha_Entrega = Alq.fecha_de_entrega,
-                                     Recibido = admin.Usuario
-                                 };
-                    foreach (var iterar in listaA)
-                    {
-                        dgvAlquiler.Rows.Add(iterar.ID, iterar.Lector, iterar.Libro, iterar.Cantidad, iterar.entregado, iterar.Fecha_Entrega, iterar.Recibido);
-                    }
-                }else if (rbtnLibro.Checked)
+                    query = query.Where(lec => lec.Lector.Contains(buscar));
+                }
+                else if (rbtnLibro.Checked)
                 {
-                    var listaA = from alq in db.Alquileres
-                                 from lec in db.Lectores
-                                 from lib in db.Libros
-                                 from admi in db.Roles
-                                 from admin in db.Roles
-                                 where Alq.Entregado == admi.Id_rol
-                                 where Alq.Recibido == admin.Id_rol
-                                 where Lec.Id_Lector == Alq.Id_Lector
-                                 where Alq.Id_libro == Lib.Id_libro
-                                 where Alq.Recibido != null
-                                 where Lib.Nombre.Contains(buscar)
-                                 select new
-                                 {
-                                     ID = Alq.Id_alquiler,
-                                     Lector = Lec.Nombres,
-                                     Libro = Lib.Nombre,
-                                     entregado = admi.Usuario,
-                                     Cantidad = Alq.cantidad,
-                                     Fecha_Entrega = Alq.fecha_de_entrega,
-                                     Recibido = admin.Usuario
-                                 };
-                    foreach (var iterar in listaA)
-                    {
-                        dgvAlquiler.Rows.Add(iterar.ID, iterar.Lector, iterar.Libro, iterar.Cantidad, iterar.entregado, iterar.Fecha_Entrega, iterar.Recibido);
-                    }
+                    query = query.Where(lib => lib.Libro.Contains(buscar));
                 }
                 else
                 {
-                    var listaA = from alq in db.Alquileres
-                                 from lec in db.Lectores
-                                 from lib in db.Libros
-                                 from admi in db.Roles
-                                 from admin in db.Roles
-                                 where Alq.Entregado == admi.Id_rol
-                                 where Alq.Recibido == admin.Id_rol
-                                 where Lec.Id_Lector == Alq.Id_Lector
-                                 where Alq.Id_libro == Lib.Id_libro
-                                 where Alq.Recibido != null
-                                 where admin.Usuario.Contains(buscar)
-                                 select new
-                                 {
-                                     ID = Alq.Id_alquiler,
-                                     Lector = Lec.Nombres,
-                                     Libro = Lib.Nombre,
-                                     entregado = admi.Usuario,
-                                     Cantidad = Alq.cantidad,
-                                     Fecha_Entrega = Alq.fecha_de_entrega,
-                                     Recibido = admin.Usuario
-                                 };
-                    foreach (var iterar in listaA)
-                    {
-                        dgvAlquiler.Rows.Add(iterar.ID, iterar.Lector, iterar.Libro, iterar.Cantidad, iterar.entregado, iterar.Fecha_Entrega, iterar.Recibido);
-                    }
+                    query = query.Where(admin => admin.Recibido.Contains(buscar));
+                }
+
+                foreach (var iterar in query)
+                {
+                    dgvAlquiler.Rows.Add(iterar.ID, iterar.Lector, iterar.Libro, iterar.Cantidad, iterar.entregado, iterar.Fecha_Entrega, iterar.Recibido);
                 }
             }
         }
+
 
         public int Indicador;
         void Seleccionar()

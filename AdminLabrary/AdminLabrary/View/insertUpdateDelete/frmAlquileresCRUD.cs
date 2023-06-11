@@ -1,14 +1,16 @@
-﻿using AdminLabrary.View.buscar;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.buscar;
+using AdminLabrary.View.principales;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
     public partial class FrmAlquileresCrud : Form
     {
+        private Alquileres _alqu = new Alquileres();
+
         public int IdEntregado;
         public int IdAlquiler;
         public int IdLibro;
@@ -19,17 +21,18 @@ namespace AdminLabrary.View.insertUpdateDelete
         public DateTime FechaSalida;
         public DateTime FechaPre;
         public int Solicitud;
+
         public FrmAlquileresCrud()
         {
             InitializeComponent();
         }
-        
+
         private void btnSeleccionarLibro_Click(object sender, EventArgs e)
         {
             FrmBuscarLibros li = new FrmBuscarLibros();
             li.ShowDialog();
         }
-       
+
         private void btnSeleccionarLector_Click(object sender, EventArgs e)
         {
             FrmBuscarLector lec = new FrmBuscarLector();
@@ -37,25 +40,20 @@ namespace AdminLabrary.View.insertUpdateDelete
             lec.Filtro();
             lec.ShowDialog();
         }
-    
-        
+
         private void frmAlquileresCRUD_Load(object sender, EventArgs e)
         {
-            
+
         }
-        Alquileres _alqu = new Alquileres();
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (Solicitud == 0)
             {
-
-
-                if (txtLector.Text != "" && txtLibro.Text != "" && int.Parse(txtCantidad.Text) > 0)
+                if (!string.IsNullOrWhiteSpace(txtLector.Text) && !string.IsNullOrWhiteSpace(txtLibro.Text) && int.Parse(txtCantidad.Text) > 0)
                 {
-                    if  (int.Parse(txtCantidad.Text) <= Cantidad)     
+                    if (int.Parse(txtCantidad.Text) <= Cantidad)
                     {
-
                         using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                         {
                             var lista = from lis in db.Libros
@@ -64,6 +62,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                                         {
                                             lis.cantidad
                                         };
+
                             foreach (var i in lista)
                             {
                                 Cantidad = i.cantidad;
@@ -80,6 +79,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                                     fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")),
                                     fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8)
                                 };
+
                                 db.Alquileres.Add(alquiler);
                                 db.SaveChanges();
                                 FrmPrincipal.Prestamos.CargarDatos();
@@ -90,28 +90,23 @@ namespace AdminLabrary.View.insertUpdateDelete
                             {
                                 MessageBox.Show("La cantidad de libros en existencia es: " + Cantidad.ToString());
                             }
-
                         }
-
-                    }else
+                    }
+                    else
                     {
-                        MessageBox.Show("La cantidad ingresada sobrepasa al limite permitido.\r" +
-                            "El limite es: " + Cantidad.ToString());
+                        MessageBox.Show("La cantidad ingresada sobrepasa el límite permitido.\r" +
+                            "El límite es: " + Cantidad.ToString());
                     }
                 }
                 else
                 {
                     MessageBox.Show("Todos los campos son obligatorios");
                 }
-
-
-
             }
             else
             {
-                if (txtLector.Text != "" && txtLibro.Text != "" && int.Parse(txtCantidad.Text) > 0)
+                if (!string.IsNullOrWhiteSpace(txtLector.Text) && !string.IsNullOrWhiteSpace(txtLibro.Text) && int.Parse(txtCantidad.Text) > 0)
                 {
-
                     using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                     {
                         var lista = from lis in db.Libros
@@ -120,12 +115,12 @@ namespace AdminLabrary.View.insertUpdateDelete
                                     {
                                         lis.cantidad
                                     };
+
                         foreach (var i in lista)
                         {
                             Cantidad = i.cantidad;
                         }
 
-                       
                         if (Cantidad >= int.Parse(txtCantidad.Text))
                         {
                             Alquileres alquiler = new Alquileres
@@ -137,9 +132,11 @@ namespace AdminLabrary.View.insertUpdateDelete
                                 fecha_salida = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")),
                                 fecha_prevista_de_entrega = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")).AddDays(8)
                             };
+
                             db.Alquileres.Add(alquiler);
                             db.SaveChanges();
                             FrmPrincipal.Prestamos.CargarDatos();
+
                             var soli = db.solicitudes.First(buscarId => buscarId.id_soli == Solicitud);
                             soli.Cantidad = int.Parse(txtCantidad.Text);
                             soli.libros = IdLibro;
@@ -147,21 +144,20 @@ namespace AdminLabrary.View.insertUpdateDelete
                             soli.estado = 1;
                             db.Entry(soli).State = System.Data.Entity.EntityState.Modified;
                             db.SaveChanges();
+
                             Solicitud = 0;
                             Limpiar();
                             FrmPrincipal.Sol.CargarDatos();
                             Close();
-
                         }
                         else
                         {
                             MessageBox.Show("La cantidad de libros en existencia es: " + Cantidad.ToString());
                         }
-
                     }
-
                 }
             }
+
             FrmPrincipal.Prestamos.Ultimafila();
         }
 
@@ -186,6 +182,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     _alqu.Recibido = IdAdmin;
                     db.Entry(_alqu).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
+
                     Alquileres alqui = new Alquileres
                     {
                         Id_Lector = IdLector,
@@ -195,6 +192,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                         fecha_salida = FechaSalida,
                         fecha_prevista_de_entrega = FechaPre
                     };
+
                     db.Alquileres.Add(alqui);
                     db.SaveChanges();
                 }
@@ -212,18 +210,16 @@ namespace AdminLabrary.View.insertUpdateDelete
                     db.Entry(_alqu).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
-
-
-
             }
+
             Limpiar();
             FrmPrincipal.Prestamos.CargarDatos();
             Close();
             FrmPrincipal.Prestamos.Ultimafila();
         }
+
         public void Limpiar()
         {
-
             txtLector.Text = "";
             txtLibro.Text = "";
             txtCantidad.Text = "";
@@ -231,9 +227,6 @@ namespace AdminLabrary.View.insertUpdateDelete
             IdAlquiler = 0;
             IdLibro = 0;
             IdLector = 0;
-            
-           
-
         }
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
@@ -241,7 +234,6 @@ namespace AdminLabrary.View.insertUpdateDelete
             string cadena = txtCantidad.Text;
             try
             {
-
                 if (int.Parse(txtCantidad.Text) < 0)
                 {
                     txtCantidad.Text = "";
@@ -259,9 +251,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     txtCantidad.Text = cadena.Remove(c - 1);
                     txtCantidad.SelectionStart = c - 1;
                 }
-
             }
         }
-    
     }
 }

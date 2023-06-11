@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.insertUpdateDelete;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.insertUpdateDelete;
+using System.Text;
+using System.Security.Cryptography;
+
 
 namespace AdminLabrary.View.principales
 {
@@ -18,26 +21,28 @@ namespace AdminLabrary.View.principales
 
         public static FrmPrincipal F = new FrmPrincipal();
         public void btnIniciarsesion_Click(object sender, EventArgs e)
-
         {
-         
-            if (_registro != null) { 
+            if (_registro != null)
+            {
                 _registro.Close();
-
             }
-
 
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
+                string usuario = txtUsuario.Text;
+                string contraseña = txtContraseña.Text;
+
+                byte[] contraseñaBytes = Encoding.UTF8.GetBytes(contraseña);
+                byte[] contraseñaHash = SHA256.Create().ComputeHash(contraseñaBytes);
+                string contraseñaHashString = BitConverter.ToString(contraseñaHash).Replace("-", string.Empty);
+
                 var lista = from admin in db.Roles
                             from lec in db.Lectores
-                            where admin.Usuario == txtUsuario.Text
-                            && admin.Contraseña == txtContraseña.Text
+                            where admin.Usuario == usuario
+                            && admin.Contraseña == contraseñaHashString
                             && admin.Id_Lector == lec.Id_Lector
-                            && lec.estado ==0
+                            && lec.estado == 0
                             && admin.estado == 0
-                           
-
                             select new
                             {
                                 ID = admin.Id_rol,
@@ -47,17 +52,15 @@ namespace AdminLabrary.View.principales
                                 rol = admin.Rol
                             };
 
-
                 if (lista.Any())
                 {
-
-                    string usu = txtUsuario.Text;
+                    string usu = usuario;
                     F.lblUsuarioARecibir.Text = usu;
                     foreach (var i in lista)
                     {
-                        if(i.rol == 0)
+                        if (i.rol == 0)
                         {
-                           F.Inicio();
+                            F.Inicio();
                             FrmPrincipal.Sol.Solicitud.Idlector = i.idLector;
                             FrmPrincipal.Sol.Id = i.idLector;
                             FrmPrincipal.Sol.Loging = 0;
@@ -65,11 +68,8 @@ namespace AdminLabrary.View.principales
                             FrmPrincipal.Sol.Solicitud.txtLector.Visible = false;
                             FrmPrincipal.Sol.Solicitud.lblLector.Visible = false;
                             FrmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = false;
-
                             F.Rol = 0;
                             F.Roles();
-                            
-
                         }
                         else
                         {
@@ -84,27 +84,21 @@ namespace AdminLabrary.View.principales
                             FrmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = true;
                             F.Rol = 1;
                             F.Roles();
-                           
                         }
-                        
                     }
                     F.Show();
                     Hide();
-
-
                 }
                 else
                 {
                     txtUsuario.Text = "";
                     txtContraseña.Text = "";
                     txtUsuario.Focus();
-                    MessageBox.Show("Usuario o contraseña incorrecto", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Usuario o contraseña incorrecto", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-
-
             }
-
         }
+
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -114,7 +108,7 @@ namespace AdminLabrary.View.principales
         private void frmLogin_Load(object sender, EventArgs e)
         {
             txtContraseña.PasswordChar = '*';
-            
+
         }
 
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
@@ -144,8 +138,8 @@ namespace AdminLabrary.View.principales
         FrmRegistro _registro;
         private void label1_Click(object sender, EventArgs e)
         {
-            _registro  = new FrmRegistro();
-            _registro.Limpiar(); 
+            _registro = new FrmRegistro();
+            _registro.Limpiar();
             _registro.Show();
         }
 

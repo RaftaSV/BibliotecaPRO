@@ -1,8 +1,8 @@
 ﻿using AdminLabrary.Model;
+using AdminLabrary.View.principales;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
@@ -11,9 +11,7 @@ namespace AdminLabrary.View.insertUpdateDelete
         public string Id;
         public FrmLectorCrud()
         {
-           
             InitializeComponent();
-          
         }
 
         public void Limpiar()
@@ -24,16 +22,19 @@ namespace AdminLabrary.View.insertUpdateDelete
             txtNombre.Enabled = true;
         }
 
-        Lectores _lector = new Lectores();
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtApellidos.Text !="" && txtNombre.Text != "") {
+            if (!string.IsNullOrWhiteSpace(txtApellidos.Text) && !string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    _lector.Nombres = txtNombre.Text;
-                    _lector.Apellidos = txtApellidos.Text;
-                    _lector.estado = 0;
-                    db.Lectores.Add(_lector);
+                    Lectores lector = new Lectores
+                    {
+                        Nombres = txtNombre.Text,
+                        Apellidos = txtApellidos.Text,
+                        estado = 0
+                    };
+                    db.Lectores.Add(lector);
                     db.SaveChanges();
                     Limpiar();
                     FrmPrincipal.Lector.CargarDatos();
@@ -44,29 +45,29 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (txtApellidos.Text != "" && txtNombre.Text != "")
+            if (!string.IsNullOrWhiteSpace(txtApellidos.Text) && !string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
                     int id = int.Parse(Id);
-                    _lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
-                    _lector.Nombres = txtNombre.Text;
-                    _lector.Apellidos = txtApellidos.Text;
-                    _lector.estado = 0;
-                    db.Entry(_lector).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    Limpiar();
-                    FrmPrincipal.Lector.CargarDatos();
-                    Close();
+                    Lectores lector = db.Lectores.FirstOrDefault(buscarid => buscarid.Id_Lector == id);
+                    if (lector != null)
+                    {
+                        lector.Nombres = txtNombre.Text;
+                        lector.Apellidos = txtApellidos.Text;
+                        lector.estado = 0;
+                        db.Entry(lector).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        Limpiar();
+                        FrmPrincipal.Lector.CargarDatos();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el lector en la base de datos");
+                    }
                 }
-
-
             }
-        }
-
-        private void frmNuevoLector_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -74,17 +75,23 @@ namespace AdminLabrary.View.insertUpdateDelete
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 int id = int.Parse(Id);
-                _lector = db.Lectores.First(buscarid => buscarid.Id_Lector == id);
-                _lector.Nombres = txtNombre.Text;
-                _lector.Apellidos = txtApellidos.Text;
-                _lector.estado = 1;
-                db.Entry(_lector).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                Limpiar();
-                FrmPrincipal.Lector.CargarDatos();
-                Console.WriteLine("eliminar" + id);
-                Close();
-               
+                Lectores lector = db.Lectores.FirstOrDefault(buscarid => buscarid.Id_Lector == id);
+                if (lector != null)
+                {
+                    lector.Nombres = txtNombre.Text;
+                    lector.Apellidos = txtApellidos.Text;
+                    lector.estado = 1;
+                    db.Entry(lector).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    Limpiar();
+                    FrmPrincipal.Lector.CargarDatos();
+                    Console.WriteLine("eliminar" + id);
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el lector en la base de datos");
+                }
             }
         }
 
@@ -110,7 +117,7 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

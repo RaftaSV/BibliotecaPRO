@@ -1,9 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using AdminLabrary.View.buscar;
 using AdminLabrary.View.principales;
+using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Windows.Forms;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
@@ -20,7 +22,6 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void frmAdministradoresCRUD_Load(object sender, EventArgs e)
         {
-            
             txtContraseña.UseSystemPasswordChar = true;
             picOcultar.Hide();
         }
@@ -34,16 +35,34 @@ namespace AdminLabrary.View.insertUpdateDelete
             txtContraseña.Enabled = true;
             btnSeleccionar.Enabled = true;
         }
+
+        private string EncriptarContraseña(string contraseña)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtContraseña.Text != ""&& txtLector.Text != "" && txtUsuario.Text != "")
+            if (!string.IsNullOrWhiteSpace(txtContraseña.Text) &&
+                !string.IsNullOrWhiteSpace(txtLector.Text) &&
+                !string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
                     if (rbtnLector.Checked)
                     {
                         _rol.Usuario = txtUsuario.Text;
-                        _rol.Contraseña = txtContraseña.Text;
+                        _rol.Contraseña = EncriptarContraseña(txtContraseña.Text);
                         _rol.Id_Lector = IdLector;
                         _rol.Rol = 0;
                         _rol.estado = 0;
@@ -57,7 +76,7 @@ namespace AdminLabrary.View.insertUpdateDelete
                     else
                     {
                         _rol.Usuario = txtUsuario.Text;
-                        _rol.Contraseña = txtContraseña.Text;
+                        _rol.Contraseña = EncriptarContraseña(txtContraseña.Text);
                         _rol.Id_Lector = IdLector;
                         _rol.Rol = 1;
                         _rol.estado = 0;
@@ -68,93 +87,103 @@ namespace AdminLabrary.View.insertUpdateDelete
                         FrmPrincipal.Admin.CargarDatos();
                         Close();
                     }
-
-
                 }
-
             }
             else
             {
                 MessageBox.Show("Todos los campos son obligatorios");
             }
-
-        
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
+            if (!string.IsNullOrWhiteSpace(txtContraseña.Text) &&
+                !string.IsNullOrWhiteSpace(txtLector.Text) &&
+                !string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
-                if (rbtnLector.Checked)
+                using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
-                    _rol.Usuario = txtUsuario.Text;
-                    _rol.Contraseña = txtContraseña.Text;
-                    _rol.Id_Lector = IdLector;
-                    _rol.Rol = 0;
-                    _rol.estado = 0;
-                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    Limpiar();
-                    FrmPrincipal.R.CargarDatos();
-                    FrmPrincipal.Admin.CargarDatos();
-                    Close();
+                    if (rbtnLector.Checked)
+                    {
+                        _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                        _rol.Usuario = txtUsuario.Text;
+                        _rol.Contraseña = EncriptarContraseña(txtContraseña.Text);
+                        _rol.Id_Lector = IdLector;
+                        _rol.Rol = 0;
+                        _rol.estado = 0;
+                        db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        Limpiar();
+                        FrmPrincipal.R.CargarDatos();
+                        FrmPrincipal.Admin.CargarDatos();
+                        Close();
+                    }
+                    else
+                    {
+                        _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                        _rol.Usuario = txtUsuario.Text;
+                        _rol.Contraseña = EncriptarContraseña(txtContraseña.Text);
+                        _rol.Id_Lector = IdLector;
+                        _rol.Rol = 1;
+                        _rol.estado = 0;
+                        db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        Limpiar();
+                        FrmPrincipal.R.CargarDatos();
+                        FrmPrincipal.Admin.CargarDatos();
+                        Close();
+                    }
                 }
-                else
-                {
-                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
-                    _rol.Usuario = txtUsuario.Text;
-                    _rol.Contraseña = txtContraseña.Text;
-                    _rol.Id_Lector = IdLector;
-                    _rol.Rol = 1;
-                    _rol.estado = 0;
-                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    Limpiar();
-                    FrmPrincipal.R.CargarDatos();
-                    FrmPrincipal.Admin.CargarDatos();
-                    Close();
-                }
-               
             }
-
+            else
+            {
+                MessageBox.Show("Todos los campos son obligatorios");
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
+            if (!string.IsNullOrWhiteSpace(txtContraseña.Text) &&
+                !string.IsNullOrWhiteSpace(txtLector.Text) &&
+                !string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
-                if (rbtnLector.Checked)
+                using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
-                    _rol.Usuario = txtUsuario.Text;
-                    _rol.Contraseña = txtContraseña.Text;
-                    _rol.Id_Lector = IdLector;
-                    _rol.Rol = 0;
-                    _rol.estado = 1;
-                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    Limpiar();
-                    FrmPrincipal.R.CargarDatos();
-                    FrmPrincipal.Admin.CargarDatos();
-                    Close();
+                    if (rbtnLector.Checked)
+                    {
+                        _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                        _rol.Usuario = txtUsuario.Text;
+                        _rol.Contraseña = EncriptarContraseña(txtContraseña.Text);
+                        _rol.Id_Lector = IdLector;
+                        _rol.Rol = 0;
+                        _rol.estado = 1;
+                        db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        Limpiar();
+                        FrmPrincipal.R.CargarDatos();
+                        FrmPrincipal.Admin.CargarDatos();
+                        Close();
+                    }
+                    else
+                    {
+                        _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
+                        _rol.Usuario = txtUsuario.Text;
+                        _rol.Contraseña = EncriptarContraseña(txtContraseña.Text);
+                        _rol.Id_Lector = IdLector;
+                        _rol.Rol = 1;
+                        _rol.estado = 1;
+                        db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        Limpiar();
+                        FrmPrincipal.R.CargarDatos();
+                        FrmPrincipal.Admin.CargarDatos();
+                        Close();
+                    }
                 }
-                else
-                {
-                    _rol = db.Roles.First(buscarId => buscarId.Id_rol == IdAdmin);
-                    _rol.Usuario = txtUsuario.Text;
-                    _rol.Contraseña = txtContraseña.Text;
-                    _rol.Id_Lector = IdLector;
-                    _rol.Rol = 1;
-                    _rol.estado = 1;
-                    db.Entry(_rol).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    Limpiar();
-                    FrmPrincipal.R.CargarDatos();
-                    FrmPrincipal.Admin.CargarDatos();
-                    Close();
-                }
-
+            }
+            else
+            {
+                MessageBox.Show("Todos los campos son obligatorios");
             }
         }
 
@@ -168,8 +197,7 @@ namespace AdminLabrary.View.insertUpdateDelete
         int _mostrar;
         private void btnVerC_Click(object sender, EventArgs e)
         {
-           
-            if (_mostrar==0)
+            if (_mostrar == 0)
             {
                 picVer.Hide();
                 picOcultar.Show();
@@ -181,9 +209,8 @@ namespace AdminLabrary.View.insertUpdateDelete
                 picVer.Show();
                 picOcultar.Hide();
                 txtContraseña.UseSystemPasswordChar = true;
-                _mostrar=0;
+                _mostrar = 0;
             }
-            
         }
     }
 }

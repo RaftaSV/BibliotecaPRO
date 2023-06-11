@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.insertUpdateDelete;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
@@ -102,14 +102,14 @@ namespace AdminLabrary.View.principales
         }
 
         public FrmLibrosCrud Libros = new FrmLibrosCrud();
-       
+
 
         private void dgvLibros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-    
+
         void Seleccionar()
         {
             int id = int.Parse(dgvLibros.CurrentRow.Cells[0].Value.ToString());
@@ -145,39 +145,39 @@ namespace AdminLabrary.View.principales
 
         private void dgvLibros_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-                if (e.ColumnIndex == dgvLibros.Columns["NUEVO"].Index && e.RowIndex != -1)
-                {
-                    Libros.btnGuardar.Show();
-                    Libros.btnGuardar.Enabled = true;
-                    Libros.btnActualizar.Hide();
-                    Libros.btnEliminar.Hide();
-                    Libros.Limpiar();
-                    Libros.Indi = 0;
-                    Libros.ShowDialog();
-                }
-                else if (e.ColumnIndex == dgvLibros.Columns["EDITAR"].Index && e.RowIndex != -1)
-                {
-                    Libros.btnGuardar.Hide();
-                    Libros.btnActualizar.Show();
-                    Libros.btnActualizar.Enabled = true;
-                    Libros.btnEliminar.Hide();
-                    Libros.Indi = 0;
-                    Seleccionar();
-                    Libros.ShowDialog();
-                }
-                else if (e.ColumnIndex == dgvLibros.Columns["ELIMINAR"].Index && e.RowIndex != -1)
-                {
-                    Libros.btnGuardar.Hide();
-                    Libros.btnActualizar.Hide();
-                    Libros.btnSeleccionarA.Hide();
-                    Libros.btnSeleccionarE.Hide();
-                    Libros.btnEliminar.Show();
-                    Libros.btnEliminar.Enabled = true;
-                    Libros.Indi = 1;
-                    Seleccionar();
-                    Libros.ShowDialog();
-                }
+
+            if (e.ColumnIndex == dgvLibros.Columns["NUEVO"].Index && e.RowIndex != -1)
+            {
+                Libros.btnGuardar.Show();
+                Libros.btnGuardar.Enabled = true;
+                Libros.btnActualizar.Hide();
+                Libros.btnEliminar.Hide();
+                Libros.Limpiar();
+                Libros.Indi = 0;
+                Libros.ShowDialog();
+            }
+            else if (e.ColumnIndex == dgvLibros.Columns["EDITAR"].Index && e.RowIndex != -1)
+            {
+                Libros.btnGuardar.Hide();
+                Libros.btnActualizar.Show();
+                Libros.btnActualizar.Enabled = true;
+                Libros.btnEliminar.Hide();
+                Libros.Indi = 0;
+                Seleccionar();
+                Libros.ShowDialog();
+            }
+            else if (e.ColumnIndex == dgvLibros.Columns["ELIMINAR"].Index && e.RowIndex != -1)
+            {
+                Libros.btnGuardar.Hide();
+                Libros.btnActualizar.Hide();
+                Libros.btnSeleccionarA.Hide();
+                Libros.btnSeleccionarE.Hide();
+                Libros.btnEliminar.Show();
+                Libros.btnEliminar.Enabled = true;
+                Libros.Indi = 1;
+                Seleccionar();
+                Libros.ShowDialog();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -200,5 +200,5 @@ namespace AdminLabrary.View.principales
 
         }
     }
-    }
+}
 

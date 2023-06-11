@@ -1,8 +1,8 @@
 ﻿using AdminLabrary.Model;
+using AdminLabrary.View.principales;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.View.principales;
 
 
 namespace AdminLabrary.View.buscar
@@ -12,7 +12,7 @@ namespace AdminLabrary.View.buscar
         public FrmBuscarLibros()
         {
             InitializeComponent();
-           
+
         }
 
         private void frmBuscarLibros_Load(object sender, EventArgs e)
@@ -26,31 +26,40 @@ namespace AdminLabrary.View.buscar
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 dgvLibro.Rows.Clear();
-                Libros Lib = new Libros();
-                Autores Aut = new Autores();
-                    string buscar = txtBuscar.Text;
-                var listaLib = from lib in db.Libros
-                               from aut in db.Autores where Lib.Id_autor == Aut.Id_autor
-                               from ca in db.Categorias where Lib.Id_categoria == ca.Id_categoria
-                               from ed in db.Editoriales where Lib.Id_Editorial == ed.Id_Editorial
-                               where Lib.Nombre.Contains(buscar)
-                               where Lib.cantidad > 0
-                               && Lib.estado==0
-                               && Aut.estado == 0
-                               && ca.estado == 0
-                               && ed.estado == 0
-                               select new
-                               {
-                                   Id = Lib.Id_libro,
-                                   Lib.Nombre,
-                                   Autor = Aut.Nombre,
-                                   Cantidad = Lib.cantidad
-                               };
-
-                foreach (var iterar in listaLib )
+                string buscar = txtBuscar.Text;
+                   var lista = from li in db.Libros
+                            from au in db.Autores
+                            from ca in db.Categorias
+                            from ed in db.Editoriales
+                            where li.Id_categoria == ca.Id_categoria
+                            && li.Id_autor == au.Id_autor
+                            && li.Id_Editorial == ed.Id_Editorial
+                            && li.estado == 0
+                            && au.estado == 0
+                            && ca.estado == 0
+                            && ed.estado == 0
+                            && li.cantidad > 0
+                            && li.Nombre.Contains(buscar)
+                            select new
+                            {
+                                ID = li.Id_libro,
+                                li.Nombre,
+                                Cantidad = li.cantidad,
+                                li.Año,
+                                li.Numero_edicion,
+                                Autor = au.Nombre,
+                                ed.Editorial,
+                                ca.Categoria,
+                                idAutor = li.Id_autor,
+                                idEditorial = li.Id_Editorial,
+                                idCategoria = ca.Id_categoria
+                            };
+                foreach (var iterar in lista)
                 {
-                    dgvLibro.Rows.Add(iterar.Id, iterar.Nombre, iterar.Autor, iterar.Cantidad);
+                    dgvLibro.Rows.Add(iterar.ID, iterar.Nombre, iterar.Autor, iterar.Cantidad);
                 }
+              
+             
 
             }
 

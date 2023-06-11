@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.principales;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
@@ -47,7 +47,7 @@ namespace AdminLabrary.View.buscar
 
                 }
             }
-            else if(Indicador == 2)
+            else if (Indicador == 2)
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
@@ -111,7 +111,7 @@ namespace AdminLabrary.View.buscar
             }
         }
 
-       
+
         void Seleccionar()
         {
 

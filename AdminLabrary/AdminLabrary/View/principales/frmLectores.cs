@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.insertUpdateDelete;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
@@ -24,13 +24,15 @@ namespace AdminLabrary.View.principales
             {
                 dgvLectores.Rows.Clear();
                 var lista = from lec in db.Lectores
-                             where lec.estado == 0
+                            where lec.estado == 0
                             select new
                             {
-                                ID = lec.Id_Lector,Nombre=lec.Nombres, lec.Apellidos
-                                
+                                ID = lec.Id_Lector,
+                                Nombre = lec.Nombres,
+                                lec.Apellidos
+
                             };
-              foreach(var i in lista)
+                foreach (var i in lista)
                 {
                     dgvLectores.Rows.Add(i.ID, i.Nombre, i.Apellidos);
                 }
@@ -39,7 +41,7 @@ namespace AdminLabrary.View.principales
         }
 
         FrmLectorCrud _nuevo = new FrmLectorCrud();
-     
+
 
         private void Seleccionar()
         {
@@ -51,7 +53,7 @@ namespace AdminLabrary.View.principales
             _nuevo.txtApellidos.Text = apellido;
         }
 
-       
+
 
         private void dgvLectores_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.insertUpdateDelete;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
@@ -42,7 +42,7 @@ namespace AdminLabrary.View.principales
                     dgvAutores.Rows.Add(i.ID, i.Nombre, i.Nacionalidad, i.Fecha_Nacimiento);
                 }
 
-               
+
             }
 
         }
@@ -51,13 +51,13 @@ namespace AdminLabrary.View.principales
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
         private void dgvAutores_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         void Seleccionar()
@@ -72,7 +72,7 @@ namespace AdminLabrary.View.principales
             Autor.Id = int.Parse(id);
         }
 
-     
+
         private void dgvAutores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvAutores.Columns["NUEVO"].Index && e.RowIndex != -1)

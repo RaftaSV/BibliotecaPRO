@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.buscar;
+using AdminLabrary.View.principales;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.View.buscar;
-using AdminLabrary.Model;
-using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.insertUpdateDelete
 {
@@ -16,14 +16,14 @@ namespace AdminLabrary.View.insertUpdateDelete
         }
 
         public int IdLibro;
-        public string IdCate="";
-        public int Id =0;
+        public string IdCate = "";
+        public int Id = 0;
         public int IdEditorial;
         public int IdAutor;
         public int Indi = 0;
-        
 
-       public void Limpiar()
+
+        public void Limpiar()
         {
             txtAutor.Text = "";
             txtCantidad.Text = "";
@@ -56,31 +56,41 @@ namespace AdminLabrary.View.insertUpdateDelete
                 cmbCategoria.DisplayMember = "Categoria";
                 cmbCategoria.ValueMember = "Id_categoria";
                 cmbCategoria.SelectedIndex = Id;
-               
-               
+
+
             }
 
-            
+
         }
 
 
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtAutor.Text != "" && txtCantidad.Text != "" 
-                && txtEditorial.Text != "" && txtNumero_de_Edicion.Text != "" && int.Parse(txtCantidad.Text) > 0)
+            string nombre = txtNombre.Text.Trim();
+            string autor = txtAutor.Text.Trim();
+            string cantidad = txtCantidad.Text.Trim();
+            string editorial = txtEditorial.Text.Trim();
+            string numeroEdicion = txtNumero_de_Edicion.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(nombre) && !string.IsNullOrWhiteSpace(autor)
+                && !string.IsNullOrWhiteSpace(cantidad) && !string.IsNullOrWhiteSpace(editorial)
+                && !string.IsNullOrWhiteSpace(numeroEdicion) && int.Parse(cantidad) > 0)
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    _lib.Nombre = txtNombre.Text;
-                    _lib.cantidad = int.Parse(txtCantidad.Text);
-                    _lib.Año = Convert.ToDateTime(dtpAño.Text);
-                    _lib.Id_categoria = int.Parse(IdCate);
-                    _lib.Id_autor = IdAutor;
-                    _lib.Id_Editorial = IdEditorial;
-                    _lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
-                    _lib.estado = 0;
-                    db.Libros.Add(_lib);
+                    Libros libro = new Libros
+                    {
+                        Nombre = nombre,
+                        cantidad = int.Parse(cantidad),
+                        Año = Convert.ToDateTime(dtpAño.Text),
+                        Id_categoria = int.Parse(IdCate),
+                        Id_autor = IdAutor,
+                        Id_Editorial = IdEditorial,
+                        Numero_edicion = int.Parse(numeroEdicion),
+                        estado = 0
+                    };
+                    db.Libros.Add(libro);
                     db.SaveChanges();
                     Limpiar();
                     FrmPrincipal.Lib.CargaDatos();
@@ -91,15 +101,14 @@ namespace AdminLabrary.View.insertUpdateDelete
             {
                 MessageBox.Show("Todos los campos son obligatorios");
             }
-
-
         }
+
 
         private void frmLibrosCRUD_Load(object sender, EventArgs e)
         {
             CargarCombo();
-          
-            if (Indi !=0)
+
+            if (Indi != 0)
             {
                 txtAutor.Enabled = false;
                 txtCantidad.Enabled = false;
@@ -117,9 +126,9 @@ namespace AdminLabrary.View.insertUpdateDelete
             }
             else
             {
-              
+
                 txtCantidad.Enabled = true;
-               
+
                 txtNombre.Enabled = true;
                 txtNumero_de_Edicion.Enabled = true;
                 btnSeleccionarA.Enabled = true;
@@ -138,62 +147,98 @@ namespace AdminLabrary.View.insertUpdateDelete
         private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-           IdCate = cmbCategoria.SelectedValue.ToString();
+            IdCate = cmbCategoria.SelectedValue.ToString();
 
 
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtAutor.Text != "" && txtCantidad.Text != ""
-               && txtEditorial.Text != "" && txtNumero_de_Edicion.Text != "" && int.Parse(txtCantidad.Text) > 0)
+            string nombre = txtNombre.Text.Trim();
+            string autor = txtAutor.Text.Trim();
+            string cantidad = txtCantidad.Text.Trim();
+            string editorial = txtEditorial.Text.Trim();
+            string numeroEdicion = txtNumero_de_Edicion.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(nombre) && !string.IsNullOrWhiteSpace(autor)
+                && !string.IsNullOrWhiteSpace(cantidad) && !string.IsNullOrWhiteSpace(editorial)
+                && !string.IsNullOrWhiteSpace(numeroEdicion) && int.Parse(cantidad) > 0)
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    _lib = db.Libros.First(buscarid => buscarid.Id_libro== IdLibro);
-                    _lib.Nombre = txtNombre.Text;
-                    _lib.cantidad = int.Parse(txtCantidad.Text);
-                    _lib.Año = Convert.ToDateTime(dtpAño.Text);
-                    _lib.Id_categoria = int.Parse(IdCate);
-                    _lib.Id_autor = IdAutor;
-                    _lib.Id_Editorial = IdEditorial;
-                    _lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
-                    _lib.estado = 0;
-                    db.Entry(_lib).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    Limpiar();
-                    FrmPrincipal.Lib.CargaDatos();
-                    Close();
+                    Libros libro = db.Libros.FirstOrDefault(buscarid => buscarid.Id_libro == IdLibro);
+                    if (libro != null)
+                    {
+                        libro.Nombre = nombre;
+                        libro.cantidad = int.Parse(cantidad);
+                        libro.Año = Convert.ToDateTime(dtpAño.Text);
+                        libro.Id_categoria = int.Parse(IdCate);
+                        libro.Id_autor = IdAutor;
+                        libro.Id_Editorial = IdEditorial;
+                        libro.Numero_edicion = int.Parse(numeroEdicion);
+                        libro.estado = 0;
+                        db.Entry(libro).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        Limpiar();
+                        FrmPrincipal.Lib.CargaDatos();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el libro en la base de datos");
+                    }
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Todos los campos son obligatorios");
+            }
         }
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            string nombre = txtNombre.Text.Trim();
+            string autor = txtAutor.Text.Trim();
+            string cantidad = txtCantidad.Text.Trim();
+            string editorial = txtEditorial.Text.Trim();
+            string numeroEdicion = txtNumero_de_Edicion.Text.Trim();
 
-            if (txtNombre.Text != "" && txtAutor.Text != "" && txtCantidad.Text != ""
-               && txtEditorial.Text != "" && txtNumero_de_Edicion.Text != "")
+            if (!string.IsNullOrWhiteSpace(nombre) && !string.IsNullOrWhiteSpace(autor)
+                && !string.IsNullOrWhiteSpace(cantidad) && !string.IsNullOrWhiteSpace(editorial)
+                && !string.IsNullOrWhiteSpace(numeroEdicion))
             {
                 using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
                 {
-                    _lib = db.Libros.First(buscarid => buscarid.Id_libro == IdLibro);
-                    _lib.Nombre = txtNombre.Text;
-                    _lib.cantidad = int.Parse(txtCantidad.Text);
-                    _lib.Año = Convert.ToDateTime(dtpAño.Text);
-                    _lib.Id_categoria = int.Parse(IdCate);
-                    _lib.Id_autor = IdAutor;
-                    _lib.Id_Editorial = IdEditorial;
-                    _lib.Numero_edicion = int.Parse(txtNumero_de_Edicion.Text);
-                    _lib.estado = 1;
-                    db.Entry(_lib).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    Limpiar();
-                    FrmPrincipal.Lib.CargaDatos();
-                    Close();
+                    Libros libro = db.Libros.FirstOrDefault(buscarid => buscarid.Id_libro == IdLibro);
+                    if (libro != null)
+                    {
+                        libro.Nombre = nombre;
+                        libro.cantidad = int.Parse(cantidad);
+                        libro.Año = Convert.ToDateTime(dtpAño.Text);
+                        libro.Id_categoria = int.Parse(IdCate);
+                        libro.Id_autor = IdAutor;
+                        libro.Id_Editorial = IdEditorial;
+                        libro.Numero_edicion = int.Parse(numeroEdicion);
+                        libro.estado = 1;
+                        db.Entry(libro).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        Limpiar();
+                        FrmPrincipal.Lib.CargaDatos();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el libro en la base de datos");
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Todos los campos son obligatorios");
+            }
         }
+
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
         {
@@ -249,6 +294,6 @@ namespace AdminLabrary.View.insertUpdateDelete
             }
         }
     }
-    
-    
+
+
 }

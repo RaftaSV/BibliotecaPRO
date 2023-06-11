@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.insertUpdateDelete;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
@@ -23,14 +23,15 @@ namespace AdminLabrary.View.principales
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 var lista = from cat in db.Categorias
-                            where cat.estado ==0
-                            select new {ID = cat.Id_categoria, cat.Categoria };
+                            where cat.estado == 0
+                            select new { ID = cat.Id_categoria, cat.Categoria };
 
-                foreach( var i in lista) {
-                    dgvCat.Rows.Add(i.ID,i.Categoria);
+                foreach (var i in lista)
+                {
+                    dgvCat.Rows.Add(i.ID, i.Categoria);
                 }
-              
-                
+
+
             }
 
         }
@@ -44,7 +45,7 @@ namespace AdminLabrary.View.principales
 
         private void dgvCat_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
 
         }
 
@@ -86,5 +87,5 @@ namespace AdminLabrary.View.principales
 
     }
 }
-    
+
 

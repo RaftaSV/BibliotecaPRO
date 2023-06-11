@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.insertUpdateDelete;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.insertUpdateDelete;
 
 namespace AdminLabrary.View.principales
 {
@@ -26,12 +26,15 @@ namespace AdminLabrary.View.principales
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
                 var lista = from ed in db.Editoriales
-                            where ed.estado==0
-                            select new {ID = ed.Id_Editorial,
+                            where ed.estado == 0
+                            select new
+                            {
+                                ID = ed.Id_Editorial,
                                 ed.Editorial,
                                 ed.Fundada,
-                                ed.Direccion };
-               foreach(var i in lista)
+                                ed.Direccion
+                            };
+                foreach (var i in lista)
                 {
                     dgvEditorial.Rows.Add(i.ID, i.Editorial, i.Fundada, i.Direccion);
                 }
@@ -41,11 +44,11 @@ namespace AdminLabrary.View.principales
 
         private void dgvEditorial_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         public static FrmEditorialesCrud Editorial = new FrmEditorialesCrud();
-       
+
         void Seleccionar()
         {
             int id = int.Parse(dgvEditorial.CurrentRow.Cells[0].Value.ToString());
@@ -59,9 +62,9 @@ namespace AdminLabrary.View.principales
             Editorial.dtpFecha.Text = fundada;
         }
 
-    
 
-    
+
+
 
 
 
@@ -107,5 +110,5 @@ namespace AdminLabrary.View.principales
 
     }
 }
-    
+
 

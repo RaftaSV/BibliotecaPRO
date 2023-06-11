@@ -383,7 +383,7 @@
           </Key>
           <Property Name="Id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Usuario" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Contraseña" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
           <Property Name="Id_Lector" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="Int32" />
           <Property Name="Rol" Type="Int32" Nullable="false" />

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using AdminLabrary.Model;
+﻿using AdminLabrary.Model;
 using AdminLabrary.View.buscar;
 using AdminLabrary.View.insertUpdateDelete;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace AdminLabrary.View.principales
 {
@@ -25,7 +25,7 @@ namespace AdminLabrary.View.principales
             dgvPrestamos.Rows.Clear();
             using (BibliotecaprogramEntities db = new BibliotecaprogramEntities())
             {
-               
+
                 if (rbtnLector.Checked)
                 {
                     string buscar = txtBuscar.Text;
@@ -56,7 +56,7 @@ namespace AdminLabrary.View.principales
 
                     foreach (var i in lista)
                     {
-                        dgvPrestamos.Rows.Add(i.ID, i.Lector, i.Libro, i.Cantidad, i.Entregado, i.Fecha_salida, i.Fecha_prevista_Entrega, i.IDLector, i.IDLibro, i.IDEntregado) ;
+                        dgvPrestamos.Rows.Add(i.ID, i.Lector, i.Libro, i.Cantidad, i.Entregado, i.Fecha_salida, i.Fecha_prevista_Entrega, i.IDLector, i.IDLibro, i.IDEntregado);
                     }
                 }
                 else if (rbtnLibro.Checked)
@@ -129,7 +129,7 @@ namespace AdminLabrary.View.principales
                             dgvPrestamos.Rows.Add(i.ID, i.Lector, i.Libro, i.Cantidad, i.Entregado, i.Fecha_salida, i.Fecha_prevista_Entrega, i.IDLector, i.IDLibro, i.IDEntregado);
 
                         }
-                        
+
                     }
 
                 }
@@ -151,7 +151,7 @@ namespace AdminLabrary.View.principales
         {
             Alquiler.Limpiar();
             Alquiler.txtCantidad.Enabled = true;
-           
+
             Alquiler.Indicador = 1;
             Alquiler.btnGuardar.Show();
             Alquiler.btnRecibir.Hide();
@@ -161,11 +161,11 @@ namespace AdminLabrary.View.principales
 
         }
 
-        
+
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-        
+
             FrmLogin.F.MostrarPanel(new FrmBuscarAlquiler());
         }
 
@@ -176,11 +176,11 @@ namespace AdminLabrary.View.principales
 
         private void btnRetrazo_Click(object sender, EventArgs e)
         {
-            
+
             FrmLogin.F.MostrarPanel(new FrmHistorial());
         }
 
-        
+
 
         private void dgvPrestamos_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AdminLabrary.Model;
+using AdminLabrary.View.principales;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using AdminLabrary.Model;
-using AdminLabrary.View.principales;
 
 namespace AdminLabrary.View.buscar
 {
@@ -12,7 +12,7 @@ namespace AdminLabrary.View.buscar
         {
             InitializeComponent();
             Filtro();
-                
+
         }
 
         private void frmBuscarAdministrador_Load(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace AdminLabrary.View.buscar
                 string buscar = txtBuscar.Text;
                 var listaA = from adm in db.Roles
                              where adm.Usuario.Contains(buscar)
-                             && adm.estado==0
+                             && adm.estado == 0
                              select new
                              {
                                  ID = adm.Id_rol,
@@ -50,7 +50,7 @@ namespace AdminLabrary.View.buscar
             }
         }
 
-        public int Indicador;
+        private int Indicador;
 
         void Seleccionar()
         {
