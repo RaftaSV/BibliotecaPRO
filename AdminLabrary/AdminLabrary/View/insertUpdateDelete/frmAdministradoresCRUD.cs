@@ -143,7 +143,7 @@ namespace AdminLabrary.View.insertUpdateDelete
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtContraseña.Text) &&
+            if (
                 !string.IsNullOrWhiteSpace(txtLector.Text) &&
                 !string.IsNullOrWhiteSpace(txtUsuario.Text))
             {

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="88371f813d034c85bea34a1d9a0cb448" Name="Diagram1" ZoomLevel="56">
+      <Diagram DiagramId="88371f813d034c85bea34a1d9a0cb448" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="BibliotecaprogramModel.Autores" Width="1.5" PointX="1.125" PointY="0.75" FillColor="192, 255, 192" />
         <EntityTypeShape EntityType="BibliotecaprogramModel.Categorias" Width="1.5" PointX="0.75" PointY="3.5" FillColor="192, 255, 192" />
         <EntityTypeShape EntityType="BibliotecaprogramModel.Editoriales" Width="1.5" PointX="0.75" PointY="6.5" FillColor="192, 255, 192" />

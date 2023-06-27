@@ -83,7 +83,6 @@ namespace AdminLabrary.View.principales
                 Admin.rbtnAdmi.Checked = true;
             }
             Admin.txtLector.Text = lector;
-            Admin.txtContraseña.Text = contraseña;
             Admin.IdLector = int.Parse(idU);
             Admin.txtUsuario.Text = usuario;
             Admin.IdAdmin = int.Parse(id);

@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Text;
 using System.Security.Cryptography;
 
-
 namespace AdminLabrary.View.principales
 {
     public partial class FrmLogin : Form
@@ -20,6 +19,7 @@ namespace AdminLabrary.View.principales
         }
 
         public static FrmPrincipal F = new FrmPrincipal();
+
         public void btnIniciarsesion_Click(object sender, EventArgs e)
         {
             if (_registro != null)
@@ -71,8 +71,11 @@ namespace AdminLabrary.View.principales
                             F.Rol = 0;
                             F.Roles();
                         }
-                        else
+                        else if (i.rol == 1)
                         {
+                            // Código específico para el rol de administrador (rol = 1)
+                            // ...
+                            // Por ejemplo:
                             F.Inicio();
                             FrmPrincipal.Prestamos.Alquiler.IdAdmin = i.ID;
                             FrmPrincipal.Sol.Solicitud.Idlector = i.idLector;
@@ -84,6 +87,11 @@ namespace AdminLabrary.View.principales
                             FrmPrincipal.Sol.dgvSolicitudes.Columns["RECIBIR"].Visible = true;
                             F.Rol = 1;
                             F.Roles();
+                        }
+                        else
+                        {
+                            // Otros casos de roles, si los hay
+                            // ...
                         }
                     }
                     F.Show();
@@ -98,7 +106,6 @@ namespace AdminLabrary.View.principales
                 }
             }
         }
-
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -135,13 +142,14 @@ namespace AdminLabrary.View.principales
                 _mostrar = 1;
             }
         }
+
         FrmRegistro _registro;
+
         private void label1_Click(object sender, EventArgs e)
         {
             _registro = new FrmRegistro();
             _registro.Limpiar();
             _registro.Show();
         }
-
     }
 }
